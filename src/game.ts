@@ -118,16 +118,25 @@ export default class Demo extends Phaser.Scene
                 
     }
     update(){
-
+        let previousPosetion;
         if(cursors.left.isDown){
             player.setVelocityX(-200);
+<<<<<<< HEAD
             player.setFlipX(true);
             if(player.body.touching.down) {player.play('running', true)}
+=======
+            previousPosetion = "left";
+            if(player.body.touching.down) {player.play('running-left', true)}
+>>>>>>> aea7b02ae593c25bdf73cd13ee18633a7287d89e
             
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
+<<<<<<< HEAD
             player.setFlipX(false);
+=======
+            previousPosetion = "right";
+>>>>>>> aea7b02ae593c25bdf73cd13ee18633a7287d89e
             if(player.body.touching.down) {player.play('running', true)}
 
         }
