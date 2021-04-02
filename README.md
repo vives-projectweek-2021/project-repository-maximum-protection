@@ -11,3 +11,8 @@ The idea is that this game is a horizontal platformer.
 - [phaser](https://phaser.io/)
 - [phaser boiler template with typescript](https://github.com/photonstorm/phaser3-typescript-project-template)
 - [free to use game art](https://www.gameartguppy.com/)
+
+## game logic
+
+- [gravity/bouncing physics] (https://phaser.io/examples/v2/arcade-physics/bounce-with-gravity)
+ - [starstruck -- example game] (https://phaser.io/examples/v2/games/starstruck)
