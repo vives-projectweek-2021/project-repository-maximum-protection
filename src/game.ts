@@ -13,29 +13,46 @@ export default class Demo extends Phaser.Scene
         this.load.image('libs', 'assets/libs.png');
         this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
         this.load.glsl('stars', 'assets/starfields.glsl.js');
-        this.load.glsl('knight', 'assets/attack8.png');
+        this.load.image('knight', 'assets/attack (8).png');
+
+
+        for (let i = 1; i <=10;i++)
+        {
+            this.load.image(`run${i}`, `assets/knight/Run (${i}).png` );
+        }
+
 
     }
 
     create ()
     {
+        
+                
+                
+        this.add.image(400, 300, 'libs')
         this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0);
 
-        this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0);
-
-        this.add.image(400, 300, 'libs');
-        this.add.image(300,300, 'knight');
-
-        const logo = this.add.image(400, 70, 'logo');
-
-        this.tweens.add({
-            targets: logo,
-            y: 350,
-            duration: 1500,
-            ease: 'Sine.inOut',
-            yoyo: true,
+        this.anims.create({
+            key: 'running',
+            frames: [
+                { key: 'run1' },
+                { key: 'run2' },
+                { key: 'run3' },
+                { key: 'run4' },
+                { key: 'run6' },
+                { key: 'run7' },
+                { key: 'run8' },
+                { key: 'run9' },
+                { key: 'run10'}
+            ],
+            frameRate: 20,
             repeat: -1
-        })
+        });
+
+        
+        this.add.sprite(300,300, 'run1')
+                .play('running');
+                
     }
 }
 
