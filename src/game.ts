@@ -29,6 +29,10 @@ export default class Demo extends Phaser.Scene
             this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png` );
         }
         
+        for (let i = 1; i <=10;i++)
+        {
+            this.load.image(`run-left${i}`, `assets/knight/Run-left (${i}).png` );
+        }
 
     }
 
@@ -55,6 +59,25 @@ export default class Demo extends Phaser.Scene
             frameRate: 20,
             repeat: -1
         });
+
+        this.add.image(800,1000,'background').setScale(2)
+        this.anims.create({
+            key: 'running-left',
+            frames: [
+                { key: 'run-left1' },
+                { key: 'run-left2' },
+                { key: 'run-left3' },
+                { key: 'run-left4' },
+                { key: 'run-left6' },
+                { key: 'run-left7' },
+                { key: 'run-left8' },
+                { key: 'run-left9' },
+                { key: 'run-left10'}
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+
 
 
         this.anims.create({
@@ -95,19 +118,22 @@ export default class Demo extends Phaser.Scene
     update(){
 
         if(cursors.left.isDown){
-            player.setVelocity(-160);
-            player.play('running')
+            player.setVelocityX(-200);
+            player.play('running-left')
         }
         else if(cursors.right.isDown){
-            player.setVelocity(160);
+            player.setVelocityX(160);
             player.play('running')
 
         }
         else{
-            player.setVelocity(0);
+            player.setVelocityX(0);
             player.play('Idleing')
         }
 
+        if (cursors.up.isDown && player.body.touching.down){
+            player.setVelocityY(-1000)
+        }
     }
 }
 
@@ -119,7 +145,7 @@ const config = {
     physics:{
         default: 'arcade',
         arcade: {
-            gravity:{y: 500},
+            gravity:{y: 1200},
             debug: false
         }
     },
