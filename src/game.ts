@@ -33,6 +33,11 @@ export default class Demo extends Phaser.Scene
             this.load.image(`run-left${i}`, `assets/knight/Run-left (${i}).png` );
         }
 
+        for (let i = 1; i <=10;i++)
+        {
+            this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png` );
+        }
+
     }
 
 
@@ -98,6 +103,23 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'jump',
+            frames: [
+                { key: 'jump1' },
+                { key: 'jump2' },
+                { key: 'jump3' },
+                { key: 'jump4' },
+                { key: 'jump6' },
+                { key: 'jump7' },
+                { key: 'jump8' },
+                { key: 'jump9' },
+                { key: 'jump10'}
+            ],
+            frameRate: 5,
+            repeat: 1
+        });
+
         
         player.setCollideWorldBounds(true)
         
@@ -119,21 +141,23 @@ export default class Demo extends Phaser.Scene
 
         if(cursors.left.isDown){
             player.setVelocityX(-200);
-            player.play('running-left', true)
+            if(player.body.touching.down) {player.play('running-left', true)}
             
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
-            player.play('running', true)
+            if(player.body.touching.down) {player.play('running', true)}
 
         }
         else{
+            if(player.body.touching.down) {player.play('Idleing', true)}
             player.setVelocityX(0);
-            player.play('Idleing', true)
+            
         }
 
         if (cursors.up.isDown && player.body.touching.down){
             player.setVelocityY(-1000)
+            player.play('jump')
         }
     }
 }
