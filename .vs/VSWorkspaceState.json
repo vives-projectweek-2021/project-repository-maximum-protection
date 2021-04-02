@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\dist",
-    "\\dist\\assets"
+    "\\src"
   ],
-  "SelectedNode": "\\dist\\assets\\plasma-bundle.glsl.js",
+  "SelectedNode": "\\src\\game.ts",
   "PreviewInSolutionExplorer": false
 }
