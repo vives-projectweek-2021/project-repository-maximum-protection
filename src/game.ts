@@ -66,26 +66,6 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
-        
-        this.anims.create({
-            key: 'running-left',
-            frames: [
-                { key: 'run-left1' },
-                { key: 'run-left2' },
-                { key: 'run-left3' },
-                { key: 'run-left4' },
-                { key: 'run-left6' },
-                { key: 'run-left7' },
-                { key: 'run-left8' },
-                { key: 'run-left9' },
-                { key: 'run-left10'}
-            ],
-            frameRate: 20,
-            repeat: -1
-        });
-
-
-
         this.anims.create({
             key: 'Idleing',
             frames: [
@@ -141,11 +121,13 @@ export default class Demo extends Phaser.Scene
 
         if(cursors.left.isDown){
             player.setVelocityX(-200);
-            if(player.body.touching.down) {player.play('running-left', true)}
+            player.setFlipX(true);
+            if(player.body.touching.down) {player.play('running', true)}
             
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
+            player.setFlipX(false);
             if(player.body.touching.down) {player.play('running', true)}
 
         }
