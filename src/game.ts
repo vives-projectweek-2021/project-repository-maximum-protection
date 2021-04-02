@@ -1,12 +1,17 @@
 import 'phaser';
 
+let cursors
+let player
+let platforms
 export default class Demo extends Phaser.Scene
 {
+
+
+    
     constructor ()
     {
         super('demo');
     }
-
     preload ()
     {
         this.load.image('platform', 'assets/platform.jpg');
@@ -31,6 +36,7 @@ export default class Demo extends Phaser.Scene
     
     create ()
     {
+        cursors = this.input.keyboard.createCursorKeys();
         
         this.add.image(800,1000,'background').setScale(2)
         this.anims.create({
@@ -68,22 +74,40 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
-        let player = this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
+        player = this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
         player.play('running')
-        //this.physics.add.sprite(0,100, 'knight');
         player.setCollideWorldBounds(true)
         
-        let platforms = this.physics.add.staticGroup();
-        platforms.create(150,800, 'platform').setScale(0.2)
-        platforms.create(200,700, 'platform').setScale(0.2)
-        platforms.create(400,400, 'platform').setScale(0.2)
-        platforms.create(600,300, 'platform').setScale(0.2)
-        platforms.create(600,600, 'platform').setScale(0.2)
+        platforms = this.physics.add.staticGroup();
+        platforms.create(150,800, 'platform').setScale(0.2).refreshBody()
+        platforms.create(200,700, 'platform').setScale(0.2).refreshBody()
+        platforms.create(400,400, 'platform').setScale(0.2).refreshBody()
+        platforms.create(600,300, 'platform').setScale(0.2).refreshBody()
+        platforms.create(600,600, 'platform').setScale(0.2).refreshBody()
 
+
+        this.physics.add.collider(player,platforms)
 
 
 
                 
+    }
+    update(){
+
+        if(cursors.left.isDown){
+            player.setVelocity(-160);
+            player.play('running')
+        }
+        else if(cursors.right.isDown){
+            player.setVelocity(160);
+            player.play('running')
+
+        }
+        else{
+            player.setVelocity(0);
+            player.play('Idleing')
+        }
+
     }
 }
 
@@ -95,7 +119,7 @@ const config = {
     physics:{
         default: 'arcade',
         arcade: {
-            gravity:{y: 300},
+            gravity:{y: 500},
             debug: false
         }
     },
