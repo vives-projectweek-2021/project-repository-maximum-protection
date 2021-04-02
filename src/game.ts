@@ -67,12 +67,22 @@ export default class Demo extends Phaser.Scene
             frameRate: 20,
             repeat: -1
         });
-        this.physics.add.sprite(300,300, 'run1').play('running').setScale(0.2)
 
-        this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
+        let player = this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
+        player.play('running')
+        //this.physics.add.sprite(0,100, 'knight');
+        player.setCollideWorldBounds(true)
         
-        
-        
+        let platforms = this.physics.add.staticGroup();
+        platforms.create(150,800, 'platform').setScale(0.2)
+        platforms.create(200,700, 'platform').setScale(0.2)
+        platforms.create(400,400, 'platform').setScale(0.2)
+        platforms.create(600,300, 'platform').setScale(0.2)
+        platforms.create(600,600, 'platform').setScale(0.2)
+
+
+
+
                 
     }
 }
