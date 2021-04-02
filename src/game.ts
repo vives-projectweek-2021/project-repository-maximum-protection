@@ -9,11 +9,9 @@ export default class Demo extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', 'assets/phaser3-logo.png');
-        this.load.image('libs', 'assets/libs.png');
-        this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
-        this.load.glsl('stars', 'assets/starfields.glsl.js');
-        this.load.image('knight', 'assets/attack (8).png');
+        this.load.image('platform', 'assets/platform.jpg');
+        this.load.image('background', 'assets/background.jpg');
+        this.load.image('idle', 'assets/knight/Idle (1).png');
 
 
         for (let i = 1; i <=10;i++)
@@ -21,17 +19,20 @@ export default class Demo extends Phaser.Scene
             this.load.image(`run${i}`, `assets/knight/Run (${i}).png` );
         }
 
+        for (let i = 1; i <=10;i++)
+        {
+            this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png` );
+        }
+        
 
     }
 
+
+    
     create ()
     {
         
-                
-                
-        this.add.image(400, 300, 'libs')
-        this.add.shader('RGB Shift Field', 0, 0, 800, 600).setOrigin(0);
-
+        this.add.image(800,1000,'background').setScale(2)
         this.anims.create({
             key: 'running',
             frames: [
@@ -49,9 +50,29 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
+
+        this.anims.create({
+            key: 'Idleing',
+            frames: [
+                { key: 'idle1' },
+                { key: 'idle2' },
+                { key: 'idle3' },
+                { key: 'idle4' },
+                { key: 'idle6' },
+                { key: 'idle7' },
+                { key: 'idle8' },
+                { key: 'idle9' },
+                { key: 'idle10'}
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+        this.physics.add.sprite(300,300, 'run1').play('running').setScale(0.2)
+
+        this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
         
-        this.add.sprite(300,300, 'run1')
-                .play('running');
+        
+        
                 
     }
 }
@@ -60,7 +81,14 @@ const config = {
     type: Phaser.AUTO,
     backgroundColor: '#125555',
     width: 800,
-    height: 600,
+    height: 900,
+    physics:{
+        default: 'arcade',
+        arcade: {
+            gravity:{y: 300},
+            debug: false
+        }
+    },
     scene: Demo
 };
 
