@@ -13,7 +13,7 @@ export default class Demo extends Phaser.Scene
         this.load.image('libs', 'assets/libs.png');
         this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
         this.load.glsl('stars', 'assets/starfields.glsl.js');
-        this.load.glsl('knight', 'assets/attack8.png');
+        this.load.image('knight', 'assets/attack8.png');
 
     }
 
