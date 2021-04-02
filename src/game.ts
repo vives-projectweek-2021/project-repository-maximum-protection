@@ -13,6 +13,8 @@ export default class Demo extends Phaser.Scene
         this.load.image('libs', 'assets/libs.png');
         this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
         this.load.glsl('stars', 'assets/starfields.glsl.js');
+        this.load.image('knight', 'assets/attack8.png');
+
     }
 
     create ()
@@ -22,6 +24,7 @@ export default class Demo extends Phaser.Scene
         this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0);
 
         this.add.image(400, 300, 'libs');
+        this.add.image(300,300, 'knight');
 
         const logo = this.add.image(400, 70, 'logo');
 

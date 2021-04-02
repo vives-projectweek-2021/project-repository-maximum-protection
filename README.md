@@ -5,6 +5,8 @@
 Our idea is to make a game as doodle jump with the phaser framework.
 The idea is that this game is a horizontal platformer.
 
+## 
+
 
 ## links
 
@@ -16,3 +18,4 @@ The idea is that this game is a horizontal platformer.
 
 - [gravity/bouncing physics] (https://phaser.io/examples/v2/arcade-physics/bounce-with-gravity)
  - [starstruck -- example game] (https://phaser.io/examples/v2/games/starstruck)
+
