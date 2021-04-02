@@ -16,7 +16,6 @@ export default class Demo extends Phaser.Scene
     {
         this.load.image('platform', 'assets/platform.jpg');
         this.load.image('background', 'assets/background.jpg');
-        this.load.image('idle', 'assets/knight/Idle (1).png');
 
 
         for (let i = 1; i <=10;i++)
@@ -41,8 +40,10 @@ export default class Demo extends Phaser.Scene
     create ()
     {
         cursors = this.input.keyboard.createCursorKeys();
-        
-        this.add.image(800,1000,'background').setScale(2)
+        this.add.image(800,1000,'background').setScale(2);
+
+        player = this.physics.add.sprite(0,100, 'idle1').setScale(0.2);
+
         this.anims.create({
             key: 'running',
             frames: [
@@ -60,7 +61,7 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
-        this.add.image(800,1000,'background').setScale(2)
+        
         this.anims.create({
             key: 'running-left',
             frames: [
@@ -97,8 +98,7 @@ export default class Demo extends Phaser.Scene
             repeat: -1
         });
 
-        player = this.physics.add.sprite(0,100, 'idle').setScale(0.2).play('Idleing')
-        player.play('running')
+        
         player.setCollideWorldBounds(true)
         
         platforms = this.physics.add.staticGroup();
@@ -109,9 +109,9 @@ export default class Demo extends Phaser.Scene
         platforms.create(600,600, 'platform').setScale(0.2).refreshBody()
 
 
-        this.physics.add.collider(player,platforms)
+        this.physics.add.collider(player,platforms);
 
-
+        
 
                 
     }
@@ -119,16 +119,17 @@ export default class Demo extends Phaser.Scene
 
         if(cursors.left.isDown){
             player.setVelocityX(-200);
-            player.play('running-left')
+            player.play('running-left', true)
+            
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
-            player.play('running')
+            player.play('running', true)
 
         }
         else{
             player.setVelocityX(0);
-            player.play('Idleing')
+            player.play('Idleing', true)
         }
 
         if (cursors.up.isDown && player.body.touching.down){
