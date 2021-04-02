@@ -51,7 +51,8 @@ export default class Demo extends Phaser.Scene
 
         
         this.add.sprite(300,300, 'run1')
-                .play('running');
+                .play('running')
+                .setScale(0.3);
                 
     }
 }
