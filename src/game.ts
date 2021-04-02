@@ -138,14 +138,16 @@ export default class Demo extends Phaser.Scene
                 
     }
     update(){
-
+        let previousPosetion;
         if(cursors.left.isDown){
             player.setVelocityX(-200);
+            previousPosetion = "left";
             if(player.body.touching.down) {player.play('running-left', true)}
             
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
+            previousPosetion = "right";
             if(player.body.touching.down) {player.play('running', true)}
 
         }
