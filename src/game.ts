@@ -174,9 +174,6 @@ export default class Game extends Phaser.Scene
          })
 
 
-         this.horizontalWrap(player)
-
-
 
     }
     horizontalWrap(sprite)
@@ -190,8 +187,8 @@ export default class Game extends Phaser.Scene
             else if (sprite.x > gameWidth + halfWidth)
             {
                 sprite.x = -halfWidth
-            }
-     }
+        }
+ }
 
 
 
