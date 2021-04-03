@@ -1,4 +1,5 @@
 import 'phaser';
+import { LEFT } from 'phaser';
 
 let cursors
 let player
