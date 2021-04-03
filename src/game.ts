@@ -1,4 +1,5 @@
 import 'phaser';
+import { LEFT } from 'phaser';
 
 let cursors
 let player
@@ -98,8 +99,7 @@ export default class Demo extends Phaser.Scene
             repeat: 1
         });
 
-        
-        player.setCollideWorldBounds(true)
+        player.setCollideWorldBounds(LEFT)
         
         platforms = this.physics.add.staticGroup()
 
