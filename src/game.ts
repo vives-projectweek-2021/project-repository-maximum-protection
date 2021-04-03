@@ -104,7 +104,7 @@ export default class Game extends Phaser.Scene
         for(let i = 0; i<10;++i)
         {
             const x = Phaser.Math.Between(100,700)
-            const y = 300 * i 
+            const y = 300 * i *(-1)
 
             platforms.create(x,y, 'platform').setScale(0.2).refreshBody()
         }
