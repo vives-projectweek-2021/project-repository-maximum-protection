@@ -57,6 +57,13 @@ export default {
         //  See https://www.npmjs.com/package/rollup-plugin-typescript2 for config options
         typescript(),
 
+        copy({
+            assets: [
+                "src/assets/",
+                "src/index.html"
+            ]
+        }),
+        
         //  See https://www.npmjs.com/package/rollup-plugin-serve for config options
         serve({
             open: true,
@@ -66,12 +73,6 @@ export default {
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
-        }),
-
-        copy({
-            assets: [
-                "src/assets/"
-            ]
         })
     ]
 };
