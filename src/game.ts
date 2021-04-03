@@ -4,14 +4,14 @@ import { LEFT } from 'phaser';
 let cursors
 let player
 let platforms
-export default class Demo extends Phaser.Scene
+export default class Game extends Phaser.Scene
 {
 
 
     
     constructor ()
     {
-        super('demo');
+        super('game');
     }
     preload ()
     {
@@ -46,7 +46,7 @@ export default class Demo extends Phaser.Scene
         background.setScrollFactor(1,0)
         
 
-        player = this.physics.add.sprite(0,100, 'idle1').setScale(0.15)
+        player = this.physics.add.sprite(0,100, 'idle1').setScale(0.15).setSize(450,600)
 
         this.anims.create({
             key: 'running',
@@ -98,25 +98,19 @@ export default class Demo extends Phaser.Scene
             frameRate: 5,
             repeat: 1
         });
-
-        player.setCollideWorldBounds(LEFT)
         
+
         platforms = this.physics.add.staticGroup()
 
-        for(let i = 0; i<3;++i)
+        for(let i = 0; i<10;++i)
         {
             const x = Phaser.Math.Between(100,700)
-            const y = 250 * i 
+            const y = 300 * i 
 
             platforms.create(x,y, 'platform').setScale(0.2).refreshBody()
         }
 
-
-        // platforms.create(150,800, 'platform').setScale(0.2).refreshBody()
-        // platforms.create(200,700, 'platform').setScale(0.2).refreshBody()
-        // platforms.create(400,400, 'platform').setScale(0.2).refreshBody()
-        // platforms.create(600,300, 'platform').setScale(0.2).refreshBody()
-        // platforms.create(600,600, 'platform').setScale(0.2).refreshBody()
+        platforms.create(0,300,'platform').setScale(0.2).refreshBody()
 
 
         this.physics.add.collider(player,platforms)
@@ -126,6 +120,11 @@ export default class Demo extends Phaser.Scene
         this.cameras.main.setZoom(0.8,0.8)
         this.cameras.main.centerOnX(400)
         // this.cameras.main.setBounds(0,450,800,900)
+
+
+        player.body.checkCollision.up = false
+        player.body.checkCollision.left = false
+        player.body.checkCollision.right = false
         
 
         
@@ -135,13 +134,13 @@ export default class Demo extends Phaser.Scene
     update(){
 
         if(cursors.left.isDown){
-            player.setVelocityX(-200);
+            player.setVelocityX(-300);
             player.setFlipX(true);
             if(player.body.touching.down) {player.play('running', true)}
             
         }
         else if(cursors.right.isDown){
-            player.setVelocityX(160);
+            player.setVelocityX(300);
             player.setFlipX(false);
             if(player.body.touching.down) {player.play('running', true)}
 
@@ -156,6 +155,23 @@ export default class Demo extends Phaser.Scene
             player.setVelocityY(-1000)
             player.play('jump')
         }
+
+
+        platforms.children.iterate(child => {
+           
+             const platform = child
+            
+             const scrollY = this.cameras.main.scrollY
+             if (platform.y >= scrollY + 1500)
+             {
+                platform.x = Phaser.Math.Between(100, 700)
+                platform.y = platform.y - 1200
+                platform.body.updateFromGameObject()
+             }
+         })
+
+
+
     }
 }
 
@@ -168,10 +184,10 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity:{y: 1200},
-            debug: false
+            debug: true
         }
     },
-    scene: Demo
+    scene: Game
 };
 
 const game = new Phaser.Game(config);
