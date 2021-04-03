@@ -115,16 +115,19 @@ export default class Game extends Phaser.Scene
 
         this.physics.add.collider(player,platforms)
 
+
+        //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
         this.cameras.main.setZoom(0.8,0.8)
         this.cameras.main.centerOnX(400)
-        // this.cameras.main.setBounds(0,450,800,900)
-
-
+ 
+        //collision settings for player
         player.body.checkCollision.up = false
         player.body.checkCollision.left = false
         player.body.checkCollision.right = false
+        
+
         
 
         
@@ -134,13 +137,13 @@ export default class Game extends Phaser.Scene
     update(){
 
         if(cursors.left.isDown){
-            player.setVelocityX(-300);
+            player.setVelocityX(-350);
             player.setFlipX(true);
             if(player.body.touching.down) {player.play('running', true)}
             
         }
         else if(cursors.right.isDown){
-            player.setVelocityX(300);
+            player.setVelocityX(350);
             player.setFlipX(false);
             if(player.body.touching.down) {player.play('running', true)}
 
@@ -171,8 +174,27 @@ export default class Game extends Phaser.Scene
          })
 
 
+         this.horizontalWrap(player)
+
+
 
     }
+    horizontalWrap(sprite)
+    {
+        const halfWidth = sprite.displayWidth * 0.5
+        const gameWidth = this.scale.width
+        if (sprite.x < -halfWidth)
+            {
+                sprite.x = gameWidth + halfWidth
+            }
+            else if (sprite.x > gameWidth + halfWidth)
+            {
+                sprite.x = -halfWidth
+            }
+     }
+
+
+
 }
 
 const config = {
