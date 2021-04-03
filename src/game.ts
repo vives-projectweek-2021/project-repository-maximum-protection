@@ -28,10 +28,6 @@ export default class Demo extends Phaser.Scene
             this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png` );
         }
         
-        for (let i = 1; i <=10;i++)
-        {
-            this.load.image(`run-left${i}`, `assets/knight/Run-left (${i}).png` );
-        }
 
         for (let i = 1; i <=10;i++)
         {
@@ -44,10 +40,12 @@ export default class Demo extends Phaser.Scene
     
     create ()
     {
-        cursors = this.input.keyboard.createCursorKeys();
-        this.add.image(800,1000,'background').setScale(2);
+        cursors = this.input.keyboard.createCursorKeys()
+        const background = this.add.image(300,1000,'background').setScale(4)
+        background.setScrollFactor(1,0)
+        
 
-        player = this.physics.add.sprite(0,100, 'idle1').setScale(0.2);
+        player = this.physics.add.sprite(0,100, 'idle1').setScale(0.15)
 
         this.anims.create({
             key: 'running',
@@ -103,40 +101,48 @@ export default class Demo extends Phaser.Scene
         
         player.setCollideWorldBounds(true)
         
-        platforms = this.physics.add.staticGroup();
-        platforms.create(150,800, 'platform').setScale(0.2).refreshBody()
-        platforms.create(200,700, 'platform').setScale(0.2).refreshBody()
-        platforms.create(400,400, 'platform').setScale(0.2).refreshBody()
-        platforms.create(600,300, 'platform').setScale(0.2).refreshBody()
-        platforms.create(600,600, 'platform').setScale(0.2).refreshBody()
+        platforms = this.physics.add.staticGroup()
+
+        for(let i = 0; i<3;++i)
+        {
+            const x = Phaser.Math.Between(100,700)
+            const y = 250 * i 
+
+            platforms.create(x,y, 'platform').setScale(0.2).refreshBody()
+        }
 
 
-        this.physics.add.collider(player,platforms);
+        // platforms.create(150,800, 'platform').setScale(0.2).refreshBody()
+        // platforms.create(200,700, 'platform').setScale(0.2).refreshBody()
+        // platforms.create(400,400, 'platform').setScale(0.2).refreshBody()
+        // platforms.create(600,300, 'platform').setScale(0.2).refreshBody()
+        // platforms.create(600,600, 'platform').setScale(0.2).refreshBody()
+
+
+        this.physics.add.collider(player,platforms)
+
+        this.cameras.main.startFollow(player)
+        this.cameras.main.setDeadzone(this.scale.width * 1.5)
+        this.cameras.main.setZoom(0.8,0.8)
+        this.cameras.main.centerOnX(400)
+        // this.cameras.main.setBounds(0,450,800,900)
+        
 
         
 
                 
     }
     update(){
-        let previousPosetion;
+
         if(cursors.left.isDown){
             player.setVelocityX(-200);
-<<<<<<< HEAD
             player.setFlipX(true);
             if(player.body.touching.down) {player.play('running', true)}
-=======
-            previousPosetion = "left";
-            if(player.body.touching.down) {player.play('running-left', true)}
->>>>>>> aea7b02ae593c25bdf73cd13ee18633a7287d89e
             
         }
         else if(cursors.right.isDown){
             player.setVelocityX(160);
-<<<<<<< HEAD
             player.setFlipX(false);
-=======
-            previousPosetion = "right";
->>>>>>> aea7b02ae593c25bdf73cd13ee18633a7287d89e
             if(player.body.touching.down) {player.play('running', true)}
 
         }
