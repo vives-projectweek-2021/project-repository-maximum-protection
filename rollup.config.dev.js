@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import typescript from 'rollup-plugin-typescript2';
+import copy from "rollup-plugin-copy-assets";
 
 export default {
 
@@ -56,6 +57,13 @@ export default {
         //  See https://www.npmjs.com/package/rollup-plugin-typescript2 for config options
         typescript(),
 
+        copy({
+            assets: [
+                "src/assets/",
+                "src/index.html"
+            ]
+        }),
+        
         //  See https://www.npmjs.com/package/rollup-plugin-serve for config options
         serve({
             open: true,
@@ -66,6 +74,5 @@ export default {
                 'Access-Control-Allow-Origin': '*'
             }
         })
-
     ]
 };
