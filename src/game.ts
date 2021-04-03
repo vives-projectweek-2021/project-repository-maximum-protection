@@ -102,7 +102,7 @@ export default class Game extends Phaser.Scene
 
         platforms = this.physics.add.staticGroup()
 
-        for(let i = 0; i<10;++i)
+        for(let i = 0; i<4;++i)
         {
             const x = Phaser.Math.Between(100,700)
             const y = 300 * i *(-1)
@@ -165,7 +165,7 @@ export default class Game extends Phaser.Scene
              if (platform.y >= scrollY + 1500)
              {
                 platform.x = Phaser.Math.Between(100, 700)
-                platform.y = platform.y - 1200
+                platform.y = platform.y - 1600
                 platform.body.updateFromGameObject()
              }
          })
