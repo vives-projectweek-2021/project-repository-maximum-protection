@@ -160,6 +160,8 @@ export default class Game extends Phaser.Scene
         }
 
 
+        this.horizontalWrap(player)
+
         platforms.children.iterate(child => {
            
              const platform = child
