@@ -16,7 +16,7 @@ export default class Game extends Phaser.Scene
     preload ()
     {
         this.load.image('platform', 'assets/platform.jpg');
-        this.load.image('background', 'assets/background.jpg');
+        this.load.image('background', 'assets/Background_dungeon.jpg');
 
 
         for (let i = 1; i <=10;i++)
@@ -42,7 +42,7 @@ export default class Game extends Phaser.Scene
     create ()
     {
         cursors = this.input.keyboard.createCursorKeys()
-        const background = this.add.image(300,1000,'background').setScale(4)
+        const background = this.add.image(400,450,'background').setScale(1.5)
         background.setScrollFactor(1,0)
         
 
