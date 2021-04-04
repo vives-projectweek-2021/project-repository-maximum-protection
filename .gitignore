@@ -8,7 +8,7 @@ Thumbs.db
 
 # Vendors
 node_modules/
-dist
+dist/
 
 # Build
 /npm-debug.log
