@@ -1,5 +1,6 @@
 import 'phaser';
 import { LEFT } from 'phaser';
+import WelcomeScreen from './WelcomeScreen';
 
 let cursors
 let player
@@ -209,7 +210,7 @@ const config = {
             debug: true
         }
     },
-    scene: Game
+    scene: [WelcomeScreen, Game ]
 };
 
 const game = new Phaser.Game(config);
