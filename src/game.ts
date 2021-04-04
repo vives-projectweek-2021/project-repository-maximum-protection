@@ -129,7 +129,9 @@ export default class Game extends Phaser.Scene
         player.body.checkCollision.right = false
         
 
-        
+        this.input.keyboard.on('keydown-ESC',() => {
+            this.scene.start('WelcomeScreen')
+        })
 
         
 

@@ -13,9 +13,12 @@ export default class WelcomeScreen extends Phaser.Scene {
     }
     create() {
         this.add.image(400, 450, 'background').setScale(1.5)
-        this.add.image(390, 550, 'play-now-button')
+        let button = this.add.image(390, 550, 'play-now-button').setInteractive();
 
-
+        button.on('pointerdown',() => {
+            this.scene.start('game')
+        })
+        
 
         this.add.text(30, 200, 'Welcome to Maximum protection', {
             fontFamily: 'Arial',
@@ -27,7 +30,7 @@ export default class WelcomeScreen extends Phaser.Scene {
 
 
         });
-        this.add.text(55, 300, 'Please press the button to start the game!', {
+        this.add.text(60, 300, 'Please press the button to start the game!', {
             fontFamily: 'Arial',
             fontSize: '35px',
             strokeThickness: 5,
@@ -37,9 +40,17 @@ export default class WelcomeScreen extends Phaser.Scene {
 
 
         });
+        
+        this.add.text(500, 800, 'Press esc to go back to the welcome screen.', {
+            fontFamily: 'Arial',
+            fontSize: '15px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
 
-        this.input.on('pointerdown', () => {
-            this.scene.start('game')
+
+
         })
+
     }
 }
