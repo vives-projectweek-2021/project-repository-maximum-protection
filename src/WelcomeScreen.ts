@@ -1,20 +1,44 @@
 import { Game } from "phaser";
 
-export default class WelcomeScreen extends Phaser.Scene{
-    
-    constructor(){
+export default class WelcomeScreen extends Phaser.Scene {
+
+    constructor() {
         super('WelcomeScreen')
     }
-    preload(){
+    preload() {
 
         this.load.image('background', 'assets/Background_dungeon.jpg');
+        this.load.image('play-now-button', 'assets/play-now-button.jpg');
+
     }
-    create(){
-        
-        
-        this.add.text
-        this.add.image(400,450,'background').setScale(1.5)
-        this.input.on('pointerdown', ()=>{
+    create() {
+        this.add.image(400, 450, 'background').setScale(1.5)
+        this.add.image(390, 550, 'play-now-button')
+
+
+
+        this.add.text(30, 200, 'Welcome to Maximum protection', {
+            fontFamily: 'Arial',
+            fontSize: '50px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+
+
+
+        });
+        this.add.text(55, 300, 'Please press the button to start the game!', {
+            fontFamily: 'Arial',
+            fontSize: '35px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+
+
+
+        });
+
+        this.input.on('pointerdown', () => {
             this.scene.start('game')
         })
     }
