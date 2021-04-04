@@ -36,6 +36,7 @@ export default class Game extends Phaser.Scene
             this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png` );
         }
 
+        
     }
 
 
@@ -133,7 +134,7 @@ export default class Game extends Phaser.Scene
             this.scene.start('WelcomeScreen')
         })
 
-        
+
 
                 
     }
