@@ -201,6 +201,7 @@ const config = {
     backgroundColor: '#125555',
     width: 800,
     height: 900,
+    autoCenter: true,
     physics:{
         default: 'arcade',
         arcade: {
