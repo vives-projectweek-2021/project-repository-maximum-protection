@@ -30,7 +30,7 @@ export default class WelcomeScreen extends Phaser.Scene {
 
 
         });
-        this.add.text(60, 300, 'Please press the button to start the game!', {
+        this.add.text(60, 301, 'Please press the button to start the game!', {
             fontFamily: 'Arial',
             fontSize: '35px',
             strokeThickness: 5,
