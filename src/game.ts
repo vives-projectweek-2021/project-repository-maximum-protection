@@ -128,7 +128,7 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-
+        maxScore = 0
     }
     update() {
 
@@ -176,7 +176,8 @@ export default class Game extends Phaser.Scene {
         }
         
         scoreText.setText("score: " + maxScore)
-        this.data.set('maxScore', maxScore)
+        //this.data.set('maxScore', maxScore)
+        localStorage.setItem('maxScore', maxScore.toString())
     }
 
 

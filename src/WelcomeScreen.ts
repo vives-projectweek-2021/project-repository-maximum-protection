@@ -52,8 +52,12 @@ export default class WelcomeScreen extends Phaser.Scene {
 
 
         })
+        let stayingScore = 0;
+        if( parseInt(localStorage.getItem('maxScore'))>stayingScore){
+            stayingScore = parseInt(localStorage.getItem('maxScore'))
+        }
 
-        this.add.text(100, 800, `High score: ${this.data.get('maxScore')} `, {
+        this.add.text(100, 800, `High score: ${parseInt(localStorage.getItem('maxScore'))} `, {
             fontFamily: 'Arial',
             fontSize: '15px',
             strokeThickness: 5,
