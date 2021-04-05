@@ -2,6 +2,10 @@ import { Game } from "phaser";
 
 export default class WelcomeScreen extends Phaser.Scene {
 
+    init(data){
+        this.score = score
+    }
+
     constructor() {
         super('WelcomeScreen')
     }

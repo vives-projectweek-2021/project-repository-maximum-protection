@@ -6,6 +6,7 @@ let cursors
 let player
 let platforms
 let scoreText
+let maxScore = 0
 export default class Game extends Phaser.Scene {
 
 
@@ -168,8 +169,12 @@ export default class Game extends Phaser.Scene {
             }
         })
         
-
-        scoreText.setText("score: " + Math.round(player.y * -1))
+        //keep max score
+        if(Math.round(player.y * -1) > maxScore){
+           maxScore = Math.round(player.y * -1)
+        }
+        
+        scoreText.setText("score: " + maxScore)
 
     }
 
