@@ -8,7 +8,7 @@ let dragon
 let platforms
 let scoreText
 let maxScore = 0
-let stepLimit = 20;
+let direction = 1;
 let position;
 export default class Game extends Phaser.Scene {
 
@@ -176,12 +176,17 @@ export default class Game extends Phaser.Scene {
     }
     update() {
 
-        //dragon logic
-            if (dragon.x < 200 ) {
-                dragon.x++;
-            } else {
-                dragon.x--;
-            }
+        //dragon movement
+        dragon.x += + direction;
+        if (dragon.x == 500) {
+            dragon.setFlip(true, false);
+            direction = direction * -1
+        } else if (dragon.x == 59) {
+            dragon.setFlip(false, false);
+            direction = direction * -1;
+        }
+
+    
            
         
 
