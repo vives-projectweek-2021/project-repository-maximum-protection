@@ -116,6 +116,7 @@ export default class Game extends Phaser.Scene {
 
 
         this.input.keyboard.on('keydown-ESC', () => {
+            //this.scene.pause('WelcomeScreen') --> doesnt work
             this.scene.start('WelcomeScreen')
         })
 
@@ -175,7 +176,7 @@ export default class Game extends Phaser.Scene {
         }
         
         scoreText.setText("score: " + maxScore)
-
+        this.data.set('maxScore', maxScore)
     }
 
 

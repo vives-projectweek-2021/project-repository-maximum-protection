@@ -2,9 +2,6 @@ import { Game } from "phaser";
 
 export default class WelcomeScreen extends Phaser.Scene {
 
-    init(data){
-        this.score = score
-    }
 
     constructor() {
         super('WelcomeScreen')
@@ -56,7 +53,7 @@ export default class WelcomeScreen extends Phaser.Scene {
 
         })
 
-        this.add.text(100, 800, `High score: `, {
+        this.add.text(100, 800, `High score: ${this.data.get('maxScore')} `, {
             fontFamily: 'Arial',
             fontSize: '15px',
             strokeThickness: 5,
