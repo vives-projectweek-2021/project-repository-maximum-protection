@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\dist",
     "\\src"
   ],
-  "SelectedNode": "\\src\\game.ts",
+  "SelectedNode": "\\src\\WelcomeScreen.ts",
   "PreviewInSolutionExplorer": false
 }

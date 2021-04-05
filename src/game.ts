@@ -4,6 +4,7 @@ import WelcomeScreen from './WelcomeScreen';
 
 let cursors
 let player
+let dragon
 let platforms
 let scoreText
 let maxScore = 0
@@ -18,10 +19,22 @@ export default class Game extends Phaser.Scene {
         this.load.image('platform', 'assets/platform.jpg');
         this.load.image('background', 'assets/Background_dungeon.jpg');
 
+
+        //loading images for knight animations
         for (let i = 1; i <= 10; i++) {
             this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
             this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
             this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
+        }
+
+        //loading spritesheet for dragon animation 
+        for (let i = 1; i <= 3; i++) {
+            this.load.spritesheet(`dragon${i}`, `assets/dragon/reddragonfly.png`, {
+                frameWidth: 16 * i,
+                frameHeight: 16
+            }
+                );
+
         }
 
     }
@@ -33,6 +46,9 @@ export default class Game extends Phaser.Scene {
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
+
+        dragon = this.add.sprite(0, 100, 'dragon1').setScale(2).setSize(2,2)
+        
 
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
 
@@ -82,6 +98,18 @@ export default class Game extends Phaser.Scene {
                 { key: 'jump8' },
                 { key: 'jump9' },
                 { key: 'jump10' }
+            ],
+            frameRate: 5,
+            repeat: 1
+        });
+
+        this.anims.create({
+            key: 'flying',
+            frames: [
+                { key: 'dragon1' },
+                { key: 'dragon2' },
+                { key: 'dragon3' }
+               
             ],
             frameRate: 5,
             repeat: 1
