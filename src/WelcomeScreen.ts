@@ -59,8 +59,6 @@ export default class WelcomeScreen extends Phaser.Scene {
             stroke: '#000000',
             color: '#EA6A47'
 
-
-
         })
 
     }
