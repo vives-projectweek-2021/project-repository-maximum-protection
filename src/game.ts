@@ -8,6 +8,8 @@ let dragon
 let platforms
 let scoreText
 let maxScore = 0
+let stepLimit = 20;
+let position;
 export default class Game extends Phaser.Scene {
 
 
@@ -15,6 +17,8 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super('game');
     }
+
+
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
         this.load.image('background', 'assets/Background_dungeon.jpg');
@@ -30,7 +34,7 @@ export default class Game extends Phaser.Scene {
         }
 
 
-
+        
 
         
 
@@ -47,13 +51,15 @@ export default class Game extends Phaser.Scene {
         
         
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600);
-        dragon = this.add.sprite(0, 100,'fly1');
-        dragon.setScale(2);
-       
+
+        dragon = this.add.sprite(60, -90,'fly1');
+        dragon.setScale(2); 
+        dragon.setScrollFactor(0);
+        
 
 
 
-
+  
 
 
         this.anims.create({
@@ -115,7 +121,7 @@ export default class Game extends Phaser.Scene {
                 { key: 'fly3' },
                 { key: 'fly4' }
             ],
-            frameRate: 20,
+            frameRate: 8,
             repeat: -1
         });
 
@@ -159,12 +165,27 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
+        position = this.add.text(750, -50, 'Position', {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        }).setScrollFactor(1, 0)
 
     }
     update() {
 
+        //dragon logic
+            if (dragon.x < 200 ) {
+                dragon.x++;
+            } else {
+                dragon.x--;
+            }
+           
+        
 
-
+        //player logic
         if (cursors.left.isDown) {
             player.setVelocityX(-350);
             player.setFlipX(true);
@@ -215,6 +236,8 @@ export default class Game extends Phaser.Scene {
         }
         
         scoreText.setText("score: " + maxScore)
+
+        position.setText("Position: " + dragon.x)
 
     }
 
