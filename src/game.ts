@@ -20,37 +20,41 @@ export default class Game extends Phaser.Scene {
         this.load.image('background', 'assets/Background_dungeon.jpg');
 
 
-        //loading images for knight animations
+        //loading images for animations
         for (let i = 1; i <= 10; i++) {
             this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
             this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
             this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
-        }
-
-        //loading spritesheet for dragon animation 
-        for (let i = 1; i <= 3; i++) {
-            this.load.spritesheet(`dragon${i}`, `assets/dragon/reddragonfly.png`, {
-                frameWidth: 16 * i,
-                frameHeight: 16
-            }
-                );
+            this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
 
         }
+
+
+
+
+        
 
     }
 
 
 
     create() {
-        cursors = this.input.keyboard.createCursorKeys()
+                cursors = this.input.keyboard.createCursorKeys()
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
-
-        dragon = this.add.sprite(0, 100, 'dragon1').setScale(2).setSize(2,2)
         
+        
+        
+        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600);
+        dragon = this.add.sprite(0, 100,'fly1');
+        dragon.setScale(2);
+       
 
-        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
+
+
+
+
 
         this.anims.create({
             key: 'running',
@@ -106,13 +110,13 @@ export default class Game extends Phaser.Scene {
         this.anims.create({
             key: 'flying',
             frames: [
-                { key: 'dragon1' },
-                { key: 'dragon2' },
-                { key: 'dragon3' }
-               
+                { key: 'fly1' },
+                { key: 'fly2' },
+                { key: 'fly3' },
+                { key: 'fly4' }
             ],
-            frameRate: 5,
-            repeat: 1
+            frameRate: 20,
+            repeat: -1
         });
 
 
@@ -159,21 +163,29 @@ export default class Game extends Phaser.Scene {
     }
     update() {
 
+
+
         if (cursors.left.isDown) {
             player.setVelocityX(-350);
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else if (cursors.right.isDown) {
             player.setVelocityX(350);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else {
             if (player.body.touching.down) { player.play('Idleing', true) }
             player.setVelocityX(0);
+            dragon.play('flying', true);
+
 
         }
 
