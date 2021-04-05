@@ -52,5 +52,16 @@ export default class WelcomeScreen extends Phaser.Scene {
 
         })
 
+        this.add.text(100, 800, `High score: `, {
+            fontFamily: 'Arial',
+            fontSize: '15px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+
+
+
+        })
+
     }
 }
