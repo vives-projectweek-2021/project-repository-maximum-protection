@@ -7,6 +7,7 @@ let player
 let platforms
 let scoreText
 let maxScore = 0
+let coin
 export default class Game extends Phaser.Scene {
 
 
@@ -23,6 +24,9 @@ export default class Game extends Phaser.Scene {
             this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
             this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
         }
+        for (let i = 1; i <= 8; i++) {
+            this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
+        }
 
     }
 
@@ -35,6 +39,8 @@ export default class Game extends Phaser.Scene {
 
 
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
+        coin = this.add.sprite(100,200,'coin1')
+        
 
         this.anims.create({
             key: 'running',
@@ -87,6 +93,20 @@ export default class Game extends Phaser.Scene {
             repeat: 1
         });
 
+        this.anims.create({
+            key: 'coins',
+            frames: [
+                { key: 'coin1' },
+                { key: 'coin2' },
+                { key: 'coin3' },
+                { key: 'coin4' },
+                { key: 'coin6' },
+                { key: 'coin7' },
+                { key: 'coin8' }
+            ],
+            frameRate: 5,
+            repeat: -1
+        });
 
         platforms = this.physics.add.staticGroup()
 
@@ -128,6 +148,7 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
+        coin.play('coins',60, true)
         maxScore = 0
     }
     update() {
