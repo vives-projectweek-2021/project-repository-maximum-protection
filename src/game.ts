@@ -127,7 +127,6 @@ export default class Game extends Phaser.Scene {
 
 
         //coins
-
         coins = this.physics.add.group()
         this.physics.add.overlap(player, coins, collectCoin, null, this);
 
@@ -221,6 +220,15 @@ export default class Game extends Phaser.Scene {
         //this.data.set('maxScore', maxScore)
         localStorage.setItem('maxScore', maxScore.toString())
         localStorage.setItem('coins',points.toString())
+
+
+        //checking for game over!
+        const bottomPlatform = this.findBottomPlatform()
+        if(player.y > bottomPlatform.y + 1000)
+        {
+            console.log('game over')
+            this.scene.start('WelcomeScreen')
+        }
     }
 
 
@@ -248,9 +256,29 @@ export default class Game extends Phaser.Scene {
 
 
         return coin
- }
+    }
 
+    findBottomPlatform()
+    {
+        //getting an array of all platforms
+        const plats = platforms.getChildren()
+        let bottomPlatform = plats[0]
 
+        for(let i = 1; i < plats.length; i++)
+        {
+            const platform = plats[i]
+
+            if(plats.y < bottomPlatform.y)
+            {   
+                //this skips to the end of the for loop
+                continue
+            }
+
+            bottomPlatform = platform
+        }
+
+        return bottomPlatform
+    }
 
 
 }
