@@ -247,7 +247,7 @@ export default class Game extends Phaser.Scene {
     {
         const y = sprite.y - sprite.displayHeight
 
-        const coin = coins.create(Phaser.Math.Between(0, 800), y, 'coin1')
+        const coin = coins.create(Phaser.Math.Between(0, 800), y - 100, 'coin1')
         coin.play('coins')
 
         // update the physics body size
