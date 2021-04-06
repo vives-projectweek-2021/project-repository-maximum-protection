@@ -1,6 +1,6 @@
 import 'phaser';
 import { LEFT, NONE, Physics } from 'phaser';
-import WelcomeScreen from './WelcomeScreen';
+import WelcomeScreen from './welcomeScreen';
 
 let cursors
 let player
