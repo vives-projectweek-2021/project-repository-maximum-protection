@@ -113,7 +113,6 @@ export default class Game extends Phaser.Scene {
 
         for (let i = 0; i < 4; ++i) {
             const x = Phaser.Math.Between(100, 700)
-            const coinsX = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
             platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
@@ -248,11 +247,13 @@ export default class Game extends Phaser.Scene {
     {
         const y = sprite.y - sprite.displayHeight
 
-        const coin = coins.create(sprite.x, y, 'coin1')
+        const coin = coins.create(Phaser.Math.Between(0, 800), y, 'coin1')
+        coin.play('coins')
 
         // update the physics body size
         coin.body.setSize(coin.width, coin.height)
         coin.body.setAllowGravity(false)
+        coin.body.checkCollision.up = false
 
 
         return coin
