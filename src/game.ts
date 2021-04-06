@@ -1,15 +1,17 @@
 import 'phaser';
-import { LEFT, NONE } from 'phaser';
+import { LEFT, NONE, Physics } from 'phaser';
 import WelcomeScreen from './WelcomeScreen';
 
 let cursors
 let player
 let dragon
 let platforms
+let coins
 let scoreText
 let maxScore = 0
-let direction = 1;
-let position;
+let points = 0
+let pointsText
+let direction = 1
 export default class Game extends Phaser.Scene {
 
 
@@ -31,6 +33,9 @@ export default class Game extends Phaser.Scene {
             this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
             this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
 
+        }
+        for (let i = 1; i <= 8; i++) {
+            this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
 
 
@@ -61,6 +66,8 @@ export default class Game extends Phaser.Scene {
 
   
 
+        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
+        
 
         this.anims.create({
             key: 'running',
@@ -125,11 +132,25 @@ export default class Game extends Phaser.Scene {
             repeat: -1
         });
 
+            key: 'coins',
+            frames: [
+                { key: 'coin1' },
+                { key: 'coin2' },
+                { key: 'coin3' },
+                { key: 'coin4' },
+                { key: 'coin6' },
+                { key: 'coin7' },
+                { key: 'coin8' }
+            ],
+            frameRate: 5,
+            repeat: -1
+        });
 
         platforms = this.physics.add.staticGroup()
 
         for (let i = 0; i < 4; ++i) {
             const x = Phaser.Math.Between(100, 700)
+            const coinsX = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
             platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
@@ -137,9 +158,14 @@ export default class Game extends Phaser.Scene {
 
         platforms.create(0, 300, 'platform').setScale(0.2).refreshBody()
 
-
+        //colliders
         this.physics.add.collider(player, platforms)
+       
 
+
+        //coins
+        coins = this.physics.add.group()
+        this.physics.add.overlap(player, coins, collectCoin, null, this);
 
         //camera settings
         this.cameras.main.startFollow(player)
@@ -154,10 +180,11 @@ export default class Game extends Phaser.Scene {
 
 
         this.input.keyboard.on('keydown-ESC', () => {
+            //this.scene.pause('WelcomeScreen') --> doesnt work
             this.scene.start('WelcomeScreen')
         })
 
-        scoreText = this.add.text(750, -100, 'Score', {
+        scoreText = this.add.text(750, -100, '', {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -173,6 +200,17 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
+        pointsText  = this.add.text(750, -50, 'Coins: ', {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        }).setScrollFactor(1, 0)
+
+
+        //coins.play('coins', true)
+        maxScore = 0
     }
     update() {
 
@@ -232,6 +270,8 @@ export default class Game extends Phaser.Scene {
                 platform.x = Phaser.Math.Between(20, 780)
                 platform.y = platform.y - 1600
                 platform.body.updateFromGameObject()
+
+                this.addCoinAbove(platform)
             }
         })
         
@@ -244,6 +284,20 @@ export default class Game extends Phaser.Scene {
 
         position.setText("Position: " + dragon.x)
 
+        scoreText.setText("Score: " + maxScore)
+        pointsText.setText("Coins: " + points)
+        //this.data.set('maxScore', maxScore)
+        localStorage.setItem('maxScore', maxScore.toString())
+        localStorage.setItem('coins',points.toString())
+
+
+        //checking for game over!
+        const bottomPlatform = this.findBottomPlatform()
+        if(player.y > bottomPlatform.y + 1000)
+        {
+            console.log('game over')
+            this.scene.start('WelcomeScreen')
+        }
     }
 
 
@@ -259,6 +313,41 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    addCoinAbove(sprite)
+    {
+        const y = sprite.y - sprite.displayHeight
+
+        const coin = coins.create(sprite.x, y, 'coin1')
+
+        // update the physics body size
+        coin.body.setSize(coin.width, coin.height)
+        coin.body.setAllowGravity(false)
+
+
+        return coin
+    }
+
+    findBottomPlatform()
+    {
+        //getting an array of all platforms
+        const plats = platforms.getChildren()
+        let bottomPlatform = plats[0]
+
+        for(let i = 1; i < plats.length; i++)
+        {
+            const platform = plats[i]
+
+            if(plats.y < bottomPlatform.y)
+            {   
+                //this skips to the end of the for loop
+                continue
+            }
+
+            bottomPlatform = platform
+        }
+
+        return bottomPlatform
+    }
 
 
 }
@@ -280,3 +369,11 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+
+
+function collectCoin (player,coin)
+{
+    coin.destroy()
+    points++
+}

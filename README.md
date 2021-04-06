@@ -43,6 +43,9 @@ At the moment the theme is "classic knights and goblins". We could try to make a
 
 ## progress
 
-02/04/2021 -- sprite animation working!
+02/04/2021 -- sprite animation working
+06/04/2021 -- basic controls working. Platforms, dragon and background added. 
+              
+
 
 

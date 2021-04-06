@@ -2,6 +2,7 @@ import { Game } from "phaser";
 
 export default class WelcomeScreen extends Phaser.Scene {
 
+
     constructor() {
         super('WelcomeScreen')
     }
@@ -51,15 +52,26 @@ export default class WelcomeScreen extends Phaser.Scene {
 
 
         })
+        let stayingScore = 0;
+        if( parseInt(localStorage.getItem('maxScore'))>stayingScore){
+            stayingScore = parseInt(localStorage.getItem('maxScore'))
+        }
 
-        this.add.text(100, 800, `High score: `, {
+        this.add.text(100, 800, `High score: ${parseInt(localStorage.getItem('maxScore'))} `, {
             fontFamily: 'Arial',
             fontSize: '15px',
             strokeThickness: 5,
             stroke: '#000000',
             color: '#EA6A47'
 
+        })
 
+        this.add.text(100, 750, `Coins: ${parseInt(localStorage.getItem('coins'))} `, {
+            fontFamily: 'Arial',
+            fontSize: '15px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
 
         })
 
