@@ -7,7 +7,8 @@ let player
 let platforms
 let scoreText
 let maxScore = 0
-let coin
+let points = 0
+let pointsText
 export default class Game extends Phaser.Scene {
 
 
@@ -39,7 +40,6 @@ export default class Game extends Phaser.Scene {
 
 
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
-        coin = this.add.sprite(100,200,'coin1')
         
 
         this.anims.create({
@@ -112,6 +112,7 @@ export default class Game extends Phaser.Scene {
 
         for (let i = 0; i < 4; ++i) {
             const x = Phaser.Math.Between(100, 700)
+            const coinsX = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
             platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
@@ -122,7 +123,11 @@ export default class Game extends Phaser.Scene {
 
         this.physics.add.collider(player, platforms)
 
+        //coins
 
+        let coin = this.physics.add.sprite(100,200,'coin1')
+        coin.body.setAllowGravity(false)
+        this.physics.add.overlap(player, coin, collectCoin, null, this);
         //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
@@ -140,7 +145,7 @@ export default class Game extends Phaser.Scene {
             this.scene.start('WelcomeScreen')
         })
 
-        scoreText = this.add.text(750, -100, 'Score', {
+        scoreText = this.add.text(750, -100, '', {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -148,7 +153,17 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-        coin.play('coins',60, true)
+
+        pointsText  = this.add.text(750, -50, 'Coins: ', {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        }).setScrollFactor(1, 0)
+
+
+        coin.play('coins', true)
         maxScore = 0
     }
     update() {
@@ -196,7 +211,8 @@ export default class Game extends Phaser.Scene {
            maxScore = Math.round(player.y * -1)
         }
         
-        scoreText.setText("score: " + maxScore)
+        scoreText.setText("Score: " + maxScore)
+        pointsText.setText("Coins: " + points)
         //this.data.set('maxScore', maxScore)
         localStorage.setItem('maxScore', maxScore.toString())
     }
@@ -235,3 +251,11 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+
+
+function collectCoin (player, coin)
+{
+    coin.disableBody(true, true);
+    points++;
+}
