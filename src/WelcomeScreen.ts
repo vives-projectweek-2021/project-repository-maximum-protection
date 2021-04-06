@@ -66,5 +66,14 @@ export default class WelcomeScreen extends Phaser.Scene {
 
         })
 
+        this.add.text(100, 750, `Coins: ${parseInt(localStorage.getItem('coins'))} `, {
+            fontFamily: 'Arial',
+            fontSize: '15px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+
+        })
+
     }
 }

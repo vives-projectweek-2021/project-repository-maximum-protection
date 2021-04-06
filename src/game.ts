@@ -215,6 +215,7 @@ export default class Game extends Phaser.Scene {
         pointsText.setText("Coins: " + points)
         //this.data.set('maxScore', maxScore)
         localStorage.setItem('maxScore', maxScore.toString())
+        localStorage.setItem('coins',points.toString())
     }
 
 
