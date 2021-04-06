@@ -1,10 +1,11 @@
 import 'phaser';
-import { LEFT, NONE } from 'phaser';
+import { LEFT, NONE, Physics } from 'phaser';
 import WelcomeScreen from './WelcomeScreen';
 
 let cursors
 let player
 let platforms
+let coins
 let scoreText
 let maxScore = 0
 let points = 0
@@ -120,14 +121,16 @@ export default class Game extends Phaser.Scene {
 
         platforms.create(0, 300, 'platform').setScale(0.2).refreshBody()
 
-
+        //colliders
         this.physics.add.collider(player, platforms)
+       
+
 
         //coins
 
-        let coin = this.physics.add.sprite(100,200,'coin1')
-        coin.body.setAllowGravity(false)
-        this.physics.add.overlap(player, coin, collectCoin, null, this);
+        coins = this.physics.add.group()
+        this.physics.add.overlap(player, coins, collectCoin, null, this);
+
         //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
@@ -163,7 +166,7 @@ export default class Game extends Phaser.Scene {
         }).setScrollFactor(1, 0)
 
 
-        coin.play('coins', true)
+        //coins.play('coins', true)
         maxScore = 0
     }
     update() {
@@ -203,6 +206,8 @@ export default class Game extends Phaser.Scene {
                 platform.x = Phaser.Math.Between(20, 780)
                 platform.y = platform.y - 1600
                 platform.body.updateFromGameObject()
+
+                this.addCoinAbove(platform)
             }
         })
         
@@ -231,6 +236,21 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    addCoinAbove(sprite)
+    {
+        const y = sprite.y - sprite.displayHeight
+
+        const coin = coins.create(sprite.x, y, 'coin1')
+
+        // update the physics body size
+        coin.body.setSize(coin.width, coin.height)
+        coin.body.setAllowGravity(false)
+
+
+        return coin
+ }
+
+
 
 
 }
@@ -255,8 +275,8 @@ const game = new Phaser.Game(config);
 
 
 
-function collectCoin (player, coin)
+function collectCoin (player,coin)
 {
-    coin.disableBody(true, true);
-    points++;
+    coin.destroy()
+    points++
 }
