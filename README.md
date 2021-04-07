@@ -16,7 +16,9 @@ The player wins when he reaches a certain checkpoint or when he collects a certa
 
 ## Theme 
 
-The theme of this game is knights and dragons/goblins or other creatures. The background of the game is currently a dark village, but maybe we'll look to add new backgrounds to it.
+The theme of this game is knights and dragons/goblins or other creatures. The background of the game is currently a dark village, but maybe we'll add new backgrounds to it.
+
+![Background](./ScreenshotsForReadMe/BackgroundScreenshot.png)
 
 
 ### The characters we are currently using
