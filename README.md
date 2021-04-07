@@ -38,6 +38,19 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 - [gravity/bouncing physics] (https://phaser.io/examples/v2/arcade-physics/bounce-with-gravity)
 - [starstruck -- example game] (https://phaser.io/examples/v2/games/starstruck)
 
+## Screenshots from the game
+
+### Welcome Screen
+
+![Background](./ScreenshotsForReadMe/Welcomescreen.png)
+
+### Start of the game
+
+![Background](./ScreenshotsForReadMe/BeginGame.png)
+
+### A bit further in to the game
+
+![Background](./ScreenshotsForReadMe/FurtherInToGame.png)
 
 ## Progress
 
