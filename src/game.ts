@@ -117,10 +117,10 @@ export default class Game extends Phaser.Scene {
             const x = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
-            const platform = platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
+            const platform = platforms.create(x, y, 'platform').setScale(1.1).refreshBody()
         }
 
-        platforms.create(0, 300, 'platform').setScale(0.2).refreshBody()
+        platforms.create(0, 300, 'platform').setScale(1.1).refreshBody()
 
         //colliders
         this.physics.add.collider(player, platforms)
@@ -296,7 +296,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: true
+            debug: false
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop]

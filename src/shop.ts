@@ -37,7 +37,12 @@ export default class Shop extends Phaser.Scene{
         //x - y / width -height
         this.add.image(280, 450, 'background').setScale(1.5)
         this.add.image(250,628  , 'shop-keeper')
-        this.add.image(400,850,'platform').setScale(1)
+        //ground generation
+        for(let i = 0; i<=10;i++)
+        {
+            this.add.image(80*i,800,'platform').setScale(1)
+        }
+
         // this.add.image(50,700,'platform').setScale(0.2)
         // this.add.image(30000,700,'platform').setScale(0.2)
         // this.add.image(30000,700,'platform').setScale(0.2)
