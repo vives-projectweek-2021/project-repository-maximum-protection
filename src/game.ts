@@ -1,6 +1,7 @@
 import 'phaser';
 import { LEFT, NONE, Physics } from 'phaser';
 import GameOver from './gameOver';
+import Shop from './shop';
 import WelcomeScreen from './welcomeScreen';
 
 let cursors
@@ -298,7 +299,7 @@ const config = {
             debug: true
         }
     },
-    scene: [WelcomeScreen, Game, GameOver]
+    scene: [WelcomeScreen, Game, GameOver, Shop]
 };
 
 const game = new Phaser.Game(config);
