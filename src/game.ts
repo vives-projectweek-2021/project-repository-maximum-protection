@@ -225,12 +225,12 @@ export default class Game extends Phaser.Scene {
 
         //checking for game over!
         const bottomPlatform = this.findBottomPlatform()
-        if (player.y > bottomPlatform.y + 1000) {
+        if (player.y > bottomPlatform.y + 2000) {
             this.cameras.main.stopFollow()
             console.log('under last platform')
         }
-        if (player.y > bottomPlatform.y + 2000) {
-            console.log('game over')
+        if (player.y > bottomPlatform.y + 3000) {
+            console.log('game over')    
             this.scene.start('GameOver')
         }
     }

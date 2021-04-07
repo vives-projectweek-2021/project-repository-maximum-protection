@@ -18,11 +18,17 @@ export default class GameOver extends Phaser.Scene {
 
         //x - y / width -height
         this.add.image(400, 450, 'background').setScale(1.5)
-        this.add.image(200, 600, 'restart').setScale(0.5)
-        this.add.image(600, 600, 'shop').setScale(0.5)
+        let restartButton = this.add.image(200, 600, 'restart').setScale(0.5).setInteractive();
+        let shopButton = this.add.image(600, 600, 'shop').setScale(0.5).setInteractive();
 
 
+        restartButton.on('pointerdown', () => {
+            this.scene.start('game')
+        });
 
+        shopButton.on('pointerdown',() => {
+            this.scene.start('shop')
+        });
 
         this.add.text(200, 200, 'You died...', {
             fontFamily: 'Copperplate',
