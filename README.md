@@ -19,7 +19,7 @@ The player wins when he reaches a certain checkpoint or when he collects a certa
 The theme of this game is knights and dragons/goblins or other creatures. The background of the game is currently a dark village, but maybe we'll look to add new backgrounds to it.
 
 
-# The characters we are currently using
+### The characters we are currently using
 
 - [Knight sprite art] (Source: https://www.gameart2d.com/the-knight-free-sprites.html) 
 - [Some sort of dragon] (Source: https://opengameart.org/content/red-dragon)
@@ -39,10 +39,10 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ## Progress
 
-# 02/04/2021 
+### 02/04/2021 
 sprite animation working!
 
-# 03/04/2021 - 07/04/2021
+### 03/04/2021 - 07/04/2021
 1. Adding platforms to the game and make them spawn randomly.
 2. Make sure the character jumps high enough and moves fast enough.
 3. Adding a horizontal wrap in the game.
