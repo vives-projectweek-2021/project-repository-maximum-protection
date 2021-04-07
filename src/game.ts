@@ -115,14 +115,21 @@ export default class Game extends Phaser.Scene {
             const x = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
-            platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
+            const platform = platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
         }
 
         platforms.create(0, 300, 'platform').setScale(0.2).refreshBody()
 
         //colliders
         this.physics.add.collider(player, platforms)
-       
+
+
+        //platform collider
+        platforms.getChildren().forEach(function(platform) {
+            platform.body.checkCollision.down = false
+            platform.body.checkCollision.right = false
+            platform.body.checkCollision.left = false
+          }, this);
 
 
         //coins
@@ -134,12 +141,6 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
         this.cameras.main.setZoom(0.8, 0.8)
         this.cameras.main.centerOnX(400)
-
-        //collision settings for player
-        player.body.checkCollision.up = false
-        player.body.checkCollision.left = false
-        player.body.checkCollision.right = false
-
 
         this.input.keyboard.on('keydown-ESC', () => {
             //this.scene.pause('WelcomeScreen') --> doesnt work
