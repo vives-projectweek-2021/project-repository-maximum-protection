@@ -231,7 +231,7 @@ export default class Game extends Phaser.Scene {
         }
         if (player.y > bottomPlatform.y + 2000) {
             console.log('game over')
-            this.scene.start('WelcomeScreen')
+            this.scene.start('GameOver')
         }
     }
 
