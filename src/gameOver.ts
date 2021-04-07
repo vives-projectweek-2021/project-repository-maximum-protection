@@ -11,6 +11,7 @@ export default class GameOver extends Phaser.Scene{
 
     }
     create(){
+        this.add.image(400, 450, 'background').setScale(1.5)
 
     }
 }
