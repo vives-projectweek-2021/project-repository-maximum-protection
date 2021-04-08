@@ -1,4 +1,5 @@
 let sprite
+let coins
 export default class ShopCutscene extends Phaser.Scene{
 
 
@@ -65,10 +66,18 @@ export default class ShopCutscene extends Phaser.Scene{
         sprite.setFlipX(true)
         sprite.play('running')
 
+        coins = this.add.text(810, 590, `Coins: ${localStorage.getItem('coins')} `, {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        })
 
     }
     update(){
-        sprite.x -= 4
+        sprite.x -= 6
+        coins.x -= 6
         if(sprite.x <= -50){
             this.scene.start('Shop')
         }

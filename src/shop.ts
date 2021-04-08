@@ -1,5 +1,6 @@
 
 let sprite
+let coins
 export default class Shop extends Phaser.Scene{
 
 
@@ -23,6 +24,7 @@ export default class Shop extends Phaser.Scene{
 
     }
     create() {
+        
         this.anims.create({
             key: 'Idleing',
             frames: [
@@ -67,14 +69,28 @@ export default class Shop extends Phaser.Scene{
         sprite.setFlipX(true)
         sprite.play('running')
 
-        this.add.image(600 , 200, 'upgrades').setScale(0.3)
-        this.add.image(200,200, 'Visuals').setScale(0.3)
+        let upgrades = this.add.image(600 , 200, 'upgrades').setScale(0.3).setInteractive()
+        let visuals = this.add.image(200,200, 'Visuals').setScale(0.3).setInteractive()
+        
 
+        upgrades.on('pointerdown', () => {
+            this.scene.run('Upgrades')
+            upgrades.visible = false
+        });
+
+        coins = this.add.text(800, 590, `Coins: ${localStorage.getItem('coins')} `, {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        })
     }
     update(){
         
         if(sprite.x >= 600){
-            sprite.x -= 4
+            sprite.x -= 6
+            coins.x -= 6
         }
         else{
             sprite.play('Idleing', true)
