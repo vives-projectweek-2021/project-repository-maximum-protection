@@ -66,16 +66,16 @@ export default class Upgrades extends Phaser.Scene {
         buy_speed.on('pointerdown', () => {
             let coin
             insfficientBalance.visible = false
-            if (parseInt(localStorage.getItem('coins')) >= 5) {
+            if (parseInt(localStorage.getItem('coins')) >= 50) {
                 if (isNaN(parseInt(localStorage.getItem('numberOfSpeedUpgrades')))) {
                     localStorage.setItem('numberOfSpeedUpgrades', '1')
                     console.log('SET numberOfSpeedUpgrades TO 1')
-                    coin = parseInt(localStorage.getItem('coins')) - 5
+                    coin = parseInt(localStorage.getItem('coins')) - 50
                     localStorage.setItem('coins', coin.toString())
                 }
                 else {
                     if (parseInt(localStorage.getItem('numberOfSpeedUpgrades')) < 5) {
-                        coin = parseInt(localStorage.getItem('coins')) - 5
+                        coin = parseInt(localStorage.getItem('coins')) - 50
                         localStorage.setItem('coins', coin.toString())
                         let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfSpeedUpgrades')) + 1
                         localStorage.setItem('numberOfSpeedUpgrades', speedUpgradeLevel.toString())
@@ -92,16 +92,16 @@ export default class Upgrades extends Phaser.Scene {
         buy_jumphight.on('pointerdown', () => {
             insfficientBalance.visible = false
             let coin
-            if (parseInt(localStorage.getItem('coins')) >= 5) {
+            if (parseInt(localStorage.getItem('coins')) >= 50) {
                 if (isNaN(parseInt(localStorage.getItem('numberOfJumpUpgrades')))) {
                     localStorage.setItem('numberOfJumpUpgrades', '1')
                     console.log('SET numberOfJumpUpgrades TO 1')
-                    coin = parseInt(localStorage.getItem('coins')) - 5
+                    coin = parseInt(localStorage.getItem('coins')) - 50
                     localStorage.setItem('coins', coin.toString())
                 }
                 else {
                     if (parseInt(localStorage.getItem('numberOfJumpUpgrades')) < 5) {
-                        coin = parseInt(localStorage.getItem('coins')) - 5
+                        coin = parseInt(localStorage.getItem('coins')) - 50
                         localStorage.setItem('coins', coin.toString())
                         let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfJumpUpgrades')) + 1
                         localStorage.setItem('numberOfJumpUpgrades', speedUpgradeLevel.toString())
