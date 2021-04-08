@@ -6,12 +6,8 @@ export default class GameOver extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('restart', 'assets/restart.png');
         this.load.image('shop', 'assets/shop.png');
-
-
-
 
     }
     create() {

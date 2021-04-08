@@ -10,114 +10,12 @@ export default class Shop extends Phaser.Scene{
     }
 
     preload() {
-        this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
-        this.load.image('platform', 'assets/platform.jpg');
-
         this.load.image('upgrades', 'assets/shop/upgrades.png');
         this.load.image('Visuals', 'assets/shop/Visuals.png');
-
-        if (character == "santa")
-        {
-            for (let i = 1; i <= 16; i++) {
-                this.load.image(`idle${i}`, `assets/santa/Idle (${i}).png`);
-                if(i <= 11){this.load.image(`run${i}`, `assets/santa/Run (${i}).png`);};
-            }
-        }else if (character == "knight")
-        {
-            for (let i = 1; i <= 10; i++) {
-                this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
-                this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
-            }
-        }
-
-
     }
     create() {
         
-        if(character == "knight")
-        { 
-            this.anims.create({
-                key: 'Idleing',
-                frames: [
-                    { key: 'idle1' },
-                    { key: 'idle2' },
-                    { key: 'idle3' },
-                    { key: 'idle4' },
-                    { key: 'idle5' },
-                    { key: 'idle6' },
-                    { key: 'idle7' },
-                    { key: 'idle8' },
-                    { key: 'idle9' },
-                    { key: 'idle10' }
-                ],
-                frameRate: 20,
-                repeat: -1
-            });
-        this.anims.create({
-            key: 'running',
-            frames: [
-                { key: 'run1' },
-                { key: 'run2' },
-                { key: 'run3' },
-                { key: 'run4' },
-                { key: 'run5' },
-                { key: 'run6' },
-                { key: 'run7' },
-                { key: 'run8' },
-                { key: 'run9' },
-                { key: 'run10' }
-            ],
-            frameRate: 20,
-            repeat: -1
-            });
-        }
-
-        if(character == "santa")
-        {
-            this.anims.create({
-                key: 'running',
-                frames: [
-                    { key: 'run1' },
-                    { key: 'run2' },
-                    { key: 'run3' },
-                    { key: 'run4' },
-                    { key: 'run6' },
-                    { key: 'run7' },
-                    { key: 'run8' },
-                    { key: 'run9' },
-                    { key: 'run10' },
-                    { key: 'run11' }
-                ],
-                frameRate: 20,
-                repeat: -1
-            });
-
-            this.anims.create({
-                key: 'Idleing',
-                frames: [
-                    { key: 'idle1' },
-                    { key: 'idle2' },
-                    { key: 'idle3' },
-                    { key: 'idle4' },
-                    { key: 'idle5' },
-                    { key: 'idle6' },
-                    { key: 'idle7' },
-                    { key: 'idle8' },
-                    { key: 'idle9' },
-                    { key: 'idle10' },
-                    { key: 'idle11' },
-                    { key: 'idle12' },
-                    { key: 'idle13' },
-                    { key: 'idle14' },
-                    { key: 'idle15' },
-                    { key: 'idle16' }
-                ],
-                frameRate: 20,
-                repeat: -1
-            });
-
-        }
         //x - y / width -height
         this.add.image(280, 450, 'background').setScale(1.5)
         this.add.image(250,628  , 'shop-keeper')

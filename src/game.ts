@@ -29,7 +29,6 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
-        this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('platform', 'assets/platform.jpg');
 
         
