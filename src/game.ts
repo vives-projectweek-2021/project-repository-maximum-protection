@@ -1,6 +1,10 @@
 import 'phaser';
 import { LEFT, NONE, Physics } from 'phaser';
-import WelcomeScreen from './WelcomeScreen';
+import GameOver from './gameOver';
+import Shop from './shop';
+import ShopCutscene from './shopCutscene';
+import Upgrades from './Upgrades';
+import WelcomeScreen from './welcomeScreen';
 
 let cursors
 let player
@@ -68,7 +72,7 @@ export default class Game extends Phaser.Scene {
   
 
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
-        
+
 
         this.anims.create({
             key: 'running',
@@ -152,17 +156,23 @@ export default class Game extends Phaser.Scene {
 
         for (let i = 0; i < 4; ++i) {
             const x = Phaser.Math.Between(100, 700)
-            const coinsX = Phaser.Math.Between(100, 700)
             const y = -300 * i
 
-            platforms.create(x, y, 'platform').setScale(0.2).refreshBody()
+            const platform = platforms.create(x, y, 'platform').setScale(1.1).refreshBody()
         }
 
-        platforms.create(0, 300, 'platform').setScale(0.2).refreshBody()
+        platforms.create(0, 300, 'platform').setScale(1.1).refreshBody()
 
         //colliders
         this.physics.add.collider(player, platforms)
-       
+
+
+        //platform collider
+        platforms.getChildren().forEach(function (platform) {
+            platform.body.checkCollision.down = false
+            platform.body.checkCollision.right = false
+            platform.body.checkCollision.left = false
+        }, this);
 
 
         //coins
@@ -174,12 +184,6 @@ export default class Game extends Phaser.Scene {
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
         this.cameras.main.setZoom(0.8, 0.8)
         this.cameras.main.centerOnX(400)
-
-        //collision settings for player
-        player.body.checkCollision.up = false
-        player.body.checkCollision.left = false
-        player.body.checkCollision.right = false
-
 
         this.input.keyboard.on('keydown-ESC', () => {
             //this.scene.pause('WelcomeScreen') --> doesnt work
@@ -202,7 +206,7 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-        pointsText  = this.add.text(750, -50, 'Coins: ', {
+        pointsText = this.add.text(750, -50, 'Coins: ', {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -283,29 +287,35 @@ export default class Game extends Phaser.Scene {
                 this.addCoinAbove(platform)
             }
         })
-        
+
         //keep max score
-        if(Math.round(player.y * -1) > maxScore){
-           maxScore = Math.round(player.y * -1)
+        if (Math.round(player.y * -1) > maxScore) {
+            maxScore = Math.round(player.y * -1)
         }
+<<<<<<< HEAD
         
         scoreText.setText("score: " + maxScore)
 
         position.setText("Position: " + dragon.x)
+=======
+>>>>>>> 270a4bd9e7d6b8272fa29dcf560be217472b604b
 
         scoreText.setText("Score: " + maxScore)
         pointsText.setText("Coins: " + points)
         //this.data.set('maxScore', maxScore)
         localStorage.setItem('maxScore', maxScore.toString())
-        localStorage.setItem('coins',points.toString())
+        localStorage.setItem('coins', points.toString())
 
 
         //checking for game over!
         const bottomPlatform = this.findBottomPlatform()
-        if(player.y > bottomPlatform.y + 1000)
-        {
-            console.log('game over')
-            this.scene.start('WelcomeScreen')
+        if (player.y > bottomPlatform.y + 2000) {
+            this.cameras.main.stopFollow()
+            console.log('under last platform')
+        }
+        if (player.y > bottomPlatform.y + 3000) {
+            console.log('game over')    
+            this.scene.start('GameOver')
         }
     }
 
@@ -322,32 +332,30 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    addCoinAbove(sprite)
-    {
+    addCoinAbove(sprite) {
         const y = sprite.y - sprite.displayHeight
 
-        const coin = coins.create(sprite.x, y, 'coin1')
+        const coin = coins.create(Phaser.Math.Between(0, 800), y - 100, 'coin1')
+        coin.play('coins')
 
         // update the physics body size
         coin.body.setSize(coin.width, coin.height)
         coin.body.setAllowGravity(false)
+        coin.body.checkCollision.up = false
 
 
         return coin
     }
 
-    findBottomPlatform()
-    {
+    findBottomPlatform() {
         //getting an array of all platforms
         const plats = platforms.getChildren()
         let bottomPlatform = plats[0]
 
-        for(let i = 1; i < plats.length; i++)
-        {
+        for (let i = 1; i < plats.length; i++) {
             const platform = plats[i]
 
-            if(plats.y < bottomPlatform.y)
-            {   
+            if (plats.y < bottomPlatform.y) {
                 //this skips to the end of the for loop
                 continue
             }
@@ -371,18 +379,17 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: true
+            debug: false
         }
     },
-    scene: [WelcomeScreen, Game]
+    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
 };
 
 const game = new Phaser.Game(config);
 
 
 
-function collectCoin (player,coin)
-{
+function collectCoin(player, coin) {
     coin.destroy()
     points++
 }
