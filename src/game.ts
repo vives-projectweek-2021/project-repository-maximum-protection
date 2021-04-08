@@ -178,7 +178,7 @@ export default class Game extends Phaser.Scene {
             velocity += 50
         }
         for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {     
-            jumpHight -= 200
+            jumpHight -= 100
         }
         console.log('velocity = ', velocity)
         console.log('jumpHight = ', jumpHight)
