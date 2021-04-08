@@ -27,7 +27,7 @@ export default class GameOver extends Phaser.Scene {
         });
 
         shopButton.on('pointerdown',() => {
-            this.scene.start('Shop')
+            this.scene.start('ShopCutscene')
         });
 
         this.add.text(200, 200, 'You died...', {

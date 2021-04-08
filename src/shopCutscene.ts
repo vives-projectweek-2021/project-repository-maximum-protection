@@ -1,16 +1,16 @@
-
 let sprite
-export default class Shop extends Phaser.Scene{
+export default class ShopCutscene extends Phaser.Scene{
 
 
     constructor() {
-        super('Shop')
+        super('ShopCutscene')
     }
 
     preload() {
         this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
         this.load.image('platform', 'assets/platform.jpg');
+        
 
 
         for (let i = 1; i <= 10; i++) {
@@ -37,43 +37,38 @@ export default class Shop extends Phaser.Scene{
             frameRate: 20,
             repeat: -1
         });
-    this.anims.create({
-        key: 'running',
-        frames: [
-            { key: 'run1' },
-            { key: 'run2' },
-            { key: 'run3' },
-            { key: 'run4' },
-            { key: 'run6' },
-            { key: 'run7' },
-            { key: 'run8' },
-            { key: 'run9' },
-            { key: 'run10' }
-        ],
-        frameRate: 20,
-        repeat: -1
-    });
+        this.anims.create({
+            key: 'running',
+            frames: [
+                { key: 'run1' },
+                { key: 'run2' },
+                { key: 'run3' },
+                { key: 'run4' },
+                { key: 'run6' },
+                { key: 'run7' },
+                { key: 'run8' },
+                { key: 'run9' },
+                { key: 'run10' }
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
         //x - y / width -height
         this.add.image(280, 450, 'background').setScale(1.5)
-        this.add.image(250,628  , 'shop-keeper')
         //ground generation
         for(let i = 0; i<=10;i++)
         {
             this.add.image(80*i,800,'platform').setScale(1)
         }
-        sprite = this.add.sprite(850,715, 'idle1').setScale(0.22)
-        sprite.setFlipX(true)
+        sprite = this.add.sprite(0,715, 'idle1').setScale(0.22)
         sprite.play('running')
 
 
     }
     update(){
-        
-        if(sprite.x >= 600){
-            sprite.x -= 4
-        }
-        else{
-            sprite.play('Idleing', true)
+        sprite.x += 4
+        if(sprite.x >= 800){
+            this.scene.start('Shop')
         }
     }
 }
