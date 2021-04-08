@@ -12,6 +12,8 @@ export default class Shop extends Phaser.Scene{
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
         this.load.image('platform', 'assets/platform.jpg');
 
+        this.load.image('upgrades', 'assets/shop/upgrades.png');
+        this.load.image('Visuals', 'assets/shop/Visuals.png');
 
         for (let i = 1; i <= 10; i++) {
             this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
@@ -65,6 +67,8 @@ export default class Shop extends Phaser.Scene{
         sprite.setFlipX(true)
         sprite.play('running')
 
+        this.add.image(600 , 200, 'upgrades').setScale(0.3)
+        this.add.image(200,200, 'Visuals').setScale(0.3)
 
     }
     update(){

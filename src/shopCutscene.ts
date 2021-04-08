@@ -10,6 +10,7 @@ export default class ShopCutscene extends Phaser.Scene{
         this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
         this.load.image('platform', 'assets/platform.jpg');
+
         
 
 
@@ -60,14 +61,15 @@ export default class ShopCutscene extends Phaser.Scene{
         {
             this.add.image(80*i,800,'platform').setScale(1)
         }
-        sprite = this.add.sprite(0,715, 'idle1').setScale(0.22)
+        sprite = this.add.sprite(850,715, 'idle1').setScale(0.22)
+        sprite.setFlipX(true)
         sprite.play('running')
 
 
     }
     update(){
-        sprite.x += 4
-        if(sprite.x >= 800){
+        sprite.x -= 4
+        if(sprite.x <= -50){
             this.scene.start('Shop')
         }
     }
