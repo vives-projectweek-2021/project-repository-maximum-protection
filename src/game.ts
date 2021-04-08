@@ -12,6 +12,7 @@ let platforms
 let coins
 let scoreText
 let maxScore= parseInt(localStorage.getItem("maxScore"))
+if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
 let points = parseInt(localStorage.getItem("coins"))
 let pointsText 
 let velocity
