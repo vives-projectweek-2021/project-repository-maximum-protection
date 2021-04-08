@@ -11,7 +11,7 @@ let player
 let platforms
 let coins
 let scoreText
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight,
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
