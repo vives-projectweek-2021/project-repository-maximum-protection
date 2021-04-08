@@ -11,12 +11,16 @@ let player
 let platforms
 let coins
 let scoreText
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
+let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
 if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
 let points = parseInt(localStorage.getItem("coins"))
 let pointsText 
 let velocity
 let jumpHight
+
 export default class Game extends Phaser.Scene {
 
 
@@ -25,18 +29,32 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
-        this.load.image('platform', 'assets/platform.jpg');
         this.load.image('background', 'assets/Background_dungeon.jpg');
+        this.load.image('platform', 'assets/platform.jpg');
 
-        for (let i = 1; i <= 10; i++) {
-            this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
-            this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
-            this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
-        }
+        
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
 
+        if (character == "santa")
+        {
+            for (let i = 1; i <= 16; i++) {
+                this.load.image(`idle${i}`, `assets/santa/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/santa/Jump (${i}).png`);
+                if(i <= 11){this.load.image(`run${i}`, `assets/santa/Run (${i}).png`);};
+                
+            }
+
+
+        }else if (character == "knight")
+        {
+            for (let i = 1; i <= 10; i++) {
+                this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
+                this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
+            }
+        }
     }
 
 
@@ -51,57 +69,132 @@ export default class Game extends Phaser.Scene {
 
         player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
 
+        if (character == "knight")
+        {
+            this.anims.create({
+                key: 'running',
+                frames: [
+                    { key: 'run1' },
+                    { key: 'run2' },
+                    { key: 'run3' },
+                    { key: 'run4' },
+                    { key: 'run5' },
+                    { key: 'run6' },
+                    { key: 'run7' },
+                    { key: 'run8' },
+                    { key: 'run9' },
+                    { key: 'run10' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
 
-        this.anims.create({
-            key: 'running',
-            frames: [
-                { key: 'run1' },
-                { key: 'run2' },
-                { key: 'run3' },
-                { key: 'run4' },
-                { key: 'run6' },
-                { key: 'run7' },
-                { key: 'run8' },
-                { key: 'run9' },
-                { key: 'run10' }
-            ],
-            frameRate: 20,
-            repeat: -1
-        });
+            this.anims.create({
+                key: 'Idleing',
+                frames: [
+                    { key: 'idle1' },
+                    { key: 'idle2' },
+                    { key: 'idle3' },
+                    { key: 'idle4' },
+                    { key: 'idle5' },
+                    { key: 'idle6' },
+                    { key: 'idle7' },
+                    { key: 'idle8' },
+                    { key: 'idle9' },
+                    { key: 'idle10' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
 
-        this.anims.create({
-            key: 'Idleing',
-            frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' }
-            ],
-            frameRate: 20,
-            repeat: -1
-        });
+            this.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'jump1' },
+                    { key: 'jump2' },
+                    { key: 'jump3' },
+                    { key: 'jump4' },
+                    { key: 'jump5' },
+                    { key: 'jump6' },
+                    { key: 'jump7' },
+                    { key: 'jump8' },
+                    { key: 'jump9' },
+                    { key: 'jump10' }
+                ],
+                frameRate: 5,
+                repeat: 1
+            });
+        }
 
-        this.anims.create({
-            key: 'jump',
-            frames: [
-                { key: 'jump1' },
-                { key: 'jump2' },
-                { key: 'jump3' },
-                { key: 'jump4' },
-                { key: 'jump6' },
-                { key: 'jump7' },
-                { key: 'jump8' },
-                { key: 'jump9' },
-                { key: 'jump10' }
-            ],
-            frameRate: 5,
-            repeat: 1
-        });
+        if (character == "santa")
+        {
+            this.anims.create({
+                key: 'running',
+                frames: [
+                    { key: 'run1' },
+                    { key: 'run2' },
+                    { key: 'run3' },
+                    { key: 'run4' },
+                    { key: 'run6' },
+                    { key: 'run7' },
+                    { key: 'run8' },
+                    { key: 'run9' },
+                    { key: 'run10' },
+                    { key: 'run11' }
+
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'Idleing',
+                frames: [
+                    { key: 'idle1' },
+                    { key: 'idle2' },
+                    { key: 'idle3' },
+                    { key: 'idle4' },
+                    { key: 'idle5' },
+                    { key: 'idle6' },
+                    { key: 'idle7' },
+                    { key: 'idle8' },
+                    { key: 'idle9' },
+                    { key: 'idle10' },
+                    { key: 'idle11' },
+                    { key: 'idle12' },
+                    { key: 'idle13' },
+                    { key: 'idle14' },
+                    { key: 'idle15' },
+                    { key: 'idle16' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'jump1' },
+                    { key: 'jump2' },
+                    { key: 'jump3' },
+                    { key: 'jump4' },
+                    { key: 'jump5' },
+                    { key: 'jump6' },
+                    { key: 'jump7' },
+                    { key: 'jump8' },
+                    { key: 'jump9' },
+                    { key: 'jump10' },
+                    { key: 'jump11' },
+                    { key: 'jump12' },
+                    { key: 'jump13' },
+                    { key: 'jump14' },
+                    { key: 'jump15' },
+                    { key: 'jump16' },
+                ],
+                frameRate: 10,
+                repeat: 1
+            });
+        }
 
         this.anims.create({
             key: 'coins',
