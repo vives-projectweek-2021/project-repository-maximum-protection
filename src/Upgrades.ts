@@ -15,8 +15,8 @@ export default class Upgrades extends Phaser.Scene {
 
     }
     create() {
-        console.log('numberOfSpeedUpgrades = ',parseInt(localStorage.getItem('numberOfSpeedUpgrades')))
-        console.log('numberOfJumpUpgrades = ',parseInt(localStorage.getItem('numberOfJumpUpgrades')))
+        console.log('numberOfSpeedUpgrades = ', parseInt(localStorage.getItem('numberOfSpeedUpgrades')))
+        console.log('numberOfJumpUpgrades = ', parseInt(localStorage.getItem('numberOfJumpUpgrades')))
         //x - y / width -height
         this.add.text(450, 50, `upgrade cost = 50 coins  `, {
             fontFamily: 'Arial',
@@ -65,54 +65,62 @@ export default class Upgrades extends Phaser.Scene {
 
         buy_speed.on('pointerdown', () => {
             insfficientBalance.visible = false
-            if (parseInt(localStorage.getItem('coins')) >= 5) {
-                let coin = parseInt(localStorage.getItem('coins')) - 5
-                localStorage.setItem('coins', coin.toString())
-                if (isNaN(parseInt(localStorage.getItem('numberOfSpeedUpgrades')))) {
-                    localStorage.setItem('numberOfSpeedUpgrades', '1')
-                    console.log('SET numberOfSpeedUpgrades TO 1')
-                }
-                else {
-                    let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfSpeedUpgrades')) + 1
-                    localStorage.setItem('numberOfSpeedUpgrades', speedUpgradeLevel.toString())
-                    console.log('numberOfSpeedUpgrades += 1')
+            if (parseInt(localStorage.getItem('coins')) >= 50) {
+                if (parseInt(localStorage.getItem('numberOfSpeedUpgrades')) < 5) {
+                    let coin = parseInt(localStorage.getItem('coins')) - 50
+                    localStorage.setItem('coins', coin.toString())
+                    if (isNaN(parseInt(localStorage.getItem('numberOfSpeedUpgrades')))) {
+                        localStorage.setItem('numberOfSpeedUpgrades', '1')
+                        console.log('SET numberOfSpeedUpgrades TO 1')
+                    }
+                    else {
+
+                        let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfSpeedUpgrades')) + 1
+                        localStorage.setItem('numberOfSpeedUpgrades', speedUpgradeLevel.toString())
+                        console.log('numberOfSpeedUpgrades += 1')
+
+
+                    }
                 }
             }
-            else{
+            else {
                 insfficientBalance.visible = true
             }
         });
         buy_jumphight.on('pointerdown', () => {
             insfficientBalance.visible = false
-            if (parseInt(localStorage.getItem('coins')) >= 5) {
-                let coin = parseInt(localStorage.getItem('coins')) - 5
-                localStorage.setItem('coins', coin.toString())
-                if (isNaN(parseInt(localStorage.getItem('numberOfJumpUpgrades')))) {
-                    localStorage.setItem('numberOfJumpUpgrades', '1')
-                    console.log('SET numberOfJumpUpgrades TO 1')
-                }
-                else {
-                    let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfJumpUpgrades')) + 1
-                    localStorage.setItem('numberOfJumpUpgrades', speedUpgradeLevel.toString())
-                    console.log('numberOfJumpUpgrades += 1')
+            if (parseInt(localStorage.getItem('coins')) >= 50) {
+                if (parseInt(localStorage.getItem('numberOfJumpUpgrades')) < 5) {
+                    let coin = parseInt(localStorage.getItem('coins')) - 50
+                    localStorage.setItem('coins', coin.toString())
+                    if (isNaN(parseInt(localStorage.getItem('numberOfJumpUpgrades')))) {
+                        localStorage.setItem('numberOfJumpUpgrades', '1')
+                        console.log('SET numberOfJumpUpgrades TO 1')
+                    }
+                    else {
+
+                        let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfJumpUpgrades')) + 1
+                        localStorage.setItem('numberOfJumpUpgrades', speedUpgradeLevel.toString())
+                        console.log('numberOfJumpUpgrades += 1')
+                    }
                 }
             }
-            else{
+            else {
                 insfficientBalance.visible = true
             }
         });
     }
-    update(){
+    update() {
         let xSpeed = 570
         let xJump = 570
-        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {     
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {
             this.add.image(xSpeed, 165, 'star').setScale(0.04)
-            xSpeed+=50
+            xSpeed += 50
         }
 
-        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {     
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {
             this.add.image(xJump, 265, 'star').setScale(0.04)
-            xJump+=50
+            xJump += 50
         }
     }
 }

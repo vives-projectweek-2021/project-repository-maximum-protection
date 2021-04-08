@@ -14,6 +14,8 @@ let scoreText
 let maxScore= parseInt(localStorage.getItem("maxScore"))
 let points = parseInt(localStorage.getItem("coins"))
 let pointsText 
+let velocity
+let jumpHight
 export default class Game extends Phaser.Scene {
 
 
@@ -39,6 +41,8 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+        velocity = 350
+        jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
@@ -168,20 +172,28 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-
-        //coins.play('coins', true)
+        //set Velocity to the right parameter
         maxScore = 0
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {     
+            velocity += 50
+        }
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {     
+            jumpHight -= 200
+        }
+        console.log('velocity = ', velocity)
+        console.log('jumpHight = ', jumpHight)
+
     }
     update() {
 
         if (cursors.left.isDown) {
-            player.setVelocityX(-350);
+            player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
 
         }
         else if (cursors.right.isDown) {
-            player.setVelocityX(350);
+            player.setVelocityX(velocity);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
 
@@ -193,7 +205,7 @@ export default class Game extends Phaser.Scene {
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
-            player.setVelocityY(-1000)
+            player.setVelocityY(jumpHight)
             player.play('jump')
         }
 
