@@ -125,5 +125,9 @@ export default class Upgrades extends Phaser.Scene {
             this.add.image(xJump, 265, 'star').setScale(0.04)
             xJump += 50
         }
+
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.stop("Upgrades")
+        })
     }
 }

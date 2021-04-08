@@ -55,5 +55,9 @@ export default class Shop extends Phaser.Scene{
             sprite.play('Idleing', true)
         }
         coins.setText(`Coins: ${localStorage.getItem('coins')} `)
+
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.start('game')
+        })
     }
 }
