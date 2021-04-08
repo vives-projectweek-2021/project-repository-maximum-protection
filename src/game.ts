@@ -12,6 +12,7 @@ let maxScore = 0
 let points = 0
 let pointsText
 let direction = 1
+let position
 export default class Game extends Phaser.Scene {
 
 
@@ -132,6 +133,7 @@ export default class Game extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
             key: 'coins',
             frames: [
                 { key: 'coin1' },
@@ -212,6 +214,13 @@ export default class Game extends Phaser.Scene {
         //coins.play('coins', true)
         maxScore = 0
     }
+
+
+
+
+
+
+
     update() {
 
         //dragon movement
