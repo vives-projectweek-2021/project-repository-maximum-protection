@@ -95,5 +95,6 @@ export default class Shop extends Phaser.Scene{
         else{
             sprite.play('Idleing', true)
         }
+        coins.setText(`Coins: ${localStorage.getItem('coins')} `)
     }
 }

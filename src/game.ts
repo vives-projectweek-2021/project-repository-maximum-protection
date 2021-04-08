@@ -234,8 +234,8 @@ export default class Game extends Phaser.Scene {
         }
         if (player.y > bottomPlatform.y + 3000) {
             console.log('game over')    
-            //this.scene.start('GameOver')
-            this.scene.start('Shop')
+            this.scene.start('GameOver')
+            //this.scene.start('Shop')
         }
     }
 

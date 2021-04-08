@@ -15,7 +15,7 @@ export default class Upgrades extends Phaser.Scene {
 
     }
     create() {
-        console.log(parseInt(localStorage.getItem('blablabla')))
+        console.log('numberOfSpeedUpgrades = ',parseInt(localStorage.getItem('numberOfSpeedUpgrades')))
         //x - y / width -height
         this.add.text(450, 50, `upgrade cost = 50 coins  `, {
             fontFamily: 'Arial',
@@ -64,16 +64,16 @@ export default class Upgrades extends Phaser.Scene {
 
         buy_speed.on('pointerdown', () => {
             insfficientBalance.visible = false
-            if (parseInt(localStorage.getItem('coins')) >= 20) {
-                let coin = parseInt(localStorage.getItem('coins')) - 20
+            if (parseInt(localStorage.getItem('coins')) >= 5) {
+                let coin = parseInt(localStorage.getItem('coins')) - 5
                 localStorage.setItem('coins', coin.toString())
                 if (isNaN(parseInt(localStorage.getItem('numberOfSpeedUpgrades')))) {
                     localStorage.setItem('numberOfSpeedUpgrades', '0')
                     console.log('SET numberOfSpeedUpgrades TO 0')
                 }
                 else {
-                    let speedUpgradeLevel = parseInt(localStorage.getItem('conumberOfSpeedUpgradesins')) + 1
-                    localStorage.setItem('conumberOfSpeedUpgradesins', speedUpgradeLevel.toString())
+                    let speedUpgradeLevel = parseInt(localStorage.getItem('numberOfSpeedUpgrades')) + 1
+                    localStorage.setItem('numberOfSpeedUpgrades', speedUpgradeLevel.toString())
                     console.log('numberOfSpeedUpgrades += 1')
                 }
             }
@@ -81,5 +81,13 @@ export default class Upgrades extends Phaser.Scene {
                 insfficientBalance.visible = true
             }
         });
+    }
+    update(){
+        let x = 570
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {
+            this.add.image(x, 165, 'star').setScale(0.04)
+            x+=50
+            console.log('a loop in the update')
+        }
     }
 }
