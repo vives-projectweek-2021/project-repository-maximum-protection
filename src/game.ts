@@ -11,9 +11,9 @@ let player
 let platforms
 let coins
 let scoreText
-let maxScore = 0
-let points = 0
-let pointsText
+let maxScore= parseInt(localStorage.getItem("maxScore"))
+let points = parseInt(localStorage.getItem("coins"))
+let pointsText 
 export default class Game extends Phaser.Scene {
 
 
