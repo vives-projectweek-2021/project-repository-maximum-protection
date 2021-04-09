@@ -23,9 +23,12 @@ export default class ShopCutscene extends Phaser.Scene{
         if (character == "robot")
         {
             sprite = this.add.sprite(850,720, 'idle1').setScale(0.25)
-        } else 
+        } else if( character == "knight")
         {
             sprite = this.add.sprite(850,715, 'idle1').setScale(0.22)
+        } else if (character == "santa")
+        {
+            sprite = this.add.sprite(850,717, 'idle1').setScale(0.25)
         }
 
         sprite.setFlipX(true)
