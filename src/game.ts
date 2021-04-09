@@ -11,7 +11,7 @@ let player
 let platforms
 let coins
 let scoreText
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','robot') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -53,12 +53,12 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
                 this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
             }
-        } else if (character = "ninja")
+        } else if (character = "robot")
         {
             for (let i = 1; i <= 10; i++) {
-                this.load.image(`idle${i}`, `assets/ninja/Idle (${i}).png`);
-                this.load.image(`jump${i}`, `assets/ninja/Jump (${i}).png`);
-                this.load.image(`run${i}`, `assets/ninja/Run (${i}).png`);
+                this.load.image(`idle${i}`, `assets/robot/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/robot/Jump (${i}).png`);
+                if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
             }
         }
     }
@@ -204,9 +204,9 @@ export default class Game extends Phaser.Scene {
             });
         }
 
-        if (character == "ninja")
+        if (character == "robot")
         {
-            player.setScale(0.2)
+            player.setScale(0.2).setSize(350, 500)
             this.anims.create({
                 key: 'running',
                 frames: [
@@ -216,9 +216,7 @@ export default class Game extends Phaser.Scene {
                     { key: 'run4' },
                     { key: 'run6' },
                     { key: 'run7' },
-                    { key: 'run8' },
-                    { key: 'run9' },
-                    { key: 'run10' }
+                    { key: 'run8' }
                 ],
                 frameRate: 20,
                 repeat: -1
