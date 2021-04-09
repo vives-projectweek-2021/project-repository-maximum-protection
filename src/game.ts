@@ -45,7 +45,6 @@ export default class Game extends Phaser.Scene {
                 
             }
 
-
         }else if (character == "knight")
         {
             for (let i = 1; i <= 10; i++) {
@@ -135,7 +134,7 @@ export default class Game extends Phaser.Scene {
 
         if (character == "santa")
         {
-            player.setScale(0.15).setSize(450, 550)
+            player.setScale(0.15).setSize(450, 550).setOffset(170,0)
             this.anims.create({
                 key: 'running',
                 frames: [
