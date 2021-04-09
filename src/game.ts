@@ -11,7 +11,7 @@ let player
 let platforms
 let coins
 let scoreText
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','knight') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -53,7 +53,7 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
                 this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
             }
-        }
+        } 
     }
 
 
@@ -195,20 +195,7 @@ export default class Game extends Phaser.Scene {
             });
         }
 
-        this.anims.create({
-            key: 'coins',
-            frames: [
-                { key: 'coin1' },
-                { key: 'coin2' },
-                { key: 'coin3' },
-                { key: 'coin4' },
-                { key: 'coin6' },
-                { key: 'coin7' },
-                { key: 'coin8' }
-            ],
-            frameRate: 5,
-            repeat: -1
-        });
+       
 
         platforms = this.physics.add.staticGroup()
 
@@ -404,7 +391,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: false
+            debug: true
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
