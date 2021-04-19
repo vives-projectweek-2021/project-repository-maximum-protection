@@ -8,9 +8,17 @@ import WelcomeScreen from './welcomeScreen';
 
 let cursors
 let player
+let dragon
 let platforms
 let coins
 let scoreText
+<<<<<<< HEAD
+let maxScore = 0
+let points = 0
+let pointsText
+let direction = 1
+let position
+=======
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
@@ -21,6 +29,7 @@ let pointsText
 let velocity
 let jumpHight
 
+>>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
 export default class Game extends Phaser.Scene {
 
 
@@ -28,13 +37,29 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super('game');
     }
+
+
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
 
+
+        //loading images for animations
+        for (let i = 1; i <= 10; i++) {
+            this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
+            this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
+            this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
+            this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
+
+        }
         
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
+
+
+        
+
+        
 
         if (character == "santa")
         {
@@ -65,12 +90,26 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+                cursors = this.input.keyboard.createCursorKeys()
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
+        
+        
+        
+        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600);
+
+        dragon = this.add.sprite(60, -90,'fly1');
+        dragon.setScale(2); 
+        dragon.setScrollFactor(0);
+        
+
+
+
+  
 
         player = this.physics.add.sprite(0, 100, 'idle1')
 
@@ -259,6 +298,18 @@ export default class Game extends Phaser.Scene {
         }
        
         this.anims.create({
+            key: 'flying',
+            frames: [
+                { key: 'fly1' },
+                { key: 'fly2' },
+                { key: 'fly3' },
+                { key: 'fly4' }
+            ],
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'coins',
             frames: [
                 { key: 'coin1' },
@@ -320,6 +371,13 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
+        position = this.add.text(750, -50, 'Position', {
+            fontFamily: 'Arial',
+            fontSize: '25px',
+            strokeThickness: 5,
+            stroke: '#000000',
+            color: '#EA6A47'
+        }).setScrollFactor(1, 0)
 
         pointsText = this.add.text(750, -50, 'Coins: ', {
             fontFamily: 'Arial',
@@ -341,23 +399,51 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
     }
+
+
+
+
+
+
+
     update() {
 
+        //dragon movement
+        dragon.x += + direction;
+        if (dragon.x == 500) {
+            dragon.setFlip(true, false);
+            direction = direction * -1
+        } else if (dragon.x == 59) {
+            dragon.setFlip(false, false);
+            direction = direction * -1;
+        }
+
+    
+           
+        
+
+        //player logic
         if (cursors.left.isDown) {
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else if (cursors.right.isDown) {
             player.setVelocityX(velocity);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else {
             if (player.body.touching.down) { player.play('Idleing', true) }
             player.setVelocityX(0);
+            dragon.play('flying', true);
+
 
         }
 
@@ -387,6 +473,10 @@ export default class Game extends Phaser.Scene {
         if (Math.round(player.y * -1) > maxScore) {
             maxScore = Math.round(player.y * -1)
         }
+        
+        scoreText.setText("score: " + maxScore)
+
+        position.setText("Position: " + dragon.x)
 
         scoreText.setText("Score: " + maxScore)
         pointsText.setText("Coins: " + points)
