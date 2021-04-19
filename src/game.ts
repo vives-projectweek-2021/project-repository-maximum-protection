@@ -12,11 +12,24 @@ let dragon
 let platforms
 let coins
 let scoreText
+<<<<<<< HEAD
 let maxScore = 0
 let points = 0
 let pointsText
 let direction = 1
 let position
+=======
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
+let character = localStorage.getItem("character")
+let maxScore= parseInt(localStorage.getItem("maxScore"))
+if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
+let points = parseInt(localStorage.getItem("coins"))
+let pointsText 
+let velocity
+let jumpHight
+
+>>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
 export default class Game extends Phaser.Scene {
 
 
@@ -28,8 +41,8 @@ export default class Game extends Phaser.Scene {
 
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
-        this.load.image('background', 'assets/Background_dungeon.jpg');
 
+<<<<<<< HEAD
 
         //loading images for animations
         for (let i = 1; i <= 10; i++) {
@@ -39,21 +52,57 @@ export default class Game extends Phaser.Scene {
             this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
 
         }
+=======
+        
+>>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
 
+<<<<<<< HEAD
 
         
 
         
 
+=======
+        if (character == "santa")
+        {
+            for (let i = 1; i <= 16; i++) {
+                this.load.image(`idle${i}`, `assets/santa/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/santa/Jump (${i}).png`);
+                if(i <= 11){this.load.image(`run${i}`, `assets/santa/Run (${i}).png`);};
+                
+            }
+
+        }else if (character == "knight")
+        {
+            for (let i = 1; i <= 10; i++) {
+                this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
+                this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
+            }
+        } else if (character = "robot")
+        {
+            for (let i = 1; i <= 10; i++) {
+                this.load.image(`idle${i}`, `assets/robot/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/robot/Jump (${i}).png`);
+                if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
+            }
+        }
+>>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
     }
 
 
 
     create() {
+<<<<<<< HEAD
                 cursors = this.input.keyboard.createCursorKeys()
+=======
+        velocity = 350
+        jumpHight = -1000
+        cursors = this.input.keyboard.createCursorKeys()
+>>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
@@ -71,60 +120,192 @@ export default class Game extends Phaser.Scene {
 
   
 
-        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600)
+        player = this.physics.add.sprite(0, 100, 'idle1')
 
+        if (character == "knight")
+        {
+            player.setScale(0.15).setSize(450, 600)
+            this.anims.create({
+                key: 'running',
+                frames: [
+                    { key: 'run1' },
+                    { key: 'run2' },
+                    { key: 'run3' },
+                    { key: 'run4' },
+                    { key: 'run5' },
+                    { key: 'run6' },
+                    { key: 'run7' },
+                    { key: 'run8' },
+                    { key: 'run9' },
+                    { key: 'run10' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
 
-        this.anims.create({
-            key: 'running',
-            frames: [
-                { key: 'run1' },
-                { key: 'run2' },
-                { key: 'run3' },
-                { key: 'run4' },
-                { key: 'run6' },
-                { key: 'run7' },
-                { key: 'run8' },
-                { key: 'run9' },
-                { key: 'run10' }
-            ],
-            frameRate: 20,
-            repeat: -1
-        });
+            this.anims.create({
+                key: 'Idleing',
+                frames: [
+                    { key: 'idle1' },
+                    { key: 'idle2' },
+                    { key: 'idle3' },
+                    { key: 'idle4' },
+                    { key: 'idle5' },
+                    { key: 'idle6' },
+                    { key: 'idle7' },
+                    { key: 'idle8' },
+                    { key: 'idle9' },
+                    { key: 'idle10' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
 
-        this.anims.create({
-            key: 'Idleing',
-            frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' }
-            ],
-            frameRate: 20,
-            repeat: -1
-        });
+            this.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'jump1' },
+                    { key: 'jump2' },
+                    { key: 'jump3' },
+                    { key: 'jump4' },
+                    { key: 'jump5' },
+                    { key: 'jump6' },
+                    { key: 'jump7' },
+                    { key: 'jump8' },
+                    { key: 'jump9' },
+                    { key: 'jump10' }
+                ],
+                frameRate: 5,
+                repeat: 1
+            });
+        }
 
-        this.anims.create({
-            key: 'jump',
-            frames: [
-                { key: 'jump1' },
-                { key: 'jump2' },
-                { key: 'jump3' },
-                { key: 'jump4' },
-                { key: 'jump6' },
-                { key: 'jump7' },
-                { key: 'jump8' },
-                { key: 'jump9' },
-                { key: 'jump10' }
-            ],
-            frameRate: 5,
-            repeat: 1
-        });
+        if (character == "santa")
+        {
+            player.setScale(0.15).setSize(450, 550).setOffset(170,0) //issue
+            this.anims.create({
+                key: 'running',
+                frames: [
+                    { key: 'run1' },
+                    { key: 'run2' },
+                    { key: 'run3' },
+                    { key: 'run4' },
+                    { key: 'run6' },
+                    { key: 'run7' },
+                    { key: 'run8' },
+                    { key: 'run9' },
+                    { key: 'run10' },
+                    { key: 'run11' }
 
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'Idleing',
+                frames: [
+                    { key: 'idle1' },
+                    { key: 'idle2' },
+                    { key: 'idle3' },
+                    { key: 'idle4' },
+                    { key: 'idle5' },
+                    { key: 'idle6' },
+                    { key: 'idle7' },
+                    { key: 'idle8' },
+                    { key: 'idle9' },
+                    { key: 'idle10' },
+                    { key: 'idle11' },
+                    { key: 'idle12' },
+                    { key: 'idle13' },
+                    { key: 'idle14' },
+                    { key: 'idle15' },
+                    { key: 'idle16' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'jump1' },
+                    { key: 'jump2' },
+                    { key: 'jump3' },
+                    { key: 'jump4' },
+                    { key: 'jump5' },
+                    { key: 'jump6' },
+                    { key: 'jump7' },
+                    { key: 'jump8' },
+                    { key: 'jump9' },
+                    { key: 'jump10' },
+                    { key: 'jump11' },
+                    { key: 'jump12' },
+                    { key: 'jump13' },
+                    { key: 'jump14' },
+                    { key: 'jump15' },
+                    { key: 'jump16' },
+                ],
+                frameRate: 10,
+                repeat: 1
+            });
+        }
+
+        if (character == "robot")
+        {
+            player.setScale(0.2).setSize(350, 500)
+            this.anims.create({
+                key: 'running',
+                frames: [
+                    { key: 'run1' },
+                    { key: 'run2' },
+                    { key: 'run3' },
+                    { key: 'run4' },
+                    { key: 'run6' },
+                    { key: 'run7' },
+                    { key: 'run8' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'Idleing',
+                frames: [
+                    { key: 'idle1' },
+                    { key: 'idle2' },
+                    { key: 'idle3' },
+                    { key: 'idle4' },
+                    { key: 'idle5' },
+                    { key: 'idle6' },
+                    { key: 'idle7' },
+                    { key: 'idle8' },
+                    { key: 'idle9' },
+                    { key: 'idle10' }
+                ],
+                frameRate: 20,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'jump1' },
+                    { key: 'jump2' },
+                    { key: 'jump3' },
+                    { key: 'jump4' },
+                    { key: 'jump5' },
+                    { key: 'jump6' },
+                    { key: 'jump7' },
+                    { key: 'jump8' },
+                    { key: 'jump9' },
+                    { key: 'jump10' }
+                ],
+                frameRate: 5,
+                repeat: 1
+            });
+        }
+       
         this.anims.create({
             key: 'flying',
             frames: [
@@ -151,6 +332,7 @@ export default class Game extends Phaser.Scene {
             frameRate: 5,
             repeat: -1
         });
+
 
         platforms = this.physics.add.staticGroup()
 
@@ -214,9 +396,17 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-
-        //coins.play('coins', true)
+        //set Velocity to the right parameter
         maxScore = 0
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {     
+            velocity += 50
+        }
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {     
+            jumpHight -= 100
+        }
+        console.log('velocity = ', velocity)
+        console.log('jumpHight = ', jumpHight)
+
     }
 
 
@@ -243,7 +433,7 @@ export default class Game extends Phaser.Scene {
 
         //player logic
         if (cursors.left.isDown) {
-            player.setVelocityX(-350);
+            player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
             dragon.play('flying', true);
@@ -251,7 +441,7 @@ export default class Game extends Phaser.Scene {
 
         }
         else if (cursors.right.isDown) {
-            player.setVelocityX(350);
+            player.setVelocityX(velocity);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
             dragon.play('flying', true);
@@ -267,7 +457,7 @@ export default class Game extends Phaser.Scene {
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
-            player.setVelocityY(-1000)
+            player.setVelocityY(jumpHight)
             player.play('jump')
         }
 
@@ -313,6 +503,7 @@ export default class Game extends Phaser.Scene {
         if (player.y > bottomPlatform.y + 3000) {
             console.log('game over')    
             this.scene.start('GameOver')
+            //this.scene.start('Shop')
         }
     }
 
@@ -376,7 +567,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: false
+            debug: true
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
