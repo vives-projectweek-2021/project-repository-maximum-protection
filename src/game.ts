@@ -8,9 +8,11 @@ import WelcomeScreen from './welcomeScreen';
 
 let cursors
 let player
+let dragon
 let platforms
 let coins
 let scoreText
+let direction = 0;
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
@@ -20,7 +22,8 @@ let points = parseInt(localStorage.getItem("coins"))
 let pointsText 
 let velocity
 let jumpHight
-
+let stepLimit = 20;
+let position;
 export default class Game extends Phaser.Scene {
 
 
@@ -28,6 +31,8 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super('game');
     }
+
+
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
 
@@ -35,6 +40,8 @@ export default class Game extends Phaser.Scene {
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
+
+        
 
         if (character == "santa")
         {
@@ -71,6 +78,19 @@ export default class Game extends Phaser.Scene {
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
+        
+        
+        
+        player = this.physics.add.sprite(0, 100, 'idle1').setScale(0.15).setSize(450, 600);
+
+        dragon = this.add.sprite(60, -90,'fly1');
+        dragon.setScale(2); 
+        dragon.setScrollFactor(0);
+        
+
+
+
+  
 
         player = this.physics.add.sprite(0, 100, 'idle1')
 
@@ -134,7 +154,7 @@ export default class Game extends Phaser.Scene {
 
         if (character == "santa")
         {
-            player.setScale(0.15).setSize(450, 550).setOffset(170,0) //issue
+            player.setScale(0.15).setSize(450, 550).setOffset(170,0)
             this.anims.create({
                 key: 'running',
                 frames: [
@@ -259,6 +279,18 @@ export default class Game extends Phaser.Scene {
         }
        
         this.anims.create({
+            key: 'flying',
+            frames: [
+                { key: 'fly1' },
+                { key: 'fly2' },
+                { key: 'fly3' },
+                { key: 'fly4' }
+            ],
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'coins',
             frames: [
                 { key: 'coin1' },
@@ -320,6 +352,7 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
+ 
 
         pointsText = this.add.text(750, -50, 'Coins: ', {
             fontFamily: 'Arial',
@@ -341,23 +374,46 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
     }
+
+
+
+
+
+
+
     update() {
 
+        //dragon logic
+            if (dragon.x < 200 ) {
+                dragon.x++;
+            } else {
+                dragon.x--;
+            }
+           
+        
+
+        //player logic
         if (cursors.left.isDown) {
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else if (cursors.right.isDown) {
             player.setVelocityX(velocity);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
+            dragon.play('flying', true);
+
 
         }
         else {
             if (player.body.touching.down) { player.play('Idleing', true) }
             player.setVelocityX(0);
+            dragon.play('flying', true);
+
 
         }
 
@@ -387,6 +443,9 @@ export default class Game extends Phaser.Scene {
         if (Math.round(player.y * -1) > maxScore) {
             maxScore = Math.round(player.y * -1)
         }
+        
+
+
 
         scoreText.setText("Score: " + maxScore)
         pointsText.setText("Coins: " + points)
