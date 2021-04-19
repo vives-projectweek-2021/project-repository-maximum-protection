@@ -12,6 +12,7 @@ let dragon
 let platforms
 let coins
 let scoreText
+<<<<<<< HEAD
 let direction = 0;
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
@@ -23,6 +24,9 @@ let pointsText
 let velocity
 let jumpHight
 
+=======
+let maxScore = 0
+>>>>>>> parent of 68d5495... flying dragon
 let stepLimit = 20;
 let position;
 export default class Game extends Phaser.Scene {
@@ -376,6 +380,7 @@ export default class Game extends Phaser.Scene {
 
     }
 
+<<<<<<< HEAD
 
 
 
@@ -384,6 +389,8 @@ export default class Game extends Phaser.Scene {
 
     update() {
 
+=======
+>>>>>>> parent of 68d5495... flying dragon
         //dragon logic
             if (dragon.x < 200 ) {
                 dragon.x++;
