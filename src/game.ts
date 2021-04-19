@@ -12,13 +12,7 @@ let dragon
 let platforms
 let coins
 let scoreText
-<<<<<<< HEAD
-let maxScore = 0
-let points = 0
-let pointsText
-let direction = 1
-let position
-=======
+let direction = 0;
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
@@ -29,7 +23,6 @@ let pointsText
 let velocity
 let jumpHight
 
->>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
 export default class Game extends Phaser.Scene {
 
 
@@ -42,30 +35,11 @@ export default class Game extends Phaser.Scene {
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
 
-<<<<<<< HEAD
-
-        //loading images for animations
-        for (let i = 1; i <= 10; i++) {
-            this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
-            this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
-            this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
-            this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
-
-        }
-=======
         
->>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
 
-<<<<<<< HEAD
-
-        
-
-        
-
-=======
         if (character == "santa")
         {
             for (let i = 1; i <= 16; i++) {
@@ -90,19 +64,14 @@ export default class Game extends Phaser.Scene {
                 if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
             }
         }
->>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
     }
 
 
 
     create() {
-<<<<<<< HEAD
-                cursors = this.input.keyboard.createCursorKeys()
-=======
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
->>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
