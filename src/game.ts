@@ -23,6 +23,8 @@ let pointsText
 let velocity
 let jumpHight
 
+let stepLimit = 20;
+let position;
 export default class Game extends Phaser.Scene {
 
 
@@ -382,17 +384,12 @@ export default class Game extends Phaser.Scene {
 
     update() {
 
-        //dragon movement
-        dragon.x += + direction;
-        if (dragon.x == 500) {
-            dragon.setFlip(true, false);
-            direction = direction * -1
-        } else if (dragon.x == 59) {
-            dragon.setFlip(false, false);
-            direction = direction * -1;
-        }
-
-    
+        //dragon logic
+            if (dragon.x < 200 ) {
+                dragon.x++;
+            } else {
+                dragon.x--;
+            }
            
         
 
