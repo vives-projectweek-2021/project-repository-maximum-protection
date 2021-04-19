@@ -292,13 +292,10 @@ export default class Game extends Phaser.Scene {
         if (Math.round(player.y * -1) > maxScore) {
             maxScore = Math.round(player.y * -1)
         }
-<<<<<<< HEAD
         
         scoreText.setText("score: " + maxScore)
 
         position.setText("Position: " + dragon.x)
-=======
->>>>>>> 270a4bd9e7d6b8272fa29dcf560be217472b604b
 
         scoreText.setText("Score: " + maxScore)
         pointsText.setText("Coins: " + points)

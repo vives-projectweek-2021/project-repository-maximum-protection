@@ -67,13 +67,10 @@ sprite animation working!
 7. If you fell down (didn't make it to the next platform), you automatically return to the welcome screen.
 8. While working on the game, fixing bugs...
 
-<<<<<<< HEAD
 02/04/2021 -- sprite animation working
 06/04/2021 -- basic controls working. Platforms, dragon and background added. 
               
 
 
-=======
 # 08/04/2021 - ...
->>>>>>> 270a4bd9e7d6b8272fa29dcf560be217472b604b
 
