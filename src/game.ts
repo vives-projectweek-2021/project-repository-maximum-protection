@@ -12,7 +12,6 @@ let dragon
 let platforms
 let coins
 let scoreText
-
 let direction = 0;
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
