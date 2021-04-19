@@ -33,7 +33,10 @@ export default class Game extends Phaser.Scene {
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
 
-        
+        for (let i = 1; i <= 8; i++) {
+            this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
+        }
+
         for (let i = 1; i <= 8; i++) {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
