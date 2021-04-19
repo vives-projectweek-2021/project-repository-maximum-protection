@@ -33,7 +33,7 @@ export default class Game extends Phaser.Scene {
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
 
-        for (let i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 4; i++) {
             this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
         }
 
@@ -93,7 +93,7 @@ export default class Game extends Phaser.Scene {
                 { key: 'fly4' }
 
             ],
-            frameRate: 20,
+            frameRate: 5,
             repeat: -1
         });
 
@@ -370,6 +370,8 @@ export default class Game extends Phaser.Scene {
     update() {
 
         //dragon movement
+        dragon.play('flying', true);
+
         dragon.x += + direction;
         if (dragon.x == 500) {
             dragon.setFlip(true, false);
