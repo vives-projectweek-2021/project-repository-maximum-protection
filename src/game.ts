@@ -12,13 +12,8 @@ let dragon
 let platforms
 let coins
 let scoreText
-<<<<<<< HEAD
-let maxScore = 0
-let points = 0
-let pointsText
 let direction = 1
 let position
-=======
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
@@ -29,7 +24,6 @@ let pointsText
 let velocity
 let jumpHight
 
->>>>>>> d58515d3a778ebe692164511c92047d2e1f9e16d
 export default class Game extends Phaser.Scene {
 
 
