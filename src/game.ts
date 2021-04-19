@@ -349,13 +349,7 @@ export default class Game extends Phaser.Scene {
             color: '#EA6A47'
         }).setScrollFactor(1, 0)
 
-        position = this.add.text(750, -50, 'Position', {
-            fontFamily: 'Arial',
-            fontSize: '25px',
-            strokeThickness: 5,
-            stroke: '#000000',
-            color: '#EA6A47'
-        }).setScrollFactor(1, 0)
+ 
 
         pointsText = this.add.text(750, -50, 'Coins: ', {
             fontFamily: 'Arial',
@@ -454,7 +448,6 @@ export default class Game extends Phaser.Scene {
         
         scoreText.setText("score: " + maxScore)
 
-        position.setText("Position: " + dragon.x)
 
         scoreText.setText("Score: " + maxScore)
         pointsText.setText("Coins: " + points)
