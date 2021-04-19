@@ -151,7 +151,7 @@ export default class Game extends Phaser.Scene {
 
         if (character == "santa")
         {
-            player.setScale(0.15).setSize(450, 550).setOffset(170,0) //issue
+            player.setScale(0.15).setSize(450, 550).setOffset(170,0)
             this.anims.create({
                 key: 'running',
                 frames: [
