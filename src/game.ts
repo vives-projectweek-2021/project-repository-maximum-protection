@@ -8,9 +8,11 @@ import WelcomeScreen from './welcomeScreen';
 
 let cursors
 let player
+let direction = 1;
 let platforms
 let coins
 let scoreText
+let dragon
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
@@ -71,8 +73,26 @@ export default class Game extends Phaser.Scene {
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
+        dragon = this.add.sprite(60, -90,'fly1');
+        dragon.setScale(2); 
+        dragon.setScrollFactor(0);
 
         player = this.physics.add.sprite(0, 100, 'idle1')
+
+
+        this.anims.create({
+            key:'flying',
+
+            frames: [
+                { key: 'fly1' },
+                { key: 'fly2' },
+                { key: 'fly3' },
+                { key: 'fly4' }
+
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
 
         if (character == "knight")
         {
@@ -340,8 +360,21 @@ export default class Game extends Phaser.Scene {
         console.log('velocity = ', velocity)
         console.log('jumpHight = ', jumpHight)
 
+
+
+
     }
     update() {
+
+        //dragon movement
+        dragon.x += + direction;
+        if (dragon.x == 500) {
+            dragon.setFlip(true, false);
+            direction = direction * -1
+        } else if (dragon.x == 59) {
+            dragon.setFlip(false, false);
+            direction = direction * -1;
+        }
 
         if (cursors.left.isDown) {
             player.setVelocityX(velocity * (-1));
