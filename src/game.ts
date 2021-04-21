@@ -14,7 +14,7 @@ let platforms
 let coins
 let scoreText
 let dragon
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','robot') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -84,7 +84,8 @@ export default class Game extends Phaser.Scene {
         //BG music selection
         if (character == "santa"){
              var music = this.sound.add('jinglebells');
-        }else if (character == "robot")
+        }
+        if (character == "robot")
         {
             var music = this.sound.add('robotmusic');
         }
@@ -403,6 +404,8 @@ export default class Game extends Phaser.Scene {
             direction = direction * -1;
         }
 
+
+        //player movement
         if (cursors.left.isDown) {
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
