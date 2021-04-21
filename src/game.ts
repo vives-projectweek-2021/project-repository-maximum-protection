@@ -46,7 +46,7 @@ export default class Game extends Phaser.Scene {
 
         //sprites & images
         gameover = false
-        this.load.image('platform', 'assets/platform.jpg');
+        this.load.image('platform', 'assets/IcePlatform.png');
 
         for (let i = 0; i <= 4; i++)
         {
