@@ -25,6 +25,8 @@ let points = parseInt(localStorage.getItem("coins"))
 let pointsText 
 let velocity
 let jumpHight
+let playerpossafe = 50
+let velocityfireball = 200
 
 export default class Game extends Phaser.Scene {
 
@@ -373,7 +375,7 @@ export default class Game extends Phaser.Scene {
         //fireball
         fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
         fireball.play('movingfireball',true)
-        fireball.body.setMaxVelocityY(200)
+        fireball.body.setMaxVelocityY(velocityfireball)
         this.physics.add.overlap(player,fireball,hitFireball,null,this);
 
         //camera settings
@@ -444,7 +446,15 @@ export default class Game extends Phaser.Scene {
             fireball.y = player.y-1200
             fireball.x = dragon.x
         }
+        
+        if (playerpossafe-5000 > player.y)
+        {   
+            playerpossafe =  player.y
+            velocityfireball += 20
+            console.log("Fireball speeds up")
+            fireball.body.setMaxVelocityY(velocityfireball)
 
+        }
        
 
         if (cursors.left.isDown) {
