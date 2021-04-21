@@ -50,6 +50,13 @@ export default class Shop extends Phaser.Scene {
             inSubScene = true
         });
 
+        visuals.on('pointerdown',()=>{
+            this.scene.run('Visuals')
+            upgrades.visible = false
+            visuals.visible = false
+            inSubScene = true
+        })
+
         coins = this.add.text(800, 590, `Coins: ${localStorage.getItem('coins')} `, {
             fontFamily: 'Arial',
             fontSize: '25px',

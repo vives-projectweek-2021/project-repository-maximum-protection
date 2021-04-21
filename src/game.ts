@@ -4,6 +4,7 @@ import GameOver from './gameOver';
 import Shop from './shop';
 import ShopCutscene from './shopCutscene';
 import Upgrades from './Upgrades';
+import Visuals from './Visuals';
 import WelcomeScreen from './welcomeScreen';
 
 let cursors
@@ -509,7 +510,7 @@ const config = {
             debug: true
         }
     },
-    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
+    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades,Visuals]
 };
 
 const game = new Phaser.Game(config);
