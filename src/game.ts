@@ -36,6 +36,7 @@ export default class Game extends Phaser.Scene {
         //audio
 
         this.load.audio('jinglebells', ['assets/audio/JingleBells.mp3']);
+        this.load.audio('robotmusic',['assets/audio/JingleBells.mp3'] );
         
 
         //sprites & images
@@ -80,8 +81,15 @@ export default class Game extends Phaser.Scene {
     create() {
 
 
+        //BG music selection
+        if (character == "santa"){
+             var music = this.sound.add('jinglebells');
+        }else if (character == "robot")
+        {
+            var music = this.sound.add('robotmusic');
+        }
 
-        var music = this.sound.add('jinglebells');
+
         music.play();
 
         velocity = 350
