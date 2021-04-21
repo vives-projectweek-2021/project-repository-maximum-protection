@@ -35,7 +35,7 @@ export default class Game extends Phaser.Scene {
 
         //audio
         if (character == 'robot'){
-            this.load.audio('backgroundmusic',['assets/audio/RrobotMusic.mp3'] );
+            this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
 
@@ -86,7 +86,6 @@ export default class Game extends Phaser.Scene {
 
 
         var music = this.sound.add('backgroundmusic');
-
         music.play();
 
         velocity = 350
