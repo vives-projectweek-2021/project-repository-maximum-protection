@@ -1,3 +1,4 @@
+import { MouseConstraint } from 'matter';
 import 'phaser';
 import { LEFT, NONE, Physics } from 'phaser';
 import GameOver from './gameOver';
@@ -35,6 +36,7 @@ export default class Game extends Phaser.Scene {
         //audio
 
         this.load.audio('jinglebells', ['assets/audio/JingleBells.mp3']);
+        
 
         //sprites & images
         this.load.image('platform', 'assets/platform.jpg');
@@ -80,7 +82,7 @@ export default class Game extends Phaser.Scene {
 
 
         var music = this.sound.add('jinglebells');
-        music.play
+        music.play();
 
         velocity = 350
         jumpHight = -1000
