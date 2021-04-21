@@ -10,10 +10,12 @@ let cursors
 let player
 let direction = 1;
 let platforms
+let fireball
 let coins
 let scoreText
 let dragon
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+let gameover = false
+localStorage.setItem('character','robot') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -32,6 +34,11 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
         this.load.image('platform', 'assets/platform.jpg');
+
+        for (let i = 0; i <= 4; i++)
+        {
+            this.load.image(`fireball${i}`, `assets/fireball/Bullet_00${i}.png`);
+        }
 
         for (let i = 1; i <= 4; i++) {
             this.load.image(`fly${i}`, `assets/dragon/dragonflying${i}.png`);
@@ -76,12 +83,23 @@ export default class Game extends Phaser.Scene {
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
 
-        dragon = this.add.sprite(60, -90,'fly1');
-        dragon.setScale(2); 
-        dragon.setScrollFactor(0);
 
         player = this.physics.add.sprite(0, 100, 'idle1')
 
+        this.anims.create({
+            key:'movingfireball',
+
+            frames: [
+                { key: 'fireball0' },
+                { key: 'fireball1' },
+                { key: 'fireball2' },
+                { key: 'fireball3' },
+                { key: 'fireball4' }
+
+            ],
+            frameRate: 5,
+            repeat: -1
+        })
 
         this.anims.create({
             key:'flying',
@@ -308,6 +326,15 @@ export default class Game extends Phaser.Scene {
 
         platforms.create(0, 300, 'platform').setScale(1.1).refreshBody()
 
+        const x = Phaser.Math.Between(100,700)
+        const y = 500
+
+        dragon = this.add.sprite(60, -90,'fly1');
+        dragon.setScale(2); 
+        dragon.setScrollFactor(0);
+
+        
+
         //colliders
         this.physics.add.collider(player, platforms)
 
@@ -323,6 +350,12 @@ export default class Game extends Phaser.Scene {
         //coins
         coins = this.physics.add.group()
         this.physics.add.overlap(player, coins, collectCoin, null, this);
+
+        //fireball
+        fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
+        fireball.play('movingfireball',true)
+        fireball.body.setMaxVelocityY(200)
+        this.physics.add.overlap(player,fireball,hitFireball,null,this);
 
         //camera settings
         this.cameras.main.startFollow(player)
@@ -364,22 +397,34 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
 
-
+        
 
     }
     update() {
 
         //dragon movement
         dragon.play('flying', true);
+        dragon.setVisible(false)
+
+        
+        
 
         dragon.x += + direction;
-        if (dragon.x == 500) {
+        if (dragon.x == 700) {
             dragon.setFlip(true, false);
             direction = direction * -1
         } else if (dragon.x == 59) {
             dragon.setFlip(false, false);
             direction = direction * -1;
         }
+
+        if (fireball.y > player.y+600)
+        {
+            fireball.y = player.y-1200
+            fireball.x = dragon.x
+        }
+
+       
 
         if (cursors.left.isDown) {
             player.setVelocityX(velocity * (-1));
@@ -433,17 +478,20 @@ export default class Game extends Phaser.Scene {
         localStorage.setItem('coins', points.toString())
 
 
+
         //checking for game over!
         const bottomPlatform = this.findBottomPlatform()
         if (player.y > bottomPlatform.y + 2000) {
             this.cameras.main.stopFollow()
             console.log('under last platform')
         }
-        if (player.y > bottomPlatform.y + 3000) {
+        if (player.y > bottomPlatform.y + 3000 || gameover == true) {
             console.log('game over')    
             this.scene.start('GameOver')
             //this.scene.start('Shop')
         }
+
+
     }
 
 
@@ -519,4 +567,10 @@ const game = new Phaser.Game(config);
 function collectCoin(player, coin) {
     coin.destroy()
     points++
+}
+
+function hitFireball(player,fireball)
+{
+    gameover = true
+
 }
