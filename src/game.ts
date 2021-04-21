@@ -84,21 +84,20 @@ export default class Game extends Phaser.Scene {
     create() {
 
 
-
+        //play background music
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
-
         backgroundMusic.play();
-
+        //variables
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
-
+        //dragon logic
         dragon = this.add.sprite(60, -90,'fly1');
         dragon.setScale(2); 
         dragon.setScrollFactor(0);
-
+        //player
         player = this.physics.add.sprite(0, 100, 'idle1')
 
 
