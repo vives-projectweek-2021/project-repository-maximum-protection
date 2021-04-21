@@ -351,10 +351,7 @@ export default class Game extends Phaser.Scene {
         const x = Phaser.Math.Between(100,700)
         const y = 500
 
-        dragon = this.add.sprite(60, -90,'fly1');
-        dragon.setScale(2); 
-        dragon.setScrollFactor(0);
-
+      
         
 
         //colliders
