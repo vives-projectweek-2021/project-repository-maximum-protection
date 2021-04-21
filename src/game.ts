@@ -31,6 +31,12 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
+
+        //audio
+
+        this.load.audio('jinglebells', ['assets/audio/JingleBells.mp3']);
+
+        //sprites & images
         this.load.image('platform', 'assets/platform.jpg');
 
         for (let i = 1; i <= 4; i++) {
@@ -70,6 +76,12 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+
+
+
+        var music = this.sound.add('jinglebells');
+        music.play
+
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
