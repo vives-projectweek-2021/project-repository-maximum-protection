@@ -85,8 +85,9 @@ export default class Game extends Phaser.Scene {
 
 
 
-        var music = this.sound.add('backgroundmusic');
-        music.play();
+        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+
+        backgroundMusic.play();
 
         velocity = 350
         jumpHight = -1000
