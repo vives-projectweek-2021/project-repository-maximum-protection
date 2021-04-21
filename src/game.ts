@@ -40,7 +40,6 @@ export default class Game extends Phaser.Scene {
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
-
         }
         
 
