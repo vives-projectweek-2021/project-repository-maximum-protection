@@ -33,6 +33,7 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
+        gameover = false
         this.load.image('platform', 'assets/platform.jpg');
 
         for (let i = 0; i <= 4; i++)
@@ -554,7 +555,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: true
+            debug: false
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
