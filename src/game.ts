@@ -19,7 +19,7 @@ let dragon
 let gameover = false
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
-let character = localStorage.getItem("character")
+let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
 if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
 let points = parseInt(localStorage.getItem("coins"))
@@ -39,6 +39,9 @@ export default class Game extends Phaser.Scene {
     preload() {
 
         //audio BG music
+        character = localStorage.getItem("character")
+        console.log("character = ", localStorage.getItem("character"))
+        //audio
         if (character == 'robot'){
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
@@ -118,6 +121,9 @@ export default class Game extends Phaser.Scene {
 
 
 
+        //play background music
+        //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+        //backgroundMusic.play();
         //variables
         velocity = 350
         jumpHight = -1000
@@ -556,7 +562,7 @@ export default class Game extends Phaser.Scene {
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
             console.log('game over')   
             this.game.sound.stopAll(); 
-            this.scene.start('GameOver');
+            this.scene.start('GameOver');ropriate to mark resolution and make a comm
 
            //this.scene.start('Shop')
         }
@@ -577,10 +583,7 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    addCoinAbove(sprite) {
-        const y = sprite.y - sprite.displayHeight
-
-        const coin = coins.create(Phaser.Math.Between(0, 800), y - 100, 'coin1')
+    addCoinAbove(sprite) {ropriate to mark resolution and make a commy - 100, 'coin1')
         coin.play('coins')
 
         // update the physics body size
@@ -590,33 +593,19 @@ export default class Game extends Phaser.Scene {
 
 
         return coin
-    }
-
-    findBottomPlatform() {
-        //getting an array of all platforms
+    }ropriate to mark resolution and make a comm
         const plats = platforms.getChildren()
         let bottomPlatform = plats[0]
 
         for (let i = 1; i < plats.length; i++) {
-            const platform = plats[i]
-
-            if (plats.y < bottomPlatform.y) {
-                //this skips to the end of the for loop
+            const platform = plats[i]ropriate to mark resolution and make a comm
                 continue
             }
 
             bottomPlatform = platform
         }
 
-        return bottomPlatform
-    }
-
-
-}
-
-const config = {
-    type: Phaser.AUTO,
-    backgroundColor: '#125555',
+        return bottomPlatformropriate to mark resolution and make a comm
     width: 800,
     height: 900,
     autoCenter: true,

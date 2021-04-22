@@ -18,7 +18,7 @@ export default class Shop extends Phaser.Scene {
         this.load.image('Visuals', 'assets/shop/Visuals.png');
     }
     create() {
-
+        
         //x - y / width -height
         this.add.image(280, 450, 'background').setScale(1.5)
         this.add.image(250, 628, 'shop-keeper')
