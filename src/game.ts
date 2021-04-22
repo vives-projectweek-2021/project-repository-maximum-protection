@@ -376,7 +376,7 @@ export default class Game extends Phaser.Scene {
         fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
         fireball.play('movingfireball',true)
         fireball.body.setMaxVelocityY(velocityfireball)
-        this.physics.add.overlap(player,fireball,hitFireball,null,this);
+        //this.physics.add.overlap(player,fireball,hitFireball,null,this);
 
         //camera settings
         this.cameras.main.startFollow(player)
@@ -443,8 +443,15 @@ export default class Game extends Phaser.Scene {
         //player movement
         if (fireball.y > player.y+600)
         {
-            fireball.y = player.y-1200
-            fireball.x = dragon.x
+            if (direction == 1)
+            {
+                fireball.x = dragon.x + 100
+            }else
+            {
+                fireball.x = dragon.x - 100
+            }
+            fireball.y = player.y-700
+            
         }
         
         if (playerpossafe-5000 > player.y)
