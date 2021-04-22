@@ -5,10 +5,10 @@ import GameOver from './gameOver';
 import Shop from './shop';
 import ShopCutscene from './shopCutscene';
 import Upgrades from './Upgrades';
-import Visuals from './Visuals';
 import WelcomeScreen from './welcomeScreen';
 
 let cursors
+let backgroundMusic
 let player
 let direction = 1;
 let platforms
@@ -17,7 +17,11 @@ let coins
 let scoreText
 let dragon
 let gameover = false
+<<<<<<< HEAD
 localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
+=======
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+>>>>>>> Crulzor
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -38,13 +42,20 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
 
-        //audio
+        //audio BG music
         if (character == 'robot'){
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
         }
         
+        //audio sound fx
+        this.load.audio('coinfx', ['assets/audio/coin.mp3']);
+        this.load.audio('jumpfx', ['assets/audio/jump3.mp3']);
+        this.load.audio('clickfx', ['assets/audio/click.mp3']);
+        this.load.audio('gameoverfx', ['assets/audio/gameover.mp3']);
+        this.load.audio('flyingfx', ['assets/audio/flying.mp3']);
+
 
         //sprites & images
         gameover = false
@@ -101,9 +112,22 @@ export default class Game extends Phaser.Scene {
     create() {
 
 
+<<<<<<< HEAD
         //play background music
         //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         //backgroundMusic.play();
+=======
+        //music & fx
+        var jumpfx = this.sound.add('jumpfx');
+        var coinfx = this.sound.add('coinfx');
+        var gameoverfx = this.sound.add('gameoverfx');
+        var flyingfx = this.sound.add('flyingfx', {loop: true});
+        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true, volume: 0.1});
+        backgroundMusic.play();
+
+
+
+>>>>>>> Crulzor
         //variables
         velocity = 350
         jumpHight = -1000
@@ -498,6 +522,7 @@ export default class Game extends Phaser.Scene {
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
+            this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
         }
@@ -539,9 +564,11 @@ export default class Game extends Phaser.Scene {
             console.log('under last platform')
         }
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
-            console.log('game over')    
-            this.scene.start('GameOver')
-            //this.scene.start('Shop')
+            console.log('game over')   
+            this.game.sound.stopAll(); 
+            this.scene.start('GameOver');
+
+           //this.scene.start('Shop')
         }
 
 
@@ -610,7 +637,7 @@ const config = {
             debug: true
         }
     },
-    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades,Visuals]
+    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
 };
 
 const game = new Phaser.Game(config);
@@ -619,6 +646,7 @@ const game = new Phaser.Game(config);
 
 function collectCoin(player, coin) {
     coin.destroy()
+    this.sound.play('coinfx');
     points++
 }
 
