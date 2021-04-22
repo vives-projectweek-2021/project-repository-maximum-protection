@@ -5,7 +5,6 @@ import GameOver from './gameOver';
 import Shop from './shop';
 import ShopCutscene from './shopCutscene';
 import Upgrades from './Upgrades';
-import Visuals from './Visuals';
 import WelcomeScreen from './welcomeScreen';
 
 let cursors
@@ -38,13 +37,20 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
 
-        //audio
+        //audio BG music
         if (character == 'robot'){
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
         }
         
+        //audio sound fx
+        this.load.audio('coinfx', ['assets/audio/coin.mp3']);
+        this.load.audio('jumpfx', ['assets/audio/jump1.mp3']);
+        this.load.audio('clickfx', ['assets/audio/click.mp3']);
+        this.load.audio('gameoverfx', ['assets/audio/gameover.mp3']);
+        this.load.audio('flyingfx', ['assets/audio/flying.mp3']);
+
 
         //sprites & images
         gameover = false
@@ -94,9 +100,16 @@ export default class Game extends Phaser.Scene {
     create() {
 
 
-        //play background music
+        //music & fx
+        var jumpfx = this.sound.add('jumpfx');
+        var coinfx = this.sound.add('coinfx');
+        var gameoverfx = this.sound.add('gameoverfx');
+        var flyingfx = this.sound.add('flyingfx', {loop: true});
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         backgroundMusic.play();
+
+
+
         //variables
         velocity = 350
         jumpHight = -1000
@@ -476,6 +489,7 @@ export default class Game extends Phaser.Scene {
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
+            this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
         }
@@ -517,6 +531,8 @@ export default class Game extends Phaser.Scene {
             console.log('under last platform')
         }
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
+            this.sound.play('gameoverfx');
+            this.sound.stopAll();
             console.log('game over')    
             this.scene.start('GameOver')
             //this.scene.start('Shop')
@@ -588,7 +604,7 @@ const config = {
             debug: false
         }
     },
-    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades,Visuals]
+    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
 };
 
 const game = new Phaser.Game(config);
@@ -597,6 +613,7 @@ const game = new Phaser.Game(config);
 
 function collectCoin(player, coin) {
     coin.destroy()
+    this.sound.play('coinfx');
     points++
 }
 
