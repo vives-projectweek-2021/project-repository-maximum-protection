@@ -17,7 +17,7 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -228,7 +228,7 @@ export default class Game extends Phaser.Scene {
 
         if (character == "santa")
         {
-            player.setScale(0.15).setSize(450, 550).setOffset(170,0) //issue
+            player.setScale(0.15) //issue
             this.anims.create({
                 key: 'running',
                 frames: [
@@ -624,7 +624,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: false
+            debug: true
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
