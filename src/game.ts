@@ -17,7 +17,7 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -109,12 +109,12 @@ export default class Game extends Phaser.Scene {
 
 
         //music & fx
-        var jumpfx = this.sound.add('jumpfx');
-        var coinfx = this.sound.add('coinfx');
-        var gameoverfx = this.sound.add('gameoverfx');
-        var flyingfx = this.sound.add('flyingfx', {loop: true});
-        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true, volume: 0.1});
-        backgroundMusic.play();
+         var jumpfx = this.sound.add('jumpfx');
+         var coinfx = this.sound.add('coinfx');
+         var gameoverfx = this.sound.add('gameoverfx');
+         var flyingfx = this.sound.add('flyingfx', {loop: true});
+         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true, volume: 0.1});
+         backgroundMusic.play();
 
 
 
@@ -624,7 +624,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: true
+            debug: false
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades]
