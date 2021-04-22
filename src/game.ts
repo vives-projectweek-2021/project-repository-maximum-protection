@@ -18,14 +18,9 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-<<<<<<< HEAD
-localStorage.setItem('character','knight') //change this to test different characters(!!!!) options: santa,knight
-=======
-<<<<<<< HEAD
-=======
+
 localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
->>>>>>> 9d57bc966d2eea428da0f9c538f21db353a7b6b5
->>>>>>> 5eef916a094104b547d59f8b87977982fb8a5ffc
+
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
