@@ -12,12 +12,9 @@ export default class Visuals extends Phaser.Scene{
         this.load.image('knight', 'assets/knight/Idle (1).png');
         this.load.image('select', 'assets/shop/select.png');
         this.load.image('selected', 'assets/shop/selected.png');
-
-
-
-
-
-
+        if( (localStorage.getItem("hasSanta")) == null ){localStorage.setItem('hasSanta','false')}
+        if( (localStorage.getItem("hasTemple")) == null ){localStorage.setItem('hasTemple','false')}
+        if( (localStorage.getItem("hasRobot")) == null ){localStorage.setItem('hasRobot','false')}
         this.load.image('buy_now', 'assets/shop/Buy_now_button.jpg');
     }
     create(){
@@ -45,7 +42,7 @@ export default class Visuals extends Phaser.Scene{
 
         })
         //everything with santa
-        this.add.image(315,215, "santa").setScale(0.25)
+        this.add.image(300,215, "santa").setScale(0.25)
         let buySanta = this.add.image(300,315,'buy_now').setScale(0.4).setInteractive()
         let selectSanta = this.add.image(300, 315, 'select').setScale(0.4).setInteractive()
         let selectedSanta = this.add.image(300, 315, 'selected').setScale(0.4)
@@ -54,6 +51,7 @@ export default class Visuals extends Phaser.Scene{
         buySanta.on('pointerdown', ()=>{
             if(parseInt(localStorage.getItem('coins')) >= cost){
                 selectKnight.visible = true
+                selectedKnight.visible = false
                 insfficientBalance.visible = false
                 buySanta.visible = false
                 selectedSanta.visible = true
@@ -62,11 +60,18 @@ export default class Visuals extends Phaser.Scene{
                 coin = parseInt(localStorage.getItem('coins')) - cost
                 localStorage.setItem('coins', coin.toString())
                 localStorage.setItem("character", "santa")
+                localStorage.setItem("hasSanta", "true")
             }
             else{
                 insfficientBalance.visible = true
             }
 
+        })
+        selectSanta.on('pointerdown', ()=>{
+            localStorage.setItem("character", "santa")
+            selectedSanta.visible = true
+            selectedKnight.visible = false
+            selectKnight.visible = true
         })
 
         //everything with temple
@@ -97,6 +102,20 @@ export default class Visuals extends Phaser.Scene{
 
         })
 
+        //check if player has bought models
+        if(localStorage.getItem("hasSanta") == "true"){
+            buySanta.visible = false
+            selectSanta.visible = true
+        }
+        else if(localStorage.getItem("hasTemple") == "true"){
+            buyTemple.visible = false
+            selectTemple.visible = true
+
+        }
+        else if(localStorage.getItem("hasRobot") == "true"){
+            buyRobot.visible = false
+            selectRobot.visible = true
+        }
         
 
         this.input.keyboard.on('keydown-ESC', () => {
@@ -104,8 +123,8 @@ export default class Visuals extends Phaser.Scene{
             
         })
 
-
     }
-
-//""""
+    update(){
+        
+    }
 }
