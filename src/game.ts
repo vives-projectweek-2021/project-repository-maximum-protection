@@ -17,11 +17,7 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-<<<<<<< HEAD
-localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
-=======
 localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
->>>>>>> Crulzor
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -112,11 +108,6 @@ export default class Game extends Phaser.Scene {
     create() {
 
 
-<<<<<<< HEAD
-        //play background music
-        //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
-        //backgroundMusic.play();
-=======
         //music & fx
         var jumpfx = this.sound.add('jumpfx');
         var coinfx = this.sound.add('coinfx');
@@ -127,7 +118,6 @@ export default class Game extends Phaser.Scene {
 
 
 
->>>>>>> Crulzor
         //variables
         velocity = 350
         jumpHight = -1000
