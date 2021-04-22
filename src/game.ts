@@ -110,6 +110,7 @@ export default class Game extends Phaser.Scene {
 
     create() {
 
+<<<<<<< HEAD
 
         //music & fx
          var jumpfx = this.sound.add('jumpfx');
@@ -121,9 +122,11 @@ export default class Game extends Phaser.Scene {
 
 
 
+=======
         //play background music
         //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         //backgroundMusic.play();
+>>>>>>> felix
         //variables
         velocity = 350
         jumpHight = -1000
@@ -562,7 +565,7 @@ export default class Game extends Phaser.Scene {
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
             console.log('game over')   
             this.game.sound.stopAll(); 
-            this.scene.start('GameOver');ropriate to mark resolution and make a comm
+            this.scene.start('GameOver');
 
            //this.scene.start('Shop')
         }
@@ -583,7 +586,10 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    addCoinAbove(sprite) {ropriate to mark resolution and make a commy - 100, 'coin1')
+    addCoinAbove(sprite) {
+        const y = sprite.y - sprite.displayHeight
+
+        const coin = coins.create(Phaser.Math.Between(0, 800), y - 100, 'coin1')
         coin.play('coins')
 
         // update the physics body size
@@ -593,19 +599,33 @@ export default class Game extends Phaser.Scene {
 
 
         return coin
-    }ropriate to mark resolution and make a comm
+    }
+
+    findBottomPlatform() {
+        //getting an array of all platforms
         const plats = platforms.getChildren()
         let bottomPlatform = plats[0]
 
         for (let i = 1; i < plats.length; i++) {
-            const platform = plats[i]ropriate to mark resolution and make a comm
+            const platform = plats[i]
+
+            if (plats.y < bottomPlatform.y) {
+                //this skips to the end of the for loop
                 continue
             }
 
             bottomPlatform = platform
         }
 
-        return bottomPlatformropriate to mark resolution and make a comm
+        return bottomPlatform
+    }
+
+
+}
+
+const config = {
+    type: Phaser.AUTO,
+    backgroundColor: '#125555',
     width: 800,
     height: 900,
     autoCenter: true,
