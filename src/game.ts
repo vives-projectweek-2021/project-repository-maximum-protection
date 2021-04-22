@@ -532,7 +532,6 @@ export default class Game extends Phaser.Scene {
         }
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
             this.sound.play('gameoverfx');
-            this.sound.stopAll();
             console.log('game over')    
             this.scene.start('GameOver')
             //this.scene.start('Shop')
