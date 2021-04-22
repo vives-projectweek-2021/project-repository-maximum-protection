@@ -18,10 +18,6 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-<<<<<<< HEAD
-=======
-localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
->>>>>>> 9d57bc966d2eea428da0f9c538f21db353a7b6b5
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -124,9 +120,10 @@ export default class Game extends Phaser.Scene {
 
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         backgroundMusic.play();
-        var sampleplay = this.sound.add('moviesample');
+        
         if(character == 'temple')
         {
+            var sampleplay = this.sound.add('moviesample'); 
             sampleplay.play();
         }
 
