@@ -9,16 +9,12 @@ export default class Upgrades extends Phaser.Scene {
         this.load.image('star_placeholder', 'assets/shop/star_placholder.png');
         this.load.image('star', 'assets/shop/star.png');
         this.load.image('buy_now', 'assets/shop/Buy_now_button.jpg');
-
-
-
-
     }
     create() {
         console.log('numberOfSpeedUpgrades = ', parseInt(localStorage.getItem('numberOfSpeedUpgrades')))
         console.log('numberOfJumpUpgrades = ', parseInt(localStorage.getItem('numberOfJumpUpgrades')))
         //x - y / width -height
-        this.add.text(450, 50, `upgrade cost = 50 coins  `, {
+        this.add.text(250, 50, `upgrade cost = 50 coins  `, {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -27,7 +23,7 @@ export default class Upgrades extends Phaser.Scene {
 
         })
 
-        this.add.text(420, 125, `Speed:  `, {
+        this.add.text(220, 125, `Speed:  `, {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -35,12 +31,12 @@ export default class Upgrades extends Phaser.Scene {
             color: '#EA6A47'
 
         })
-        let buy_speed = this.add.image(450, 185, 'buy_now').setScale(0.4).setInteractive()
-        for (let index = 570; index < 800; index += 50) {
+        let buy_speed = this.add.image(250, 185, 'buy_now').setScale(0.4).setInteractive()
+        for (let index = 370; index < 600; index += 50) {
             this.add.image(index, 165, 'star_placeholder').setScale(0.04)
         }
 
-        this.add.text(380, 250, `jump hight:   `, {
+        this.add.text(180, 250, `jump hight:   `, {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -48,7 +44,7 @@ export default class Upgrades extends Phaser.Scene {
             color: '#EA6A47'
 
         })
-        let insfficientBalance = this.add.text(570, 110, `inufficient Balance`, {
+        let insfficientBalance = this.add.text(370, 110, `inufficient Balance`, {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
@@ -57,9 +53,9 @@ export default class Upgrades extends Phaser.Scene {
 
         })
         insfficientBalance.visible = false;
-        let buy_jumphight = this.add.image(450, 315, 'buy_now').setScale(0.4).setInteractive()
+        let buy_jumphight = this.add.image(250, 315, 'buy_now').setScale(0.4).setInteractive()
 
-        for (let index = 570; index < 800; index += 50) {
+        for (let index = 370; index < 600; index += 50) {
             this.add.image(index, 265, 'star_placeholder').setScale(0.04)
         }
 
@@ -115,8 +111,8 @@ export default class Upgrades extends Phaser.Scene {
         });
     }
     update() {
-        let xSpeed = 570
-        let xJump = 570
+        let xSpeed = 370
+        let xJump = 370
         for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {
             this.add.image(xSpeed, 165, 'star').setScale(0.04)
             xSpeed += 50
@@ -128,6 +124,9 @@ export default class Upgrades extends Phaser.Scene {
 
         this.input.keyboard.on('keydown-ESC', () => {
             this.scene.stop("Upgrades")
+            
         })
+
+        
     }
 }
