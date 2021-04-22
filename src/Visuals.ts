@@ -44,8 +44,6 @@ export default class Visuals extends Phaser.Scene{
             selectSanta.visible = true
 
         })
-
-
         //everything with santa
         this.add.image(315,215, "santa").setScale(0.25)
         let buySanta = this.add.image(300,315,'buy_now').setScale(0.4).setInteractive()
