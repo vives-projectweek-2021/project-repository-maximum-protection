@@ -110,23 +110,9 @@ export default class Game extends Phaser.Scene {
 
     create() {
 
-<<<<<<< HEAD
-
-        //music & fx
-         var jumpfx = this.sound.add('jumpfx');
-         var coinfx = this.sound.add('coinfx');
-         var gameoverfx = this.sound.add('gameoverfx');
-         var flyingfx = this.sound.add('flyingfx', {loop: true});
-         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true, volume: 0.1});
-         backgroundMusic.play();
-
-
-
-=======
         //play background music
         //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         //backgroundMusic.play();
->>>>>>> felix
         //variables
         velocity = 350
         jumpHight = -1000
