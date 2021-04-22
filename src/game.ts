@@ -18,6 +18,10 @@ let coins
 let scoreText
 let dragon
 let gameover = false
+<<<<<<< HEAD
+=======
+localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
+>>>>>>> 9d57bc966d2eea428da0f9c538f21db353a7b6b5
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -46,8 +50,14 @@ export default class Game extends Phaser.Scene {
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
-        }
-        
+        }else if (character == 'santa'){
+            this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
+        }else if (character == 'temple'){
+            this.load.audio('moviesample', ['assets/audio/indysample.mp3']);
+            this.load.audio('backgroundmusic', ['assets/audio/TempleMusic.mp3']);
+        }else if (character == 'knight'){
+            this.load.audio('backgroundmusic', ['assets/audio/KnightMusic.mp3']);
+        } 
         //audio sound fx
         this.load.audio('coinfx', ['assets/audio/coin.mp3']);
         this.load.audio('jumpfx', ['assets/audio/jump3.mp3']);
@@ -111,18 +121,27 @@ export default class Game extends Phaser.Scene {
     create() {
 
         //play background music
-        //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
-        //backgroundMusic.play();
+
+        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+        backgroundMusic.play();
+        var sampleplay = this.sound.add('moviesample');
+        if(character == 'temple')
+        {
+            sampleplay.play();
+        }
+
         //variables
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
         const background = this.add.image(400, 450, 'background').setScale(1.5)
         background.setScrollFactor(1, 0)
+
         //dragon logic
         dragon = this.add.sprite(60, -90,'fly1');
         dragon.setScale(2); 
         dragon.setScrollFactor(0);
+
         //player
         player = this.physics.add.sprite(0, 100, 'idle1')
 
@@ -453,7 +472,6 @@ export default class Game extends Phaser.Scene {
         dragon.play('flying', true);
         dragon.setVisible(false)
 
-        
         
 
         dragon.x += + direction;

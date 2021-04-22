@@ -10,6 +10,8 @@ export default class WelcomeScreen extends Phaser.Scene {
 
         this.load.image('background', 'assets/Background_dungeon.jpg');
         this.load.image('play-now-button', 'assets/play-now-button.jpg');
+        this.load.audio('click', ['assets/audio/click.mp3'] )
+
 
     }
     create() {
@@ -17,6 +19,7 @@ export default class WelcomeScreen extends Phaser.Scene {
         let button = this.add.image(390, 550, 'play-now-button').setInteractive();
 
         button.on('pointerdown',() => {
+            this.sound.play('click')
             this.scene.start('game')
         })
         
