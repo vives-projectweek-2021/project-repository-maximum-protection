@@ -17,9 +17,8 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
-let character = localStorage.getItem("character")
+let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
 if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
 let points = parseInt(localStorage.getItem("coins"))
@@ -37,7 +36,8 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
-
+        character = localStorage.getItem("character")
+        console.log("character = ", localStorage.getItem("character"))
         //audio
         if (character == 'robot'){
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
@@ -99,7 +99,6 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
-
 
         //play background music
         //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
