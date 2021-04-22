@@ -37,7 +37,7 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
-
+        this.registry.destroy()
         //audio BG music
         character = localStorage.getItem("character")
         console.log("character = ", localStorage.getItem("character"))
@@ -115,6 +115,7 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+        
 
         //play background music
 
