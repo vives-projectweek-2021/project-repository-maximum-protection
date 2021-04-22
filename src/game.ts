@@ -396,6 +396,7 @@ export default class Game extends Phaser.Scene {
         //coins
         coins = this.physics.add.group()
         this.physics.add.overlap(player, coins, collectCoin, null, this);
+        points = parseInt(localStorage.getItem("coins"))
 
         //fireball
         fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
