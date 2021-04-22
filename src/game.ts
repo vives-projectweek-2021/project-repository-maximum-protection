@@ -399,6 +399,7 @@ export default class Game extends Phaser.Scene {
 
         //fireball
         fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
+        fireball.setSize(100,100)
         fireball.play('movingfireball',true)
         fireball.body.setMaxVelocityY(velocityfireball)
         this.physics.add.overlap(player,fireball,hitFireball,null,this);
