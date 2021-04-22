@@ -19,17 +19,8 @@ export default class ShopCutscene extends Phaser.Scene{
             this.add.image(80*i,800,'platform').setScale(1)
         }
 
-        let character = localStorage.getItem("character")
-        if (character == "robot")
-        {
-            sprite = this.add.sprite(850,720, 'idle1').setScale(0.25)
-        } else if( character == "knight")
-        {
-            sprite = this.add.sprite(850,715, 'idle1').setScale(0.22)
-        } else if (character == "santa")
-        {
-            sprite = this.add.sprite(850,717, 'idle1').setScale(0.25)
-        }
+        sprite = this.add.sprite(850,720, 'idle1').setScale(0.25)
+
 
         sprite.setFlipX(true)
         sprite.play('running')

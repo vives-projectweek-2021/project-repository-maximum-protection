@@ -17,7 +17,7 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','robot') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','temple') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -79,12 +79,19 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
                 this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
             }
-        } else if (character = "robot")
+        } else if (character == "robot")
         {
             for (let i = 1; i <= 10; i++) {
                 this.load.image(`idle${i}`, `assets/robot/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/robot/Jump (${i}).png`);
                 if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
+            }
+        } else if (character == "temple")
+        {
+            for (let i = 1; i <= 10; i++) {
+                this.load.image(`idle${i}`, `assets/temple/Idle (${i}).png`);
+                this.load.image(`jump${i}`, `assets/temple/Jump (${i}).png`);
+                this.load.image(`run${i}`, `assets/temple/Run (${i}).png`);
             }
         }
     }
@@ -95,8 +102,8 @@ export default class Game extends Phaser.Scene {
 
 
         //play background music
-        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
-        backgroundMusic.play();
+        //var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+        //backgroundMusic.play();
         //variables
         velocity = 350
         jumpHight = -1000
@@ -139,9 +146,17 @@ export default class Game extends Phaser.Scene {
             repeat: -1
         });
 
-        if (character == "knight")
+        if (character == "knight" || character == "temple")
         {
-            player.setScale(0.15).setSize(450, 600)
+            if (character == "knight")
+            {
+                player.setScale(0.15).setSize(450, 600)
+            }
+            else if (character == "temple")
+            {
+                player.setScale(0.2)
+            }
+            
             this.anims.create({
                 key: 'running',
                 frames: [
@@ -592,7 +607,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: false
+            debug: true
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades,Visuals]
