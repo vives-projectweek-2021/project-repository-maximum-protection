@@ -56,6 +56,18 @@ export default class Visuals extends Phaser.Scene{
                 buySanta.visible = false
                 selectedSanta.visible = true
                 selectSanta.visible = false
+                if(localStorage.getItem("hasRobot") == "true"){
+                    buyRobot.visible = false
+                    selectRobot.visible  = true
+                    selectedRobot.visible  = false
+                }
+                
+                if(localStorage.getItem("hasTemple") == "true"){
+                    buyTemple.visible = false
+                    selectTemple.visible = true
+                    selectedTemple.visible = false
+        
+                }
                 let coin
                 coin = parseInt(localStorage.getItem('coins')) - cost
                 localStorage.setItem('coins', coin.toString())
@@ -72,7 +84,23 @@ export default class Visuals extends Phaser.Scene{
             selectedSanta.visible = true
             selectedKnight.visible = false
             selectKnight.visible = true
+            selectedKnight.visible = false
+            if(localStorage.getItem("hasRobot") == "true"){
+                buyRobot.visible = false
+                selectRobot.visible  = true
+                selectedRobot.visible  = false
+            }
+            
+            if(localStorage.getItem("hasTemple") == "true"){
+                buyTemple.visible = false
+                selectTemple.visible = true
+                selectedTemple.visible = false
+    
+            }
         })
+
+
+        
 
         //everything with temple
         this.add.image(490,215, "temple").setScale(0.25)
@@ -82,14 +110,114 @@ export default class Visuals extends Phaser.Scene{
         selectedTemple.visible = false
         selectTemple.visible = false
 
+        buyTemple.on('pointerdown', ()=>{
+            if(parseInt(localStorage.getItem('coins')) >= cost){
+                selectTemple.visible = false
+                selectedTemple.visible = true
+                insfficientBalance.visible = false
+                buyTemple.visible = false
+                selectKnight.visible = true
+                selectedKnight.visible = false
+                if(localStorage.getItem("hasRobot") == "true"){
+                    buyRobot.visible = false
+                    selectRobot.visible  = true
+                    selectedRobot.visible  = false
+                }
+                
+                if(localStorage.getItem("hasSanta") == "true"){
+                    buySanta.visible = false
+                    selectSanta.visible = true
+                    selectedSanta.visible = false
+        
+                }
+                let coin
+                coin = parseInt(localStorage.getItem('coins')) - cost
+                localStorage.setItem('coins', coin.toString())
+                localStorage.setItem("character", "temple")
+                localStorage.setItem("hasTemple", "true")
+            }
+            else{
+                insfficientBalance.visible = true
+            }
+
+        })
+        selectTemple.on('pointerdown', ()=>{
+            localStorage.setItem("character", "temple")
+            selectedTemple.visible = false
+            selectedTemple.visible = true
+            selectKnight.visible = true
+            selectedKnight.visible = false
+            if(localStorage.getItem("hasRobot") == "true"){
+                buyRobot.visible = false
+                selectRobot.visible  = true
+                selectedRobot.visible  = false
+            }
+            
+            if(localStorage.getItem("hasSanta") == "true"){
+                buySanta.visible = false
+                selectSanta.visible = true
+                selectedSanta.visible = false
+    
+            }
+        })
+
         //everything with robot
         this.add.image(700,215, "robot").setScale(0.25)
         let buyRobot = this.add.image(700,315,'buy_now').setScale(0.4).setInteractive()
-        let selectRobot= this.add.image(500, 315, 'select').setScale(0.4).setInteractive()
-        let selectedRobot = this.add.image(500, 315, 'selected').setScale(0.4)
+        let selectRobot= this.add.image(700, 315, 'select').setScale(0.4).setInteractive()
+        let selectedRobot = this.add.image(700, 315, 'selected').setScale(0.4)
         selectedRobot.visible = false
         selectRobot.visible = false
 
+        buyRobot.on('pointerdown', ()=>{
+            if(parseInt(localStorage.getItem('coins')) >= cost){
+                selectRobot.visible = false
+                selectedRobot.visible = true
+                insfficientBalance.visible = false
+                buyRobot.visible = false
+                if(localStorage.getItem("hasTemple") == "true"){
+                    buyTemple.visible = false
+                    selectTemple.visible = true
+                    selectedTemple.visible = false
+        
+                }
+                
+                if(localStorage.getItem("hasSanta") == "true"){
+                    buySanta.visible = false
+                    selectSanta.visible = true
+                    selectedSanta.visible = false
+        
+                }
+                let coin
+                coin = parseInt(localStorage.getItem('coins')) - cost
+                localStorage.setItem('coins', coin.toString())
+                localStorage.setItem("character", "robot")
+                localStorage.setItem("hasRobot", "true")
+            }
+            else{
+                insfficientBalance.visible = true
+            }
+
+        })
+        selectRobot.on('pointerdown', ()=>{
+            localStorage.setItem("character", "robot")
+            selectedRobot.visible = true
+            selectRobot.visible = false
+            selectKnight.visible = true
+            if(localStorage.getItem("hasTemple") == "true"){
+                buyTemple.visible = false
+                selectTemple.visible = true
+                selectedTemple.visible = false
+    
+            }
+            
+            if(localStorage.getItem("hasSanta") == "true"){
+                buySanta.visible = false
+                selectSanta.visible = true
+                selectedSanta.visible = false
+    
+            }
+        })
 
 
 
