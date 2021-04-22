@@ -9,6 +9,9 @@ export default class Upgrades extends Phaser.Scene {
         this.load.image('star_placeholder', 'assets/shop/star_placholder.png');
         this.load.image('star', 'assets/shop/star.png');
         this.load.image('buy_now', 'assets/shop/Buy_now_button.jpg');
+        this.load.audio('click', ['assets/audio/click.mp3'] )
+
+        
     }
     create() {
         console.log('numberOfSpeedUpgrades = ', parseInt(localStorage.getItem('numberOfSpeedUpgrades')))
@@ -60,6 +63,8 @@ export default class Upgrades extends Phaser.Scene {
         }
 
         buy_speed.on('pointerdown', () => {
+            this.sound.play('click')
+
             let coin
             insfficientBalance.visible = false
             if (parseInt(localStorage.getItem('coins')) >= 50) {
@@ -86,6 +91,8 @@ export default class Upgrades extends Phaser.Scene {
             }
         });
         buy_jumphight.on('pointerdown', () => {
+            this.sound.play('click')
+
             insfficientBalance.visible = false
             let coin
             if (parseInt(localStorage.getItem('coins')) >= 50) {
