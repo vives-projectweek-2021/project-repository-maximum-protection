@@ -82,10 +82,11 @@ export default class Visuals extends Phaser.Scene{
         //everything with robot
         this.add.image(700,215, "robot").setScale(0.25)
         let buyRobot = this.add.image(700,315,'buy_now').setScale(0.4).setInteractive()
-        let selectRobot= this.add.image(700, 315, 'select').setScale(0.4).setInteractive()
-        let selectedRobot = this.add.image(700, 315, 'selected').setScale(0.4)
-        selectRobot.visible = false
+        let selectRobot= this.add.image(500, 315, 'select').setScale(0.4).setInteractive()
+        let selectedRobot = this.add.image(500, 315, 'selected').setScale(0.4)
         selectedRobot.visible = false
+        selectRobot.visible = false
+
 
 
 
