@@ -37,7 +37,16 @@ export default class Game extends Phaser.Scene {
         super('game');
     }
     preload() {
-        this.registry.destroy()
+
+        for (let i = 1; i <= 16; i++) {
+            this.textures.remove(`idle${i}`);
+            this.textures.remove(`jump${i}`);
+            this.textures.remove(`run${i}`);
+        }
+        this.anims.remove("running")
+        this.anims.remove("Idleing")
+        this.anims.remove("jump")
+        
         //audio BG music
         character = localStorage.getItem("character")
         console.log("character = ", localStorage.getItem("character"))
