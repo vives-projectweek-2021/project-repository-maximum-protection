@@ -121,9 +121,10 @@ export default class Game extends Phaser.Scene {
 
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
         backgroundMusic.play();
-        var sampleplay = this.sound.add('moviesample');
+        
         if(character == 'temple')
         {
+            var sampleplay = this.sound.add('moviesample');
             sampleplay.play();
         }
 
