@@ -9,6 +9,7 @@ export default class GameOver extends Phaser.Scene {
         this.load.image('restart', 'assets/restart.png');
         this.load.image('shop', 'assets/shop.png');
         this.load.audio('gameoverfx', ['assets/audio/gameover.mp3']);
+        this.load.audio('click', ['assets/audio/click.mp3'] )
 
     }
     create() {
@@ -23,10 +24,12 @@ export default class GameOver extends Phaser.Scene {
 
 
         restartButton.on('pointerdown', () => {
+            this.sound.play('click')
             this.scene.start('game')
         });
 
         shopButton.on('pointerdown',() => {
+            this.sound.play('click')
             this.scene.start('ShopCutscene')
         });
 

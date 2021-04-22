@@ -16,6 +16,8 @@ export default class Shop extends Phaser.Scene {
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
         this.load.image('upgrades', 'assets/shop/upgrades.png');
         this.load.image('Visuals', 'assets/shop/Visuals.png');
+        this.load.audio('click', ['assets/audio/click.mp3'] )
+
     }
     create() {
         
@@ -37,6 +39,7 @@ export default class Shop extends Phaser.Scene {
 
 
         upgrades.on('pointerdown', () => {
+            this.sound.play('click')
             this.scene.run('Upgrades')
             upgrades.visible = false
             visuals.visible = false
@@ -44,6 +47,7 @@ export default class Shop extends Phaser.Scene {
         });
 
         visuals.on('pointerdown',()=>{
+            this.sound.play('click')
             this.scene.run('Visuals')
             upgrades.visible = false
             visuals.visible = false
