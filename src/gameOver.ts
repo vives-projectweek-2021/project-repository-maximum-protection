@@ -8,9 +8,13 @@ export default class GameOver extends Phaser.Scene {
     preload() {
         this.load.image('restart', 'assets/restart.png');
         this.load.image('shop', 'assets/shop.png');
+        this.load.audio('gameoverfx', ['assets/audio/gameover.mp3']);
 
     }
     create() {
+
+
+        this.sound.play('gameoverfx');
 
         //x - y / width -height
         this.add.image(400, 450, 'background').setScale(1.5)

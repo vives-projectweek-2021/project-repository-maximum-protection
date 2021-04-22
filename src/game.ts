@@ -8,6 +8,7 @@ import Upgrades from './Upgrades';
 import WelcomeScreen from './welcomeScreen';
 
 let cursors
+let backgroundMusic
 let player
 let direction = 1;
 let platforms
@@ -16,7 +17,7 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','robot') //change this to test different characters(!!!!) options: santa,knight
+localStorage.setItem('character','santa') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character = localStorage.getItem("character")
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -46,7 +47,7 @@ export default class Game extends Phaser.Scene {
         
         //audio sound fx
         this.load.audio('coinfx', ['assets/audio/coin.mp3']);
-        this.load.audio('jumpfx', ['assets/audio/jump1.mp3']);
+        this.load.audio('jumpfx', ['assets/audio/jump3.mp3']);
         this.load.audio('clickfx', ['assets/audio/click.mp3']);
         this.load.audio('gameoverfx', ['assets/audio/gameover.mp3']);
         this.load.audio('flyingfx', ['assets/audio/flying.mp3']);
@@ -105,7 +106,7 @@ export default class Game extends Phaser.Scene {
         var coinfx = this.sound.add('coinfx');
         var gameoverfx = this.sound.add('gameoverfx');
         var flyingfx = this.sound.add('flyingfx', {loop: true});
-        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true, volume: 0.1});
         backgroundMusic.play();
 
 
@@ -531,10 +532,11 @@ export default class Game extends Phaser.Scene {
             console.log('under last platform')
         }
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
-            this.sound.play('gameoverfx');
-            console.log('game over')    
-            this.scene.start('GameOver')
-            //this.scene.start('Shop')
+            console.log('game over')   
+            this.game.sound.stopAll(); 
+            this.scene.start('GameOver');
+
+           //this.scene.start('Shop')
         }
 
 
