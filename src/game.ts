@@ -505,7 +505,7 @@ export default class Game extends Phaser.Scene {
             
         }
         
-        if (playerpossafe-5000 > player.y)
+        if (playerpossafe-4000 > player.y)
         {   
             playerpossafe =  player.y
             velocityfireball += 20
