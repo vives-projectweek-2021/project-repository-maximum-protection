@@ -39,6 +39,7 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
 
+        this.textures.remove("platform")
         for (let i = 1; i <= 16; i++) {
             this.textures.remove(`idle${i}`);
             this.textures.remove(`jump${i}`);
@@ -72,7 +73,6 @@ export default class Game extends Phaser.Scene {
 
         //sprites & images
         gameover = false
-        this.load.image('platform', 'assets/platform.jpg');
 
         for (let i = 0; i <= 4; i++)
         {
@@ -93,9 +93,9 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`idle${i}`, `assets/santa/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/santa/Jump (${i}).png`);
                 if(i <= 11){this.load.image(`run${i}`, `assets/santa/Run (${i}).png`);};
-                
             }
 
+            this.load.image('platform', 'assets/platforms/santaplatform.png');
         }else if (character == "knight")
         {
             for (let i = 1; i <= 10; i++) {
@@ -103,6 +103,8 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
                 this.load.image(`run${i}`, `assets/knight/Run (${i}).png`);
             }
+            this.load.image('platform', 'assets/platforms/knightplatform.jpg');
+
         } else if (character == "robot")
         {
             for (let i = 1; i <= 10; i++) {
@@ -110,6 +112,8 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/robot/Jump (${i}).png`);
                 if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
             }
+            this.load.image('platform', 'assets/platforms/robotplatform.png');
+
         } else if (character == "temple")
         {
             for (let i = 1; i <= 10; i++) {
