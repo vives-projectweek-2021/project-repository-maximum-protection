@@ -56,8 +56,6 @@ export default class Game extends Phaser.Scene {
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
-        }else if (character == 'santa'){
-            this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
         }else if (character == 'temple'){
             this.load.audio('moviesample', ['assets/audio/indysample.mp3']);
             this.load.audio('backgroundmusic', ['assets/audio/TempleMusic.mp3']);
@@ -125,8 +123,24 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+        let background
+        if (character == "knight")
+        {
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
+        } 
+        else if (character == "santa")
+        {
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5)
+        }
+        else if (character == "robot")
+        {
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5)
+        }
+        else if (character == "temple")
+        {
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(2)
+        }
         
-
         //play background music
 
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
@@ -142,7 +156,7 @@ export default class Game extends Phaser.Scene {
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
-        const background = this.add.image(400, 450, 'background').setScale(1.5)
+        
         background.setScrollFactor(1, 0)
 
         //dragon logic
@@ -439,6 +453,7 @@ export default class Game extends Phaser.Scene {
 
         this.input.keyboard.on('keydown-ESC', () => {
             //this.scene.pause('WelcomeScreen') --> doesnt work
+            this.sound.stopAll()
             this.scene.start('WelcomeScreen')
         })
 
@@ -661,9 +676,14 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
+<<<<<<< HEAD
             debug: true
         },
 
+=======
+            debug: false
+        }
+>>>>>>> 8658631370ea23a2f90b8b6baf0728649f86146d
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
 };
@@ -680,6 +700,15 @@ function collectCoin(player, coin) {
 
 function hitFireball(player,fireball)
 {
-    gameover = true
+    platforms.getChildren().forEach(function (platform) {
+        platform.body.checkCollision.down = false
+        platform.body.checkCollision.right = false
+        platform.body.checkCollision.left = false
+        platform.body.checkCollision.up = false
+    }, this);
+
+    //fireball.visible = false
+    fireball.body.checkCollision.none = true
+    player.setVelocityY(0)
 
 }

@@ -1,5 +1,6 @@
 let sprite
 let coins
+let background
 export default class ShopCutscene extends Phaser.Scene{
 
 
@@ -12,7 +13,24 @@ export default class ShopCutscene extends Phaser.Scene{
     }
     create() {
         //x - y / width -height
-        this.add.image(280, 450, 'background').setScale(1.5)
+        let character = localStorage.getItem("character")
+        
+        if (character == "knight")
+        {
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.2)
+        } 
+        else if (character == "santa")
+        {
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.2)
+        }
+        else if (character == "robot")
+        {
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.2)
+        }
+        else if (character == "temple")
+        {
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.5)
+        }
         //ground generation
         for(let i = 0; i<=10;i++)
         {

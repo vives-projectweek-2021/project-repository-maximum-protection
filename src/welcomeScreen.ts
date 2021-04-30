@@ -8,14 +8,18 @@ export default class WelcomeScreen extends Phaser.Scene {
     }
     preload() {
 
-        this.load.image('background', 'assets/Background_dungeon.jpg');
+        this.load.image('backgroundknight', 'assets/Backgrounds_Game/Background_dungeon.jpg');
+        this.load.image('backgroundrobot', 'assets/Backgrounds_Game/FutureBackground.jpg');
+        this.load.image('backgroundtemple', 'assets/Backgrounds_Game/NatureBackground.png');
+        this.load.image('backgroundsanta', 'assets/Backgrounds_Game/SantaBackground.jpg');
+
         this.load.image('play-now-button', 'assets/play-now-button.jpg');
         this.load.audio('click', ['assets/audio/click.mp3'] )
 
 
     }
     create() {
-        this.add.image(400, 450, 'background').setScale(1.5)
+        this.add.image(400, 450, 'backgroundknight').setScale(1.5)
         let button = this.add.image(390, 550, 'play-now-button').setInteractive();
 
         button.on('pointerdown',() => {
