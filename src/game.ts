@@ -561,7 +561,7 @@ export default class Game extends Phaser.Scene {
 
         }
 
-        if ((cursors.up.isDown && player.body.touching.down) || (player.body.touching.down && jumpButton == true)) {
+        if ((cursors.up.isDown && player.body.touching.down) ||(player.body.touching.down && jumpButton == true)) {
             this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
@@ -666,7 +666,10 @@ export default class Game extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
-    input: {gamepad: true},
+    input: {
+        gamepad: true,
+    
+    },
 
     backgroundColor: '#125555',
     width: 800,
@@ -704,6 +707,5 @@ function hitFireball(player,fireball)
     //fireball.visible = false
     fireball.body.checkCollision.none = true
     player.setVelocityY(0)
-    player.body.setMaxVelocity(0, 10000)
 
 }
