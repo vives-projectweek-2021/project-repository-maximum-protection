@@ -533,14 +533,12 @@ export default class Game extends Phaser.Scene {
             fireball.body.setMaxVelocityY(velocityfireball)
 
         }
-        if (this.input.gamepad.total === 0)
+        if (this.input.gamepad.total === 1)
         {
-            return;
+            var pad = this.input.gamepad.getPad(0);
+            var axisH = pad.axes[0].getValue();
+            var jumpButton = pad.B;
         }
-
-        var pad = this.input.gamepad.getPad(0);
-        var axisH = pad.axes[0].getValue();
-        var jumpButton = pad.B;
         
 
         
@@ -671,10 +669,11 @@ export default class Game extends Phaser.Scene {
 const config = {
     type: Phaser.AUTO,
     input: {
-        gamepad: true,
+        inputKeyboard: true,
+        gamepad: true
+        
     
     },
-
     backgroundColor: '#125555',
     width: 800,
     height: 900,
@@ -710,6 +709,7 @@ function hitFireball(player,fireball)
 
     //fireball.visible = false
     fireball.body.checkCollision.none = true
+    player.body.setMaxVelocityX(0)
     player.setVelocityY(0)
 
 }
