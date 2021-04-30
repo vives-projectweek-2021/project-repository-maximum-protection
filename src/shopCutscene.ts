@@ -1,6 +1,7 @@
 let sprite
 let coins
 let character = localStorage.getItem("character")
+let background
 export default class ShopCutscene extends Phaser.Scene{
 
 
@@ -13,7 +14,7 @@ export default class ShopCutscene extends Phaser.Scene{
     }
     create() {
         //x - y / width -height
-        let background
+        
         if (character == "knight")
         {
             background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
