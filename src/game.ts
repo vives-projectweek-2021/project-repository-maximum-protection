@@ -121,6 +121,8 @@ export default class Game extends Phaser.Scene {
                 this.load.image(`jump${i}`, `assets/temple/Jump (${i}).png`);
                 this.load.image(`run${i}`, `assets/temple/Run (${i}).png`);
             }
+            this.load.image('platform', 'assets/platforms/grassplatform.png');
+
         }
     }
 
@@ -268,7 +270,7 @@ export default class Game extends Phaser.Scene {
 
         if (character == "santa")
         {
-            player.setScale(0.15) //issue
+            player.setScale(0.18) //issue
             this.anims.create({
                 key: 'running',
                 frames: [
