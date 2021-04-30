@@ -122,19 +122,19 @@ export default class Shop extends Phaser.Scene {
         //x - y / width -height
         if (character == "knight")
         {
-            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.2).setDepth(-2)
         } 
         else if (character == "santa")
         {
-            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.2).setDepth(-2)
         }
         else if (character == "robot")
         {
-            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.2).setDepth(-2)
         }
         else if (character == "temple")
         {
-            background = this.add.image(400, 450, 'backgroundtemple').setScale(2).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.5).setDepth(-2)
         }
         this.add.image(250, 628, 'shop-keeper')
         //ground generation
@@ -192,19 +192,19 @@ export default class Shop extends Phaser.Scene {
 
         if (character == "knight")
         {
-            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5).setDepth(-1)
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.2).setDepth(-1)
         } 
         else if (character == "santa")
         {
-            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5).setDepth(-1)
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.2).setDepth(-1)
         }
         else if (character == "robot")
         {
-            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5).setDepth(-1)
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.2).setDepth(-1)
         }
         else if (character == "temple")
         {
-            background = this.add.image(400, 450, 'backgroundtemple').setScale(2).setDepth(-1)
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.5).setDepth(-1)
         }
         background.update()
 
