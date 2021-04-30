@@ -188,7 +188,7 @@ export default class Visuals extends Phaser.Scene{
         let selectedRobot = this.add.image(700, 315, 'selected').setScale(0.4)
         selectedRobot.visible = false
         selectRobot.visible = false
-
+        
         buyRobot.on('pointerdown', ()=>{
             if(parseInt(localStorage.getItem('coins')) >= cost){
                 selectRobot.visible = false

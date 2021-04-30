@@ -178,19 +178,23 @@ export default class Shop extends Phaser.Scene {
         else {
             if(character == "knight")
             {
-               sprite.play('knightidle', true) 
+               sprite.play('knightidle', true)
+               sprite.y = 705
             } 
             else if (character == "robot")
             {
                 sprite.play('robotidle', true) 
+                sprite.y = 720
             } 
             else if (character == "temple")
             {
                 sprite.play('templeidle', true) 
+                sprite.y = 720
             } 
             else if (character == "santa")
             {
                 sprite.play('santaidle', true) 
+                sprite.y = 712
             }
             
         }
