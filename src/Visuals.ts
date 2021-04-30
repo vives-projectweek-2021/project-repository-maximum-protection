@@ -31,14 +31,30 @@ export default class Visuals extends Phaser.Scene{
         //everything with knight
         this.add.image(100,210, "knight").setScale(0.23)
         let selectKnight = this.add.image(100, 315, 'select').setScale(0.4).setInteractive()
-        selectKnight.visible = false
+        selectKnight.visible = true
         let selectedKnight = this.add.image(100, 315, 'selected').setScale(0.4)
+        selectedKnight.visible = false
 
         selectKnight.on('pointerdown',()=>{
             localStorage.setItem("character", "knight")
             selectedKnight.visible = true
-            selectedSanta.visible = false
-            selectSanta.visible = true
+            if(localStorage.getItem("hasRobot") == "true"){
+                buyRobot.visible = false
+                selectRobot.visible  = true
+                selectedRobot.visible  = false
+            }
+            
+            if(localStorage.getItem("hasTemple") == "true"){
+                buyTemple.visible = false
+                selectTemple.visible = true
+                selectedTemple.visible = false
+            }
+            if(localStorage.getItem("hasSanta") == "true"){
+                buySanta.visible = false
+                selectSanta.visible = true
+                selectedSanta.visible = false
+    
+            }
 
         })
         //everything with santa
@@ -175,6 +191,8 @@ export default class Visuals extends Phaser.Scene{
                 selectedRobot.visible = true
                 insfficientBalance.visible = false
                 buyRobot.visible = false
+                selectKnight.visible = true
+                selectedKnight.visible = false
                 if(localStorage.getItem("hasTemple") == "true"){
                     buyTemple.visible = false
                     selectTemple.visible = true
@@ -193,6 +211,7 @@ export default class Visuals extends Phaser.Scene{
                 localStorage.setItem('coins', coin.toString())
                 localStorage.setItem("character", "robot")
                 localStorage.setItem("hasRobot", "true")
+                
             }
             else{
                 insfficientBalance.visible = true
@@ -204,6 +223,8 @@ export default class Visuals extends Phaser.Scene{
             selectedRobot.visible = true
             selectRobot.visible = false
             selectKnight.visible = true
+            selectKnight.visible = true
+            selectedKnight.visible = false
             if(localStorage.getItem("hasTemple") == "true"){
                 buyTemple.visible = false
                 selectTemple.visible = true
@@ -235,17 +256,32 @@ export default class Visuals extends Phaser.Scene{
             buySanta.visible = false
             selectSanta.visible = true
         }
-        else if(localStorage.getItem("hasTemple") == "true"){
+        if(localStorage.getItem("hasTemple") == "true"){
             buyTemple.visible = false
             selectTemple.visible = true
 
         }
-        else if(localStorage.getItem("hasRobot") == "true"){
+        if(localStorage.getItem("hasRobot") == "true"){
             buyRobot.visible = false
-            selectRobot.visible = true
+            selectRobot.visible = true  
+        }
+
+        //check what model has been selected
+        if(localStorage.getItem("character") == "santa"){
+            selectedSanta.visible = true
+        }
+        else if(localStorage.getItem("character") == "temple"){
+            selectedTemple.visible = true
+
+        }
+        else if(localStorage.getItem("character") == "robot"){
+            selectedRobot.visible = true
+        }
+        else{
+            selectedKnight.visible = true
         }
         
-
+         
         this.input.keyboard.on('keydown-ESC', () => {
             this.scene.stop("Visuals")
             

@@ -1,7 +1,7 @@
 {
-    "name": "phaser3-typescript-project-template",
+    "name": "maximum-protection",
     "version": "1.0.2",
-    "description": "A Phaser 3 Project Template using Rollup and TypeScript",
+    "description": "A student made doodle jump",
     "main": "src/game.ts",
     "scripts": {
         "dev": "rollup --config rollup.config.dev.js",
@@ -10,14 +10,35 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/photonstorm/phaser3-typescript-project-template.git"
+        "url": "git+https://github.com/vives-projectweek-2021/project-repository-maximum-protection"
     },
-    "author": "Richard Davey <rich@photonstorm.com> (http://www.photonstorm.com)",
+    "contributors": [
+        {
+            "name": "Felix Falk",
+            "email": "felix.falk@student.vives.be",
+            "url": "https://github.com/felixfalk2903"
+        },
+        {
+            "name": "Crulzor",
+            "url": "https://github.com/Crulzor"
+        },
+        {
+            "name": "Robin Debel",
+            "email": "robin.debel@student.vives.be",
+            "url": "https://github.com/RobinDebel"
+        },
+        {
+            "name": "Jarno Mechele",
+            "email": "jaron.mechele@student.vives.be",
+            "url": "https://github.com/JarnoMechele"
+        }
+        
+    ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/photonstorm/phaser3-typescript-project-template/issues"
+        "url": "https://github.com/vives-projectweek-2021/project-repository-maximum-protection/issues"
     },
-    "homepage": "https://github.com/photonstorm/phaser3-typescript-project-template#readme",
+    "homepage": "https://github.com/vives-projectweek-2021/project-repository-maximum-protection",
     "devDependencies": {
         "@rollup/plugin-replace": "^2.3.4",
         "phaser": "^3.50.0",

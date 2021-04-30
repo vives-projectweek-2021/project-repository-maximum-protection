@@ -18,7 +18,6 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-localStorage.setItem('character','knight') //change this to test different characters(!!!!) options: santa,knight
 if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
 let character
 let maxScore= parseInt(localStorage.getItem("maxScore"))
@@ -39,6 +38,15 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
 
+        for (let i = 1; i <= 16; i++) {
+            this.textures.remove(`idle${i}`);
+            this.textures.remove(`jump${i}`);
+            this.textures.remove(`run${i}`);
+        }
+        this.anims.remove("running")
+        this.anims.remove("Idleing")
+        this.anims.remove("jump")
+        
         //audio BG music
         character = localStorage.getItem("character")
         console.log("character = ", localStorage.getItem("character"))
@@ -65,7 +73,7 @@ export default class Game extends Phaser.Scene {
 
         //sprites & images
         gameover = false
-        this.load.image('platform', 'assets/IcePlatform.png');
+        this.load.image('platform', 'assets/platform.jpg');
 
         for (let i = 0; i <= 4; i++)
         {
@@ -116,6 +124,7 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+        
 
         //play background music
 
@@ -496,7 +505,7 @@ export default class Game extends Phaser.Scene {
             
         }
         
-        if (playerpossafe-5000 > player.y)
+        if (playerpossafe-4000 > player.y)
         {   
             playerpossafe =  player.y
             velocityfireball += 20
