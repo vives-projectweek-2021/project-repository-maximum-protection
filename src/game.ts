@@ -55,8 +55,6 @@ export default class Game extends Phaser.Scene {
             this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
         }else if (character == 'santa'){
             this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
-        }else if (character == 'santa'){
-            this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
         }else if (character == 'temple'){
             this.load.audio('moviesample', ['assets/audio/indysample.mp3']);
             this.load.audio('backgroundmusic', ['assets/audio/TempleMusic.mp3']);
@@ -663,7 +661,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: true
+            debug: false
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
