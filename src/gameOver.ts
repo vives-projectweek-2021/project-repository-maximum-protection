@@ -1,4 +1,4 @@
-
+let character = localStorage.getItem("character")
 export default class GameOver extends Phaser.Scene {
 
     constructor() {
@@ -18,7 +18,23 @@ export default class GameOver extends Phaser.Scene {
         this.sound.play('gameoverfx');
 
         //x - y / width -height
-        this.add.image(400, 450, 'background').setScale(1.5)
+        let background
+        if (character == "knight")
+        {
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
+        } 
+        else if (character == "santa")
+        {
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5)
+        }
+        else if (character == "robot")
+        {
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5)
+        }
+        else if (character == "temple")
+        {
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(2)
+        }
         let restartButton = this.add.image(200, 600, 'restart').setScale(0.5).setInteractive();
         let shopButton = this.add.image(600, 600, 'shop').setScale(0.5).setInteractive();
 

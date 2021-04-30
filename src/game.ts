@@ -124,8 +124,24 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+        let background
+        if (character == "knight")
+        {
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
+        } 
+        else if (character == "santa")
+        {
+            background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5)
+        }
+        else if (character == "robot")
+        {
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5)
+        }
+        else if (character == "temple")
+        {
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(2)
+        }
         
-
         //play background music
 
         var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
@@ -141,7 +157,7 @@ export default class Game extends Phaser.Scene {
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
-        const background = this.add.image(400, 450, 'background').setScale(1.5)
+        
         background.setScrollFactor(1, 0)
 
         //dragon logic
