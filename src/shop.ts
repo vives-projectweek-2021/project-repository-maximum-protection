@@ -41,34 +41,34 @@ export default class Shop extends Phaser.Scene {
         this.anims.create({
             key: 'knightidle',
             frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle5' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' }
+                { key: 'knight1' },
+                { key: 'knight2' },
+                { key: 'knight3' },
+                { key: 'knight4' },
+                { key: 'knight5' },
+                { key: 'knight6' },
+                { key: 'knight7' },
+                { key: 'knight8' },
+                { key: 'knight9' },
+                { key: 'knight10' }
             ],
             frameRate: 20,
             repeat: -1
         });
 
         this.anims.create({
-            key: 'templetidle',
+            key: 'templeidle',
             frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle5' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' }
+                { key: 'temple1' },
+                { key: 'temple2' },
+                { key: 'temple3' },
+                { key: 'temple4' },
+                { key: 'temple5' },
+                { key: 'temple6' },
+                { key: 'temple7' },
+                { key: 'temple8' },
+                { key: 'temple9' },
+                { key: 'temple10' }
             ],
             frameRate: 20,
             repeat: -1
@@ -77,22 +77,22 @@ export default class Shop extends Phaser.Scene {
         this.anims.create({
             key: 'santaidle',
             frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle5' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' },
-                { key: 'idle11' },
-                { key: 'idle12' },
-                { key: 'idle13' },
-                { key: 'idle14' },
-                { key: 'idle15' },
-                { key: 'idle16' }
+                { key: 'santa1' },
+                { key: 'santa2' },
+                { key: 'santa3' },
+                { key: 'santa4' },
+                { key: 'santa5' },
+                { key: 'santa6' },
+                { key: 'santa7' },
+                { key: 'santa8' },
+                { key: 'santa9' },
+                { key: 'santa10' },
+                { key: 'santa11' },
+                { key: 'santa12' },
+                { key: 'santa13' },
+                { key: 'santa14' },
+                { key: 'santa15' },
+                { key: 'santa16' }
             ],
             frameRate: 20,
             repeat: -1
@@ -101,16 +101,16 @@ export default class Shop extends Phaser.Scene {
         this.anims.create({
             key: 'robotidle',
             frames: [
-                { key: 'idle1' },
-                { key: 'idle2' },
-                { key: 'idle3' },
-                { key: 'idle4' },
-                { key: 'idle5' },
-                { key: 'idle6' },
-                { key: 'idle7' },
-                { key: 'idle8' },
-                { key: 'idle9' },
-                { key: 'idle10' }
+                { key: 'robot1' },
+                { key: 'robot2' },
+                { key: 'robot3' },
+                { key: 'robot4' },
+                { key: 'robot5' },
+                { key: 'robot6' },
+                { key: 'robot7' },
+                { key: 'robot8' },
+                { key: 'robot9' },
+                { key: 'robot10' }
             ],
             frameRate: 20,
             repeat: -1
@@ -176,7 +176,23 @@ export default class Shop extends Phaser.Scene {
             coins.x -= 6
         }
         else {
-            sprite.play('Idleing', true)
+            if(character == "knight")
+            {
+               sprite.play('knightidle', true) 
+            } 
+            else if (character == "robot")
+            {
+                sprite.play('robotidle', true) 
+            } 
+            else if (character == "temple")
+            {
+                sprite.play('templeidle', true) 
+            } 
+            else if (character == "santa")
+            {
+                sprite.play('santaidle', true) 
+            }
+            
         }
         coins.setText(`Coins: ${localStorage.getItem('coins')} `)
 
