@@ -561,7 +561,7 @@ export default class Game extends Phaser.Scene {
 
         }
 
-        if ((cursors.up.isDown && player.body.touching.down) ||(player.body.touching.down && jumpButton == true)) {
+        if ((cursors.up.isDown && player.body.touching.down) || (player.body.touching.down && jumpButton == true)) {
             this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
