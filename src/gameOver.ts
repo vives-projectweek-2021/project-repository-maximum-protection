@@ -21,7 +21,7 @@ export default class GameOver extends Phaser.Scene {
         let background
         if (character == "knight")
         {
-            background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
+            background = this.add.image(400, 450, 'backgroundknight').setScale(1.3)
         } 
         else if (character == "santa")
         {
@@ -29,11 +29,11 @@ export default class GameOver extends Phaser.Scene {
         }
         else if (character == "robot")
         {
-            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5)
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.3)
         }
         else if (character == "temple")
         {
-            background = this.add.image(400, 450, 'backgroundtemple').setScale(2)
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(3)
         }
         let restartButton = this.add.image(200, 600, 'restart').setScale(0.5).setInteractive();
         let shopButton = this.add.image(600, 600, 'shop').setScale(0.5).setInteractive();
