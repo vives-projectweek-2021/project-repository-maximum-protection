@@ -704,5 +704,6 @@ function hitFireball(player,fireball)
     //fireball.visible = false
     fireball.body.checkCollision.none = true
     player.setVelocityY(0)
+    player.body.setMaxVelocity(0, 10000)
 
 }
