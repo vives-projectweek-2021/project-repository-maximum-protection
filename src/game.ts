@@ -29,6 +29,7 @@ let jumpHight
 let playerpossafe = 50
 let velocityfireball = 200
 
+
 export default class Game extends Phaser.Scene {
 
 
@@ -513,15 +514,27 @@ export default class Game extends Phaser.Scene {
             fireball.body.setMaxVelocityY(velocityfireball)
 
         }
+        if (this.input.gamepad.total === 0)
+        {
+            return;
+        }
+
+        var pad = this.input.gamepad.getPad(0);
+        var axisH = pad.axes[0].getValue();
+        var jumpButton = pad.B;
+        
+
+        
        
 
-        if (cursors.left.isDown) {
+        if (cursors.left.isDown || axisH < 0 ) {
+            
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
 
         }
-        else if (cursors.right.isDown) {
+        else if (cursors.right.isDown || axisH > 0) {
             player.setVelocityX(velocity);
             player.setFlipX(false);
             if (player.body.touching.down) { player.play('running', true) }
@@ -533,7 +546,7 @@ export default class Game extends Phaser.Scene {
 
         }
 
-        if (cursors.up.isDown && player.body.touching.down) {
+        if ((cursors.up.isDown && player.body.touching.down) ||(player.body.touching.down && jumpButton == true)) {
             this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
@@ -638,6 +651,8 @@ export default class Game extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
+    input: {gamepad: true},
+
     backgroundColor: '#125555',
     width: 800,
     height: 900,
@@ -647,7 +662,8 @@ const config = {
         arcade: {
             gravity: { y: 1200 },
             debug: true
-        }
+        },
+
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
 };
