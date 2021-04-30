@@ -29,7 +29,8 @@ export default class Visuals extends Phaser.Scene{
         insfficientBalance.visible = false
         //x - y / width -height
         //everything with knight
-        this.add.image(100,210, "knight").setScale(0.23)
+        this.add.sprite(120,210, "knight").setScale(0.23).play("knightidle")    
+        //this.add.image(120,210, "knight").setScale(0.23)
         let selectKnight = this.add.image(100, 315, 'select').setScale(0.4).setInteractive()
         selectKnight.visible = true
         let selectedKnight = this.add.image(100, 315, 'selected').setScale(0.4)
@@ -58,7 +59,8 @@ export default class Visuals extends Phaser.Scene{
 
         })
         //everything with santa
-        this.add.image(300,215, "santa").setScale(0.25)
+        //this.add.image(300,215, "santa").setScale(0.25)
+        this.add.sprite(300,215, "santa").setScale(0.25).play("santaidle")    
         let buySanta = this.add.image(300,315,'buy_now').setScale(0.4).setInteractive()
         let selectSanta = this.add.image(300, 315, 'select').setScale(0.4).setInteractive()
         let selectedSanta = this.add.image(300, 315, 'selected').setScale(0.4)
@@ -119,7 +121,8 @@ export default class Visuals extends Phaser.Scene{
         
 
         //everything with temple
-        this.add.image(490,215, "temple").setScale(0.25)
+        this.add.sprite(490,215, "temple").setScale(0.23).play("templeidle") 
+        //this.add.image(490,215, "temple").setScale(0.25)
         let buyTemple = this.add.image(500,315,'buy_now').setScale(0.4).setInteractive()
         let selectTemple= this.add.image(500, 315, 'select').setScale(0.4).setInteractive()
         let selectedTemple = this.add.image(500, 315, 'selected').setScale(0.4)
@@ -178,7 +181,8 @@ export default class Visuals extends Phaser.Scene{
         })
 
         //everything with robot
-        this.add.image(700,215, "robot").setScale(0.25)
+        this.add.sprite(700,215, "robot").setScale(0.23).play("robotidle")    
+        //this.add.image(700,215, "robot").setScale(0.25)
         let buyRobot = this.add.image(700,315,'buy_now').setScale(0.4).setInteractive()
         let selectRobot= this.add.image(700, 315, 'select').setScale(0.4).setInteractive()
         let selectedRobot = this.add.image(700, 315, 'selected').setScale(0.4)
