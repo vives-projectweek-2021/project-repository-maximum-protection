@@ -454,6 +454,7 @@ export default class Game extends Phaser.Scene {
 
         this.input.keyboard.on('keydown-ESC', () => {
             //this.scene.pause('WelcomeScreen') --> doesnt work
+            this.sound.stopAll()
             this.scene.start('WelcomeScreen')
         })
 
@@ -680,6 +681,15 @@ function collectCoin(player, coin) {
 
 function hitFireball(player,fireball)
 {
-    gameover = true
+    platforms.getChildren().forEach(function (platform) {
+        platform.body.checkCollision.down = false
+        platform.body.checkCollision.right = false
+        platform.body.checkCollision.left = false
+        platform.body.checkCollision.up = false
+    }, this);
+
+    //fireball.visible = false
+    fireball.body.checkCollision.none = true
+    player.setVelocityY(0)
 
 }
