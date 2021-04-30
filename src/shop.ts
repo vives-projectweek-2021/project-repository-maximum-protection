@@ -16,10 +16,106 @@ export default class Shop extends Phaser.Scene {
         this.load.image('shop-keeper', 'assets/shop/Shop-Keeper.png');
         this.load.image('upgrades', 'assets/shop/upgrades.png');
         this.load.image('Visuals', 'assets/shop/Visuals.png');
-        this.load.audio('click', ['assets/audio/click.mp3'] )
+        this.load.audio('click', ['assets/audio/click.mp3'] );
+        //santa
+        for (let i = 1; i <= 16; i++) {
+            this.load.image(`santa${i}`, `assets/santa/Idle (${i}).png`);
+            
+        };
+        //knight
+        for (let i = 1; i <= 10; i++) {
+            this.load.image(`knight${i}`, `assets/knight/Idle (${i}).png`);
+        }
+        //robot
+        for (let i = 1; i <= 10; i++) {
+            this.load.image(`robot${i}`, `assets/robot/Idle (${i}).png`);
+        }
+        //temple
+        for (let i = 1; i <= 10; i++) {
+            this.load.image(`temple${i}`, `assets/temple/Idle (${i}).png`);
+        }
 
     }
     create() {
+
+        this.anims.create({
+            key: 'knightidle',
+            frames: [
+                { key: 'idle1' },
+                { key: 'idle2' },
+                { key: 'idle3' },
+                { key: 'idle4' },
+                { key: 'idle5' },
+                { key: 'idle6' },
+                { key: 'idle7' },
+                { key: 'idle8' },
+                { key: 'idle9' },
+                { key: 'idle10' }
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'templetidle',
+            frames: [
+                { key: 'idle1' },
+                { key: 'idle2' },
+                { key: 'idle3' },
+                { key: 'idle4' },
+                { key: 'idle5' },
+                { key: 'idle6' },
+                { key: 'idle7' },
+                { key: 'idle8' },
+                { key: 'idle9' },
+                { key: 'idle10' }
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'santaidle',
+            frames: [
+                { key: 'idle1' },
+                { key: 'idle2' },
+                { key: 'idle3' },
+                { key: 'idle4' },
+                { key: 'idle5' },
+                { key: 'idle6' },
+                { key: 'idle7' },
+                { key: 'idle8' },
+                { key: 'idle9' },
+                { key: 'idle10' },
+                { key: 'idle11' },
+                { key: 'idle12' },
+                { key: 'idle13' },
+                { key: 'idle14' },
+                { key: 'idle15' },
+                { key: 'idle16' }
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'robotidle',
+            frames: [
+                { key: 'idle1' },
+                { key: 'idle2' },
+                { key: 'idle3' },
+                { key: 'idle4' },
+                { key: 'idle5' },
+                { key: 'idle6' },
+                { key: 'idle7' },
+                { key: 'idle8' },
+                { key: 'idle9' },
+                { key: 'idle10' }
+            ],
+            frameRate: 20,
+            repeat: -1
+        });
+        
         
         //x - y / width -height
         this.add.image(280, 450, 'background').setScale(1.5)
@@ -74,7 +170,7 @@ export default class Shop extends Phaser.Scene {
         })
     }
     update() {
-
+        character  = localStorage.getItem("character")
         if (sprite.x >= 600) {
             sprite.x -= 6
             coins.x -= 6
