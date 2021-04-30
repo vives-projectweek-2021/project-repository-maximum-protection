@@ -676,14 +676,8 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-<<<<<<< HEAD
-            debug: true
-        },
-
-=======
             debug: false
         }
->>>>>>> 8658631370ea23a2f90b8b6baf0728649f86146d
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
 };
