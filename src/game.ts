@@ -509,13 +509,13 @@ export default class Game extends Phaser.Scene {
         //dragon movement
         dragon.play('flying', true);
 
-        if(bossfightenabled == false && maxScore > 3000 && maxScore < 4000 )
+        if(bossfightenabled == false && maxScore > 10000 && maxScore < 15000 )
         {
             bossfightenabled = true
             console.log("enable boss fight")
             enablebossfight()
         }
-        if(bossfightenabled == true && maxScore > 4000){
+        if(bossfightenabled == true && maxScore > 15000){
             bossfightenabled = false
             console.log("disable boss fight")
             beatenBoss = this.add.text(30, player.y - 500, 'YOU HAVE SLAIN THE DRAGON', {
