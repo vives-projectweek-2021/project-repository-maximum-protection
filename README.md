@@ -1,5 +1,7 @@
 # Maximum Protection repo -- last update 07/04/2021
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8486038c-f5b4-4a59-a27e-847d8d754f5b/deploy-status)](https://app.netlify.com/sites/maximum-protection/deploys)
+
 ## Idea
 
 Maximum Protection(tm) is a vertical platformer where you're constantly being chased by a projectile-shooting enemy. The camera will also move upwards so the player is forced to keep moving. 

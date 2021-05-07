@@ -21,12 +21,12 @@ let coins
 let scoreText
 let dragon
 let gameover = false
-if( (localStorage.getItem("character")) == null ){localStorage.setItem('character','knight')}
+if ((localStorage.getItem("character")) == null) { localStorage.setItem('character', 'knight') }
 let character
-let maxScore= parseInt(localStorage.getItem("maxScore"))
-if(isNaN(parseInt(localStorage.getItem("coins")))){localStorage.setItem('coins','0')}
+let maxScore = parseInt(localStorage.getItem("maxScore"))
+if (isNaN(parseInt(localStorage.getItem("coins")))) { localStorage.setItem('coins', '0') }
 let points = parseInt(localStorage.getItem("coins"))
-let pointsText 
+let pointsText
 let velocity
 let jumpHight
 let playerpossafe = 50
@@ -52,21 +52,16 @@ export default class Game extends Phaser.Scene {
         this.anims.remove("running")
         this.anims.remove("Idleing")
         this.anims.remove("jump")
-        
+
         //audio BG music
         character = localStorage.getItem("character")
         console.log("character = ", localStorage.getItem("character"))
         //audio
-        if (character == 'robot'){
-            this.load.audio('backgroundmusic',['assets/audio/RobotMusic.mp3'] );
-        }else if (character == 'santa'){
-            this.load.audio('backgroundmusic', ['assets/audio/JingleBells.mp3']);
-        }else if (character == 'temple'){
-            this.load.audio('moviesample', ['assets/audio/indysample.mp3']);
-            this.load.audio('backgroundmusic', ['assets/audio/TempleMusic.mp3']);
-        }else if (character == 'knight'){
-            this.load.audio('backgroundmusic', ['assets/audio/KnightMusic.mp3']);
-        } 
+        this.load.audio('Robotbackgroundmusic', ['assets/audio/RobotMusic.mp3']);
+        this.load.audio('Santabackgroundmusic', ['assets/audio/JingleBells.mp3']);
+        this.load.audio('Templemoviesample', ['assets/audio/indysample.mp3']);
+        this.load.audio('Templebackgroundmusic', ['assets/audio/TempleMusic.mp3']);
+        this.load.audio('Knightbackgroundmusic', ['assets/audio/KnightMusic.mp3'])
         //audio sound fx
         this.load.audio('coinfx', ['assets/audio/coin.mp3']);
         this.load.audio('jumpfx', ['assets/audio/jump3.mp3']);
@@ -78,8 +73,7 @@ export default class Game extends Phaser.Scene {
         //sprites & images
         gameover = false
 
-        for (let i = 0; i <= 4; i++)
-        {
+        for (let i = 0; i <= 4; i++) {
             this.load.image(`fireball${i}`, `assets/fireball/Bullet_00${i}.png`);
         }
 
@@ -91,17 +85,15 @@ export default class Game extends Phaser.Scene {
             this.load.image(`coin${i}`, `assets/coin/coin_0${i}.png`);
         }
 
-        if (character == "santa")
-        {
+        if (character == "santa") {
             for (let i = 1; i <= 16; i++) {
                 this.load.image(`idle${i}`, `assets/santa/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/santa/Jump (${i}).png`);
-                if(i <= 11){this.load.image(`run${i}`, `assets/santa/Run (${i}).png`);};
+                if (i <= 11) { this.load.image(`run${i}`, `assets/santa/Run (${i}).png`); };
             }
 
             this.load.image('platform', 'assets/platforms/santaplatform.png');
-        }else if (character == "knight")
-        {
+        } else if (character == "knight") {
             for (let i = 1; i <= 10; i++) {
                 this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/knight/Jump (${i}).png`);
@@ -109,17 +101,15 @@ export default class Game extends Phaser.Scene {
             }
             this.load.image('platform', 'assets/platforms/knightplatform.jpg');
 
-        } else if (character == "robot")
-        {
+        } else if (character == "robot") {
             for (let i = 1; i <= 10; i++) {
                 this.load.image(`idle${i}`, `assets/robot/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/robot/Jump (${i}).png`);
-                if(i <= 8){this.load.image(`run${i}`, `assets/robot/Run (${i}).png`);};
+                if (i <= 8) { this.load.image(`run${i}`, `assets/robot/Run (${i}).png`); };
             }
             this.load.image('platform', 'assets/platforms/robotplatform.png');
 
-        } else if (character == "temple")
-        {
+        } else if (character == "temple") {
             for (let i = 1; i <= 10; i++) {
                 this.load.image(`idle${i}`, `assets/temple/Idle (${i}).png`);
                 this.load.image(`jump${i}`, `assets/temple/Jump (${i}).png`);
@@ -134,44 +124,45 @@ export default class Game extends Phaser.Scene {
 
     create() {
         let background
-        if (character == "knight")
-        {
+        let backgroundMusic
+        if (character == "knight") {
             background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
-        } 
-        else if (character == "santa")
-        {
+            backgroundMusic = this.sound.add('Knightbackgroundmusic', { loop: true });
+        }
+        else if (character == "santa") {
             background = this.add.image(400, 450, 'backgroundsanta').setScale(1.5)
+            backgroundMusic = this.sound.add('Santabackgroundmusic', { loop: true });
+
         }
-        else if (character == "robot")
-        {
+        else if (character == "robot") {
             background = this.add.image(400, 450, 'backgroundrobot').setScale(1.5)
+            backgroundMusic = this.sound.add('Robotbackgroundmusic', { loop: true });
+
         }
-        else if (character == "temple")
-        {
+        else if (character == "temple") {
             background = this.add.image(400, 450, 'backgroundtemple').setScale(2)
+            backgroundMusic = this.sound.add('Templebackgroundmusic', { loop: true });
+            this.sound.add('Templemoviesample', { loop: true });
+
+
         }
-        
+
         //play background music
 
-        var backgroundMusic = this.sound.add('backgroundmusic', {loop: true});
+        //var backgroundMusic = this.sound.add('backgroundmusic', { loop: true });
         backgroundMusic.play();
-        
-        if(character == 'temple')
-        {
-            var sampleplay = this.sound.add('moviesample');
-            sampleplay.play();
-        }
+
 
         //variables
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
-        
+
         background.setScrollFactor(1, 0)
 
         //dragon logic
-        dragon = this.add.sprite(60, -90,'fly1');
-        dragon.setScale(2); 
+        dragon = this.add.sprite(60, -90, 'fly1');
+        dragon.setScale(2);
         dragon.setScrollFactor(0);
         dragon.setVisible(false)
 
@@ -179,7 +170,7 @@ export default class Game extends Phaser.Scene {
         player = this.physics.add.sprite(0, 100, 'idle1')
 
         this.anims.create({
-            key:'movingfireball',
+            key: 'movingfireball',
 
             frames: [
                 { key: 'fireball0' },
@@ -194,7 +185,7 @@ export default class Game extends Phaser.Scene {
         })
 
         this.anims.create({
-            key:'flying',
+            key: 'flying',
 
             frames: [
                 { key: 'fly1' },
@@ -207,17 +198,14 @@ export default class Game extends Phaser.Scene {
             repeat: -1
         });
 
-        if (character == "knight" || character == "temple")
-        {
-            if (character == "knight")
-            {
+        if (character == "knight" || character == "temple") {
+            if (character == "knight") {
                 player.setScale(0.15).setSize(450, 600)
             }
-            else if (character == "temple")
-            {
-                player.setScale(0.2)
+            else if (character == "temple") {
+                player.setScale(0.25)
             }
-            
+
             this.anims.create({
                 key: 'running',
                 frames: [
@@ -273,8 +261,7 @@ export default class Game extends Phaser.Scene {
             });
         }
 
-        if (character == "santa")
-        {
+        if (character == "santa") {
             player.setScale(0.18) //issue
             this.anims.create({
                 key: 'running',
@@ -344,8 +331,7 @@ export default class Game extends Phaser.Scene {
             });
         }
 
-        if (character == "robot")
-        {
+        if (character == "robot") {
             player.setScale(0.2).setSize(350, 500)
             this.anims.create({
                 key: 'running',
@@ -398,7 +384,7 @@ export default class Game extends Phaser.Scene {
                 repeat: 1
             });
         }
-       
+
         this.anims.create({
             key: 'coins',
             frames: [
@@ -426,11 +412,11 @@ export default class Game extends Phaser.Scene {
 
         platforms.create(0, 300, 'platform').setScale(1.1).refreshBody()
 
-        const x = Phaser.Math.Between(100,700)
+        const x = Phaser.Math.Between(100, 700)
         const y = 500
 
-      
-        
+
+
 
         //colliders
         this.physics.add.collider(player, platforms)
@@ -502,10 +488,10 @@ export default class Game extends Phaser.Scene {
 
         //set Velocity to the right parameter
         maxScore = 0
-        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {     
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {
             velocity += 50
         }
-        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {     
+        for (let index = 0; index < parseInt(localStorage.getItem('numberOfJumpUpgrades')); index++) {
             jumpHight -= 100
         }
         console.log('velocity = ', velocity)
@@ -573,19 +559,18 @@ export default class Game extends Phaser.Scene {
             })
             
         }
-        if (this.input.gamepad.total === 1)
-        {
+        if (this.input.gamepad.total === 1) {
             var pad = this.input.gamepad.getPad(0);
             var axisH = pad.axes[0].getValue();
             var jumpButton = pad.B;
         }
-        
 
-        
-       
 
-        if (cursors.left.isDown || axisH < 0 ) {
-            
+
+
+
+        if (cursors.left.isDown || axisH < 0) {
+
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
@@ -603,7 +588,7 @@ export default class Game extends Phaser.Scene {
 
         }
 
-        if ((cursors.up.isDown && player.body.touching.down) ||(player.body.touching.down && jumpButton == true)) {
+        if ((cursors.up.isDown && player.body.touching.down) || (player.body.touching.down && jumpButton == true)) {
             this.sound.play('jumpfx')
             player.setVelocityY(jumpHight)
             player.play('jump')
@@ -646,11 +631,11 @@ export default class Game extends Phaser.Scene {
             console.log('under last platform')
         }
         if (player.y > bottomPlatform.y + 3000 || gameover == true) {
-            console.log('game over')   
-            this.game.sound.stopAll(); 
+            console.log('game over')
+            this.game.sound.stopAll();
             this.scene.start('GameOver');
 
-           //this.scene.start('Shop')
+            //this.scene.start('Shop')
         }
 
 
@@ -711,8 +696,8 @@ const config = {
     input: {
         inputKeyboard: true,
         gamepad: true
-        
-    
+
+
     },
     backgroundColor: '#125555',
     width: 800,
@@ -725,7 +710,7 @@ const config = {
             debug: true
         }
     },
-    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
+    scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene, Upgrades, Visuals]
 };
 
 const game = new Phaser.Game(config);
