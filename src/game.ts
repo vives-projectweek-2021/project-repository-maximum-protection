@@ -14,6 +14,9 @@ let player
 let direction = 1;
 let platforms
 let fireball
+let firstball
+let firstballcolider
+let allballcolider
 let coins
 let scoreText
 let dragon
@@ -28,6 +31,7 @@ let velocity
 let jumpHight
 let playerpossafe = 50
 let velocityfireball = 200
+let bossfightenabled = false
 
 
 export default class Game extends Phaser.Scene {
@@ -169,6 +173,7 @@ export default class Game extends Phaser.Scene {
         dragon = this.add.sprite(60, -90,'fly1');
         dragon.setScale(2); 
         dragon.setScrollFactor(0);
+        dragon.setVisible(false)
 
         //player
         player = this.physics.add.sprite(0, 100, 'idle1')
@@ -415,7 +420,7 @@ export default class Game extends Phaser.Scene {
         for (let i = 0; i < 4; ++i) {
             const x = Phaser.Math.Between(100, 700)
             const y = -300 * i
-
+            
             const platform = platforms.create(x, y, 'platform').setScale(1.1).refreshBody()
         }
 
@@ -445,12 +450,27 @@ export default class Game extends Phaser.Scene {
         points = parseInt(localStorage.getItem("coins"))
 
         //fireball
-        fireball = this.physics.add.sprite(dragon.x,player.y-1200,'fireball1').setScale(0.5).refreshBody()
-        fireball.setSize(100,100)
-        fireball.play('movingfireball',true)
-        fireball.body.setMaxVelocityY(velocityfireball)
-        this.physics.add.overlap(player,fireball,hitFireball,null,this);
+        fireball = this.physics.add.group()
 
+        for( let i = 0; i<3; i++) //spawn 3 fireballs
+        {
+            const ball = fireball.create(dragon.x,player.y-1200-i*500,'fireball1').setScale(0.5).refreshBody().setSize(100,100)
+            ball.play('movingfireball',true)
+            ball.body.setMaxVelocityY(velocityfireball)
+            if (i > 0)
+            {
+                ball.visible = false
+                ball.body.checkCollision.none = true
+            } else
+            {
+                firstball = ball
+            }
+        }
+        
+        
+        allballcolider = this.physics.add.collider(player,fireball,hitFireball,null,this);
+        allballcolider.active = false
+        firstballcolider = this.physics.add.collider(player,firstball,hitFireball,null,this)
         //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
@@ -492,16 +512,25 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
 
-        
+        disablebossfight()
 
     }
     update() {
 
+        
+
         //dragon movement
         dragon.play('flying', true);
-        dragon.setVisible(false)
 
-        
+        if(bossfightenabled == false && maxScore > 10000 && maxScore < 15000 )
+        {
+            bossfightenabled = true
+            enablebossfight()
+        }
+        if(bossfightenabled == true && maxScore > 15000){
+            bossfightenabled = true
+            disablebossfight()
+        }
 
         dragon.x += + direction;
         if (dragon.x == 700) {
@@ -514,26 +543,35 @@ export default class Game extends Phaser.Scene {
 
 
         //player movement
-        if (fireball.y > player.y+600)
-        {
-            if (direction == 1)
+        fireball.children.iterate(child =>{
+            const ball = child
+
+            if (ball.y > player.y+600)
             {
-                fireball.x = dragon.x + 100
-            }else
-            {
-                fireball.x = dragon.x - 100
+                if (direction == 1)
+                {
+                    ball.x = dragon.x + 100
+                }else
+                {
+                    ball.x = dragon.x - 100
+                }
+                ball.y = player.y-700
+                
             }
-            fireball.y = player.y-700
-            
-        }
+
+        })
+
         
-        if (playerpossafe-4000 > player.y)
+        if (playerpossafe-2000 > player.y)
         {   
             playerpossafe =  player.y
             velocityfireball += 20
             console.log("Fireball speeds up")
-            fireball.body.setMaxVelocityY(velocityfireball)
-
+            fireball.children.iterate(child =>{
+                const ball = child
+                ball.body.setMaxVelocityY(velocityfireball)
+            })
+            
         }
         if (this.input.gamepad.total === 1)
         {
@@ -684,7 +722,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 1200 },
-            debug: false
+            debug: true
         }
     },
     scene: [WelcomeScreen, Game, GameOver, Shop, ShopCutscene,Upgrades, Visuals]
@@ -702,16 +740,36 @@ function collectCoin(player, coin) {
 
 function hitFireball(player,fireball)
 {
-    platforms.getChildren().forEach(function (platform) {
-        platform.body.checkCollision.down = false
-        platform.body.checkCollision.right = false
-        platform.body.checkCollision.left = false
-        platform.body.checkCollision.up = false
-    }, this);
-
     //fireball.visible = false
-    fireball.body.checkCollision.none = true
+    player.body.checkCollision.none = true
     player.body.setMaxVelocityX(0)
     player.setVelocityY(0)
 
+}
+
+function enablebossfight()
+{
+    allballcolider.active = true
+    dragon.setVisible(true)
+    const balls = fireball.getChildren()
+    for(let i = 1; i <=2; i++)
+    {
+        balls[i].visible = true
+        balls[i].body.checkCollision = true
+    }
+
+
+}
+
+function disablebossfight()
+{
+    allballcolider.active = false
+    dragon.setVisible(false)
+    const balls = fireball.getChildren()
+
+    for(let i = 1; i <=2; i++)
+    {
+        balls[i].visible = false
+        balls[i].body.checkCollision = false
+    }
 }
