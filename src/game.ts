@@ -203,7 +203,9 @@ export default class Game extends Phaser.Scene {
                 player.setScale(0.15).setSize(450, 600)
             }
             else if (character == "temple") {
-                player.setScale(0.25)
+                player.setScale(0.35)
+            } else if (character == "robot") {
+                player.setScale(0.35)
             }
 
             this.anims.create({

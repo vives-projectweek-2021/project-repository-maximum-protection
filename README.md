@@ -16,6 +16,10 @@ If the enemy gets hit the player some event could be triggered like
 
 The player wins when he reaches a certain checkpoint or when he collects a certain number of power-ups.
 
+*update*
+
+Over the course of the project the idea for the game was changed a couple of times.
+
 ## Theme 
 
 The theme of this game is knights and dragons/goblins or other creatures. The background of the game is currently a dark village, but maybe we'll add new backgrounds to it.
@@ -71,6 +75,23 @@ sprite animation working!
 
 02/04/2021 -- sprite animation working
 06/04/2021 -- basic controls working. Platforms, dragon and background added. 
+
+### 22/04/2021
+
+1. Started working on the different types of sprites (robot, indy, santa,...)
+2. Started working on the soundfx and background music
+3. Fixed several bugs 
+4. Added fireballs and fireball logic
+
+### 30/04/2021
+-- Presented the idea to our teachers. Several assignments were added.
+    - Add an option for playing the game with a controller
+    - Personalize the game sprites
+
+1. Finished the game music, soundfx and implemented them
+2. 
+
+
               
 
 

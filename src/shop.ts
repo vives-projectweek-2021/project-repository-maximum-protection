@@ -140,13 +140,13 @@ export default class Shop extends Phaser.Scene {
         }
         else if (character == "temple")
         {
-            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.5).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.8).setDepth(-2)
         }
         this.add.image(250, 628, 'shop-keeper')
         //ground generation
         
         
-        sprite = this.add.sprite(850, 720, 'idle1').setScale(0.25)
+        sprite = this.add.sprite(850, 720, 'idle1').setScale(0.23)
 
         sprite.setFlipX(true)
         sprite.play('running')
