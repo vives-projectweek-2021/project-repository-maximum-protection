@@ -667,9 +667,9 @@ export default class Game extends Phaser.Scene {
 const config = {
     type: Phaser.AUTO,
     input: {
-        gamepad: true,
+         gamepad: true
     
-    },
+     },
 
     backgroundColor: '#125555',
     width: 800,
