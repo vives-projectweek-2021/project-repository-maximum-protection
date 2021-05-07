@@ -19,6 +19,12 @@ export default class Shop extends Phaser.Scene {
         this.load.image('upgrades', 'assets/shop/upgrades.png');
         this.load.image('Visuals', 'assets/shop/Visuals.png');
         this.load.audio('click', ['assets/audio/click.mp3'] );
+        //load platforms
+        this.load.image('santaplatform', 'assets/platforms/santaplatform.png');
+        this.load.image('knightplatform', 'assets/platforms/knightplatform.jpg');
+        this.load.image('robotplatform', 'assets/platforms/robotplatform.png');
+        this.load.image('grassplatform', 'assets/platforms/grassplatform.png');
+        
         //santa
         for (let i = 1; i <= 16; i++) {
             this.load.image(`santa${i}`, `assets/santa/Idle (${i}).png`);
@@ -138,9 +144,7 @@ export default class Shop extends Phaser.Scene {
         }
         this.add.image(250, 628, 'shop-keeper')
         //ground generation
-        for (let i = 0; i <= 10; i++) {
-            this.add.image(80 * i, 800, 'platform').setScale(1)
-        }
+        
         
         sprite = this.add.sprite(850, 720, 'idle1').setScale(0.25)
 
@@ -189,24 +193,48 @@ export default class Shop extends Phaser.Scene {
     update() {
 
         character  = localStorage.getItem("character")
+        let platforms = this.physics.add.staticGroup()
 
         if (character == "knight")
         {
             background = this.add.image(400, 450, 'backgroundknight').setScale(1.2).setDepth(-1)
+            for (let i = 0; i <= 10; i++) {
+                platforms.create(80 * i, 800, 'knightplatform').setScale(1).refreshBody()
+
+            }
+
         } 
         else if (character == "santa")
         {
             background = this.add.image(400, 450, 'backgroundsanta').setScale(1.2).setDepth(-1)
+            for (let i = 0; i <= 10; i++) {
+                platforms.create(80 * i, 800, 'santaplatform').setScale(1.05).refreshBody()
+
+                
+            }
+
         }
         else if (character == "robot")
         {
             background = this.add.image(400, 450, 'backgroundrobot').setScale(1.2).setDepth(-1)
+            for (let i = 0; i <= 10; i++) {
+                platforms.create(80 * i, 800, 'robotplatform').setScale(0.93).refreshBody()
+
+            }
+
         }
         else if (character == "temple")
         {
             background = this.add.image(400, 450, 'backgroundtemple').setScale(1.5).setDepth(-1)
+            for (let i = 0; i <= 10; i++) {
+                platforms.create(80 * i, 800, 'grassplatform').setScale(0.78).refreshBody()
+            }
+
         }
+        
+
         background.update()
+        
 
         if (sprite.x >= 600) {
             sprite.x -= 6
