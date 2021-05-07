@@ -32,6 +32,7 @@ let jumpHight
 let playerpossafe = 50
 let velocityfireball = 200
 let bossfightenabled = false
+let beatenBoss;
 
 
 export default class Game extends Phaser.Scene {
@@ -146,7 +147,6 @@ export default class Game extends Phaser.Scene {
 
 
         }
-
         //play background music
 
         //var backgroundMusic = this.sound.add('backgroundmusic', { loop: true });
@@ -500,7 +500,6 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
 
-        disablebossfight()
 
     }
 
@@ -515,10 +514,19 @@ export default class Game extends Phaser.Scene {
         if(bossfightenabled == false && maxScore > 10000 && maxScore < 15000 )
         {
             bossfightenabled = true
+            console.log("enable boss fight")
             enablebossfight()
         }
         if(bossfightenabled == true && maxScore > 15000){
-            bossfightenabled = true
+            bossfightenabled = false
+            console.log("disable boss fight")
+            beatenBoss = this.add.text(30, player.y - 500, 'YOU HAVE SLAIN THE DRAGON', {
+                fontFamily: 'Arial',
+                fontSize: '50px',
+                strokeThickness: 5,
+                stroke: '#000000',
+                color: '#EA6A47'
+            });
             disablebossfight()
         }
 
@@ -578,7 +586,6 @@ export default class Game extends Phaser.Scene {
             player.setVelocityX(velocity * (-1));
             player.setFlipX(true);
             if (player.body.touching.down) { player.play('running', true) }
-
         }
         else if (cursors.right.isDown || axisH > 0) {
             player.setVelocityX(velocity);
@@ -729,6 +736,8 @@ function collectCoin(player, coin) {
 
 function hitFireball(player,fireball)
 {
+    bossfightenabled = false
+    
     //fireball.visible = false
     player.body.checkCollision.none = true
     player.body.setMaxVelocityX(0)
@@ -755,7 +764,8 @@ function disablebossfight()
     allballcolider.active = false
     dragon.setVisible(false)
     const balls = fireball.getChildren()
-
+    
+    beatenBoss.visible = true
     for(let i = 1; i <=2; i++)
     {
         balls[i].visible = false
