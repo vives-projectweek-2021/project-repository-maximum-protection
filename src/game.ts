@@ -508,13 +508,13 @@ export default class Game extends Phaser.Scene {
         //dragon movement
         dragon.play('flying', true);
 
-        if(bossfightenabled == false && maxScore > 10000 && maxScore < 15000 )
+        if(bossfightenabled == false && maxScore > 10000 && maxScore < 11000 )
         {
             bossfightenabled = true
             enablebossfight()
         }
-        if(bossfightenabled == true && maxScore > 15000){
-            bossfightenabled = true
+        if(bossfightenabled == true && maxScore > 11000){
+            bossfightenabled = false
             disablebossfight()
         }
 
