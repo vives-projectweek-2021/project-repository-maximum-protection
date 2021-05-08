@@ -136,11 +136,11 @@ export default class Shop extends Phaser.Scene {
         }
         else if (character == "robot")
         {
-            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.2).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundrobot').setScale(1.1).setDepth(-2)
         }
         else if (character == "temple")
         {
-            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.8).setDepth(-2)
+            background = this.add.image(400, 450, 'backgroundtemple').setScale(1.7).setDepth(-2)
         }
         this.add.image(250, 628, 'shop-keeper')
         //ground generation
@@ -244,21 +244,26 @@ export default class Shop extends Phaser.Scene {
             if(character == "knight")
             {
                sprite.play('knightidle', true)
+               sprite.setScale(0.23)
                sprite.y = 705
             } 
             else if (character == "robot")
             {
-                sprite.play('robotidle', true) 
+                sprite.play('robotidle', true)
+               sprite.setScale(0.30)
                 sprite.y = 720
             } 
             else if (character == "temple")
             {
-                sprite.play('templeidle', true) 
+               
+               sprite.play('templeidle', true) 
+               sprite.setScale(0.30)
                 sprite.y = 720
             } 
             else if (character == "santa")
             {
                 sprite.play('santaidle', true) 
+               sprite.setScale(0.23)
                 sprite.y = 712
             }
             
