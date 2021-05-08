@@ -203,10 +203,8 @@ export default class Game extends Phaser.Scene {
                 player.setScale(0.15).setSize(450, 600)
             }
             else if (character == "temple") {
-                player.setScale(0.35)
-            } else if (character == "robot") {
-                player.setScale(0.35)
-            }
+                player.setScale(0.22)
+            } 
 
             this.anims.create({
                 key: 'running',
@@ -334,7 +332,7 @@ export default class Game extends Phaser.Scene {
         }
 
         if (character == "robot") {
-            player.setScale(0.2).setSize(350, 500)
+            player.setScale(0.23).setSize(300, 500)
             this.anims.create({
                 key: 'running',
                 frames: [
