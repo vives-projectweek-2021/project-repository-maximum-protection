@@ -15,7 +15,6 @@ let direction = 1;
 let platforms
 let fireball
 let firstball
-let firstballcolider
 let allballcolider
 let coins
 let scoreText
@@ -125,7 +124,6 @@ export default class Game extends Phaser.Scene {
 
     create() {
         let background
-        let backgroundMusic
         if (character == "knight") {
             background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
             backgroundMusic = this.sound.add('Knightbackgroundmusic', { loop: true });
@@ -456,7 +454,7 @@ export default class Game extends Phaser.Scene {
         
         allballcolider = this.physics.add.collider(player,fireball,hitFireball,null,this);
         allballcolider.active = false
-        firstballcolider = this.physics.add.collider(player,firstball,hitFireball,null,this)
+        this.physics.add.collider(player,firstball,hitFireball,null,this)
         //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
