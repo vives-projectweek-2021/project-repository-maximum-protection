@@ -732,8 +732,9 @@ function collectCoin(player, coin) {
     points++
 }
 
-function hitFireball(player,fireball)
+function hitFireball(player)
 {
+    player.setVelocityY(0)
     bossfightenabled = false
     
     //fireball.visible = false
