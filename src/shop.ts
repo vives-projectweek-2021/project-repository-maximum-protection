@@ -6,6 +6,7 @@ let upgrades
 let visuals
 let inSubScene
 let background
+let back
 
 export default class Shop extends Phaser.Scene {
 
@@ -154,6 +155,21 @@ export default class Shop extends Phaser.Scene {
         upgrades = this.add.image(600, 200, 'upgrades').setScale(0.3).setInteractive()
         visuals = this.add.image(200, 200, 'Visuals').setScale(0.3).setInteractive()
 
+        back = this.add.image(50,860 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.18).setDepth(2).setRotation(Math.PI)
+
+        back.on('pointerdown',() => {
+            if (inSubScene) {
+                upgrades.visible = true
+                visuals.visible = true
+                inSubScene = false
+                this.scene.stop("Visuals")
+                this.scene.stop("Upgrades")
+
+            }
+            else{
+                this.scene.start("game")
+            }
+        })
 
         upgrades.on('pointerdown', () => {
             this.sound.play('click')
@@ -184,6 +200,7 @@ export default class Shop extends Phaser.Scene {
                 visuals.visible = true
                 inSubScene = false
                 console.log("escape!")
+                
             }
             else{
                 this.scene.start("game")
