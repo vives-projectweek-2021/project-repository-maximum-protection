@@ -36,6 +36,9 @@ let mobile = false
 let buttonleft
 let buttonright
 let buttonjump
+let runningleft = false
+let runningright = false
+let jumping = false
 
 
 export default class Game extends Phaser.Scene {
@@ -130,18 +133,7 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
-        if (this.sys.game.device.os.desktop){
-            mobile = true
-        }
-        else{
-           mobile = true
-        }
-
-        if (mobile)
-        {
-            buttonleft = this.add.image(50,850 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.5).setDepth(2).setRotation(Math.PI)
-            buttonleft.alpha = 0.8
-        }
+        
 
         //background sound and music 
         let background
@@ -519,10 +511,44 @@ export default class Game extends Phaser.Scene {
         console.log('jumpHight = ', jumpHight)
 
         if (this.sys.game.device.os.desktop){
-            console.log("desktop")
+            mobile = false
         }
         else{
-           console.log("mobile")
+           mobile = true
+        }
+
+        if (mobile)
+        {
+            buttonleft = this.add.image(50,850 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.5).setDepth(2).setRotation(Math.PI)
+            buttonleft.alpha = 0.8
+            buttonright = this.add.image(300,850 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.5).setDepth(2)
+            buttonright.alpha = 0.8
+            buttonjump = this.add.image(700,850 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.5).setDepth(2).setRotation(-Math.PI/2)
+            buttonjump.alpha = 0.8
+
+            buttonleft.on('pointerdown',()=>{
+                runningleft = true
+            })
+
+            buttonright.on('pointerdown',()=>{
+                runningright = true
+            })
+
+            buttonjump.on('pointerdown',()=>{
+                jumping = true
+            })
+
+            buttonleft.on('pointerup',()=>{
+                runningleft = false
+            })
+
+            buttonright.on('pointerup',()=>{
+                runningright = false
+            })
+
+            buttonjump.on('pointerup',()=>{
+                jumping = false
+            })
         }
     }
 
@@ -601,16 +627,12 @@ export default class Game extends Phaser.Scene {
 
 
 
-        if (cursors.left.isDown || axisH < 0) {
+        if (cursors.left.isDown || axisH < 0 || runningleft) {
 
-            player.setVelocityX(velocity * (-1));
-            player.setFlipX(true);
-            if (player.body.touching.down) { player.play('running', true) }
+            playerleft(player)
         }
-        else if (cursors.right.isDown || axisH > 0) {
-            player.setVelocityX(velocity);
-            player.setFlipX(false);
-            if (player.body.touching.down) { player.play('running', true) }
+        else if (cursors.right.isDown || axisH > 0 || runningright) {
+            playerright(player)
 
         }
         else {
@@ -619,10 +641,9 @@ export default class Game extends Phaser.Scene {
 
         }
 
-        if ((cursors.up.isDown && player.body.touching.down) || (player.body.touching.down && jumpButton == true)) {
+        if ((cursors.up.isDown && player.body.touching.down) || (player.body.touching.down && jumpButton == true) || (jumping && player.body.touching.down)) {
+            playerjump(player)
             this.sound.play('jumpfx')
-            player.setVelocityY(jumpHight)
-            player.play('jump')
         }
 
 
@@ -792,4 +813,25 @@ function disablebossfight()
         balls[i].visible = false
         balls[i].body.checkCollision = false
     }
+}
+
+function playerjump(player)
+{
+    
+    player.setVelocityY(jumpHight)
+    player.play('jump')
+}
+
+function playerleft(player)
+{
+    player.setVelocityX(velocity * (-1));
+    player.setFlipX(true);
+    if (player.body.touching.down) { player.play('running', true) }
+}
+
+function playerright(player)
+{
+    player.setVelocityX(velocity * (1));
+    player.setFlipX(false);
+    if (player.body.touching.down) { player.play('running', true) }
 }
