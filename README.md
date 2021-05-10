@@ -20,8 +20,19 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### The characters we are currently using
 
+<<<<<<< HEAD
 - [Knight sprite art](https://www.gameart2d.com/the-knight-free-sprites.html)
 - [Some sort of dragon](https://opengameart.org/content/red-dragon)
+=======
+- [Knight sprite art] (Source: https://www.gameart2d.com/the-knight-free-sprites.html)
+<<<<<<< HEAD
+- [Temple sprite art](https://www.gameart2d.com/temple-run---free-sprites.html)
+- [Robot sprite art](https://www.gameart2d.com/the-robot---free-sprites.html)
+- [Santa sprite art](https://www.gameart2d.com/santa-claus-free-sprites.html)
+=======
+>>>>>>> 6a7a025d30c29cf2dc1839e9050186259954db70
+- [Some sort of dragon] (Source: https://opengameart.org/content/red-dragon)
+>>>>>>> 9c6133f4aa263e2fb216b0bcadf1a403a2e6a9e9
 
 ## Links
 
@@ -47,6 +58,10 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 ### A bit further in to the game
 
 ![Background](./ScreenshotsForReadMe/FurtherInToGame2.png)
+
+### Character Development
+![Character development](./ScreenshotsForReadMe/pietscrn.png)
+
 
 ## Progress
 
