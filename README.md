@@ -53,6 +53,10 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ![Background](./ScreenshotsForReadMe/FurtherInToGame.png)
 
+### Character Development
+![Character development](./ScreenshotsForReadMe/pietscrn.png)
+
+
 ## Progress
 
 ### 02/04/2021 
@@ -93,7 +97,6 @@ Phaser framework working. Testing out sprite animation.
 4. Continued working on the different characters and backgrounds
 5. Fixed several bugs
 
-![Character development](./ScreenshotsForReadMe/pietscrn.png)
 ![Shop example](./ScreenshotsForReadMe/frankyscrn.png)
 
 
