@@ -6,15 +6,10 @@
 
 Maximum Protection(tm) is a vertical platformer where you're constantly being chased by a projectile-shooting enemy. The camera will also move upwards so the player is forced to keep moving. 
 
-There is a power-up the player can grab which bounces the projectiles back towards the enemy for a limited amount of time. 
+There are coins randomly generated across the level. The player can collect the coins and spend them on different upgrades and cosmetic changes.
 
-If the enemy gets hit the player some event could be triggered like 
+The 
 
-- the camera could move a bit slower
-- the enemy could stop firing a few seconds
-- ...
-
-The player wins when he reaches a certain checkpoint or when he collects a certain number of power-ups.
 
 *update*
 
