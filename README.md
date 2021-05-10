@@ -24,7 +24,10 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### The characters we are currently using
 
-- [Knight sprite art] (Source: https://www.gameart2d.com/the-knight-free-sprites.html) 
+- [Knight sprite art] (Source: https://www.gameart2d.com/the-knight-free-sprites.html)
+- [Temple sprite art](https://www.gameart2d.com/temple-run---free-sprites.html)
+- [Robot sprite art](https://www.gameart2d.com/the-robot---free-sprites.html)
+- [Santa sprite art](https://www.gameart2d.com/santa-claus-free-sprites.html)
 - [Some sort of dragon] (Source: https://opengameart.org/content/red-dragon)
 
 ## Links
