@@ -32,8 +32,10 @@ let playerpossafe = 50
 let velocityfireball = 200
 let bossfightenabled = false
 let beatenBoss
-let pad
-let jumpButton
+let mobile = false
+let buttonleft
+let buttonright
+let buttonjump
 
 
 export default class Game extends Phaser.Scene {
@@ -121,11 +123,25 @@ export default class Game extends Phaser.Scene {
             this.load.image('platform', 'assets/platforms/grassplatform.png');
 
         }
+
+        this.load.image("arrowbutton", "assets/Button.png");
     }
 
 
 
     create() {
+        if (this.sys.game.device.os.desktop){
+            mobile = true
+        }
+        else{
+           mobile = true
+        }
+
+        if (mobile)
+        {
+            buttonleft = this.add.image(50,850 , 'arrowbutton').setInteractive().setScrollFactor(1, 0).setScale(0.5).setDepth(2).setRotation(Math.PI)
+            buttonleft.alpha = 0.8
+        }
 
         //background sound and music 
         let background
@@ -501,6 +517,13 @@ export default class Game extends Phaser.Scene {
         }
         console.log('velocity = ', velocity)
         console.log('jumpHight = ', jumpHight)
+
+        if (this.sys.game.device.os.desktop){
+            console.log("desktop")
+        }
+        else{
+           console.log("mobile")
+        }
     }
 
     //gameloop
