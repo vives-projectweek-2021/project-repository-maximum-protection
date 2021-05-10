@@ -8,7 +8,7 @@ Maximum Protection(tm) is a vertical platformer where you're constantly being ch
 
 There are coins randomly generated across the level. The player can collect the coins and spend them on different upgrades and cosmetic changes.
 
-The 
+After a certain height is reached a dragon will appear and the frequency of the fireballs will increase. 
 
 
 *update*
@@ -94,7 +94,7 @@ Phaser framework working. Testing out sprite animation.
 5. Fixed several bugs
 
 ![Character development](./ScreenshotsForReadMe/pietscrn.png)
-![Shop example](./ScreenshotsForReadMe/frankyscn.png)
+![Shop example](./ScreenshotsForReadMe/frankyscrn.png)
 
 
 ### 07/05/2021
