@@ -88,8 +88,22 @@ sprite animation working!
     - Add an option for playing the game with a controller
     - Personalize the game sprites
 
-1. Finished the game music, soundfx and implemented them
-2. 
+1. Finished the game music, soundfx and implemented them.
+2. Shop was added
+3. Backgrounds were added
+4. Continued working on the different characters and backgrounds
+5. Fixed several bugs.
+
+### 07/05/2021
+
+1. Implemented the gamepad into the game
+2. Continued working on the different sprites and implementing them
+3. Started working on the bossfight 
+4. Got the bossfight working
+5. Fixed several bugs while working on the game, adjustments were made to the overall difficulty.
+ 
+
+### 
 
 
               
