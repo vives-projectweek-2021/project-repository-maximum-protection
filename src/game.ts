@@ -31,7 +31,9 @@ let jumpHight
 let playerpossafe = 50
 let velocityfireball = 200
 let bossfightenabled = false
-let beatenBoss;
+let beatenBoss
+let pad
+let jumpButton
 
 
 export default class Game extends Phaser.Scene {
@@ -53,7 +55,7 @@ export default class Game extends Phaser.Scene {
         this.anims.remove("Idleing")
         this.anims.remove("jump")
 
-        //audio BG music
+        //character request 
         character = localStorage.getItem("character")
         console.log("character = ", localStorage.getItem("character"))
         //audio
@@ -70,9 +72,9 @@ export default class Game extends Phaser.Scene {
         this.load.audio('flyingfx', ['assets/audio/flying.mp3']);
 
 
-        //sprites & images
+        
         gameover = false
-
+        //sprite & image loading
         for (let i = 0; i <= 4; i++) {
             this.load.image(`fireball${i}`, `assets/fireball/Bullet_00${i}.png`);
         }
@@ -93,6 +95,7 @@ export default class Game extends Phaser.Scene {
             }
 
             this.load.image('platform', 'assets/platforms/santaplatform.png');
+
         } else if (character == "knight") {
             for (let i = 1; i <= 10; i++) {
                 this.load.image(`idle${i}`, `assets/knight/Idle (${i}).png`);
@@ -123,6 +126,8 @@ export default class Game extends Phaser.Scene {
 
 
     create() {
+
+        //background sound and music 
         let background
         if (character == "knight") {
             background = this.add.image(400, 450, 'backgroundknight').setScale(1.5)
@@ -145,26 +150,24 @@ export default class Game extends Phaser.Scene {
 
 
         }
-        //play background music
 
-        //var backgroundMusic = this.sound.add('backgroundmusic', { loop: true });
         backgroundMusic.play();
 
-
-        //variables
+        //base variables
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
 
         background.setScrollFactor(1, 0)
 
-        //dragon logic
+        //dragon loading
         dragon = this.add.sprite(60, -90, 'fly1');
         dragon.setScale(2);
         dragon.setScrollFactor(0);
         dragon.setVisible(false)
+        dragon.play('flying', true);
 
-        //player
+        //animations
         player = this.physics.add.sprite(0, 100, 'idle1')
 
         this.anims.create({
@@ -399,6 +402,7 @@ export default class Game extends Phaser.Scene {
         });
 
 
+        //creating starting platforms(these get teleported over the course of the game)
         platforms = this.physics.add.staticGroup()
 
         for (let i = 0; i < 4; ++i) {
@@ -416,11 +420,11 @@ export default class Game extends Phaser.Scene {
 
 
 
-        //colliders
+        //player platform collider
         this.physics.add.collider(player, platforms)
 
 
-        //platform collider
+        //platform collider only top
         platforms.getChildren().forEach(function (platform) {
             platform.body.checkCollision.down = false
             platform.body.checkCollision.right = false
@@ -436,7 +440,7 @@ export default class Game extends Phaser.Scene {
         //fireball
         fireball = this.physics.add.group()
 
-        for( let i = 0; i<3; i++) //spawn 3 fireballs
+        for( let i = 0; i<3; i++) //spawn 3 fireballs (2 of these get set to invisible and untouchable)
         {
             const ball = fireball.create(dragon.x,player.y-1200-i*500,'fireball1').setScale(0.5).refreshBody().setSize(100,100)
             ball.play('movingfireball',true)
@@ -451,22 +455,24 @@ export default class Game extends Phaser.Scene {
             }
         }
         
-        
+        // colliders with fireballs
         allballcolider = this.physics.add.collider(player,fireball,hitFireball,null,this);
         allballcolider.active = false
         this.physics.add.collider(player,firstball,hitFireball,null,this)
+
         //camera settings
         this.cameras.main.startFollow(player)
         this.cameras.main.setDeadzone(this.scale.width * 1.5)
         this.cameras.main.setZoom(0.8, 0.8)
         this.cameras.main.centerOnX(400)
 
+        //escape to go to start screen
         this.input.keyboard.on('keydown-ESC', () => {
-            //this.scene.pause('WelcomeScreen') --> doesnt work
             this.sound.stopAll()
             this.scene.start('WelcomeScreen')
         })
 
+        //text
         scoreText = this.add.text(750, -100, '', {
             fontFamily: 'Arial',
             fontSize: '25px',
@@ -486,6 +492,7 @@ export default class Game extends Phaser.Scene {
 
         //set Velocity to the right parameter
         maxScore = 0
+        //adding upgrades to both velocity and jumpheight
         for (let index = 0; index < parseInt(localStorage.getItem('numberOfSpeedUpgrades')); index++) {
             velocity += 50
         }
@@ -494,19 +501,12 @@ export default class Game extends Phaser.Scene {
         }
         console.log('velocity = ', velocity)
         console.log('jumpHight = ', jumpHight)
-
-
-
     }
 
-    
+    //gameloop
     update() {
-
         
-
-        //dragon movement
-        dragon.play('flying', true);
-
+        //check for bossfight
         if(bossfightenabled == false && maxScore > 10000 && maxScore < 15000 )
         {
             bossfightenabled = true
@@ -526,6 +526,7 @@ export default class Game extends Phaser.Scene {
             disablebossfight()
         }
 
+        //dragon movement
         dragon.x += + direction;
         if (dragon.x == 700) {
             dragon.setFlip(true, false);
@@ -536,7 +537,7 @@ export default class Game extends Phaser.Scene {
         }
 
 
-        //player movement
+        //fireball shooting
         fireball.children.iterate(child =>{
             const ball = child
 
@@ -555,7 +556,7 @@ export default class Game extends Phaser.Scene {
 
         })
 
-        
+        //fireball speeds up the higher you get
         if (playerpossafe-2000 > player.y)
         {   
             playerpossafe =  player.y
