@@ -55,7 +55,7 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### Character Development
 
-![Character development](./ScreenshotsForReadMe/pietscrn.PNG)
+![Character development](./ScreenshotsForReadMe/characterdev.png)
 
 ## Progress
 
