@@ -79,7 +79,7 @@ Phaser framework working. Testing out sprite animation.
 4. Added fireballs and fireball logic (fireballs go faster the higher you go).
 5. 
 
-![Screenshot shop](./ScreenshotsForReadMe/sillescrn.png)
+![Screenshot shop](./ScreenshotsForReadMe/sillescrn.PNG)
 
 
 ### 30/04/2021
@@ -93,8 +93,8 @@ Phaser framework working. Testing out sprite animation.
 4. Continued working on the different characters and backgrounds
 5. Fixed several bugs
 
-![Character development](./ScreenshotsForReadMe/pietscrn.png)
-![Shop example](./ScreenshotsForReadMe/frankyscrn.png)
+![Character development](./ScreenshotsForReadMe/pietscrn.PNG)
+![Shop example](./ScreenshotsForReadMe/frankyscrn.PNG)
 
 
 ### 07/05/2021
