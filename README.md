@@ -61,7 +61,7 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 ## Progress
 
 ### 02/04/2021 
-sprite animation working!
+Phaser framework working. Testing out sprite animation.
 
 ### 03/04/2021 - 07/04/2021
 1. Adding platforms to the game and make them spawn randomly.
@@ -80,8 +80,12 @@ sprite animation working!
 
 1. Started working on the different types of sprites (robot, indy, santa,...)
 2. Started working on the soundfx and background music
-3. Fixed several bugs 
-4. Added fireballs and fireball logic
+3. Fixed several bugs concerning the shop 
+4. Added fireballs and fireball logic (fireballs go faster the higher you go).
+5. 
+
+![Screenshot fireballs](./ScreenshotsForReadMe/sillescrn2.png)
+
 
 ### 30/04/2021
 -- Presented the idea to our teachers. Several assignments were added.
@@ -92,7 +96,11 @@ sprite animation working!
 2. Shop was added
 3. Backgrounds were added
 4. Continued working on the different characters and backgrounds
-5. Fixed several bugs.
+5. Fixed several bugs
+
+![Character development](./ScreenshotsForReadMe/pietscrn.png)
+![Shop example](./ScreenshotsForReadMe/frankyscn.png)
+
 
 ### 07/05/2021
 
@@ -101,13 +109,17 @@ sprite animation working!
 3. Started working on the bossfight 
 4. Got the bossfight working
 5. Fixed several bugs while working on the game, adjustments were made to the overall difficulty.
+6. Several cosmetic changes were made to the Welcome Screen
  
 
-### 
+### 10/05/2021
+
+1. Finished up the game logic
+2. Started working on the presentation and the movie
+
 
 
               
 
 
-# 08/04/2021 - ...
 
