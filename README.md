@@ -1,4 +1,4 @@
-# Maximum Protection repo -- last update 07/04/2021
+# Maximum Protection repo -- last update 10/05/2021
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8486038c-f5b4-4a59-a27e-847d8d754f5b/deploy-status)](https://app.netlify.com/sites/maximum-protection/deploys)
 
@@ -10,8 +10,6 @@ There are coins randomly generated across the level. The player can collect the 
 
 After a certain height is reached a dragon will appear and the frequency of the fireballs will increase.
 
-*update*
-
 Over the course of the project the idea for the game was changed a couple of times.
 
 ## Theme
@@ -22,8 +20,8 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### The characters we are currently using
 
-- [Knight sprite art] (Source: https://www.gameart2d.com/the-knight-free-sprites.html)
-- [Some sort of dragon] (Source: https://opengameart.org/content/red-dragon)
+- [Knight sprite art](https://www.gameart2d.com/the-knight-free-sprites.html)
+- [Some sort of dragon](https://opengameart.org/content/red-dragon)
 
 ## Links
 
@@ -33,14 +31,14 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ## The game logic
 
-- [gravity/bouncing physics] (https://phaser.io/examples/v2/arcade-physics/bounce-with-gravity)
-- [starstruck -- example game] (https://phaser.io/examples/v2/games/starstruck)
+- [gravity/bouncing physics](https://phaser.io/examples/v2/arcade-physics/bounce-with-gravity)
+- [starstruck -- example game](https://phaser.io/examples/v2/games/starstruck)
 
 ## Screenshots from the game
 
 ### Welcome Screen
 
-![Background](./ScreenshotsForReadMe/Welcomescreen.png)
+![Background](./ScreenshotsForReadMe/Welcomescreen2.PNG)
 
 ### Start of the game
 
@@ -48,7 +46,7 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### A bit further in to the game
 
-![Background](./ScreenshotsForReadMe/FurtherInToGame.png)
+![Background](./ScreenshotsForReadMe/FurtherInToGame2.png)
 
 ## Progress
 
@@ -107,3 +105,7 @@ Phaser framework working. Testing out sprite animation.
 
 1. Finished up the game logic
 2. Started working on the presentation and the movie
+
+## Netlify link
+
+![Link to game](https://maximum-protection.netlify.app/)
