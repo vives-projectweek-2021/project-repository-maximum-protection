@@ -50,6 +50,8 @@ export default class Game extends Phaser.Scene {
     }
     preload() {
 
+
+
         this.textures.remove("platform")
         for (let i = 1; i <= 16; i++) {
             this.textures.remove(`idle${i}`);
@@ -516,6 +518,11 @@ export default class Game extends Phaser.Scene {
         else{
            mobile = true
         }
+
+        runningleft = false
+        runningright = false
+        jumping = false
+
 
         if (mobile)
         {
