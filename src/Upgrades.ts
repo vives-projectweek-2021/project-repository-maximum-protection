@@ -39,7 +39,7 @@ export default class Upgrades extends Phaser.Scene {
             this.add.image(index, 165, 'star_placeholder').setScale(0.04)
         }
 
-        this.add.text(180, 250, `jump hight:   `, {
+        this.add.text(180, 250, `jump height:   `, {
             fontFamily: 'Arial',
             fontSize: '25px',
             strokeThickness: 5,
