@@ -61,7 +61,7 @@ The theme of this game is knights and dragons/goblins or other creatures. The ba
 
 ### 02/04/2021
 
-Phaser framework working. Testing out sprite animation.
+Phaser framework working. 
 
 ### 03/04/2021 - 07/04/2021
 
