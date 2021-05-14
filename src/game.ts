@@ -164,6 +164,7 @@ export default class Game extends Phaser.Scene {
         backgroundMusic.play();
 
         //base variables
+        bossfightenabled = false
         velocity = 350
         jumpHight = -1000
         cursors = this.input.keyboard.createCursorKeys()
