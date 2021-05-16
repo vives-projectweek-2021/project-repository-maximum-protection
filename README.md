@@ -1,4 +1,4 @@
-# Maximum Protection repo -- last update 10/05/2021
+# Maximum Protection
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8486038c-f5b4-4a59-a27e-847d8d754f5b/deploy-status)](https://app.netlify.com/sites/maximum-protection/deploys)
 
