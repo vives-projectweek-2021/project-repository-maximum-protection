@@ -8,25 +8,21 @@ Maximum Protection(tm) is a vertical platformer where you're constantly being ch
 
 There are coins randomly generated across the level. The player can collect the coins and spend them on different upgrades and cosmetic changes.
 
-After a certain height is reached a dragon will appear and the frequency of the fireballs will increase.
-
-Over the course of the project the idea for the game was changed a couple of times.
+After a certain height is reached a dragon will appear and the frequency of the fireballs increases.
 
 ## Theme
 
-The theme of this game is knights and dragons/goblins or other creatures. The background of the game is currently a dark village, but maybe we'll add new backgrounds to it.
+The original theme of the game is a knight. The background of the game starts as a dark village, but you can unlock other backgrounds.
 
 ![Background](./ScreenshotsForReadMe/BackgroundScreenshot.png)
 
-### The characters we are currently using
+### The characters we used
 
-- [Knight sprite art](https://www.gameart2d.com/the-knight-free-sprites.html)
-- [Some sort of dragon](https://opengameart.org/content/red-dragon)
+- [Dragon](https://opengameart.org/content/red-dragon)
 - [Knight sprite art](https://www.gameart2d.com/the-knight-free-sprites.html)
 - [Temple sprite art](https://www.gameart2d.com/temple-run---free-sprites.html)
 - [Robot sprite art](https://www.gameart2d.com/the-robot---free-sprites.html)
 - [Santa sprite art](https://www.gameart2d.com/santa-claus-free-sprites.html)
-- [Some sort of dragon](https://opengameart.org/content/red-dragon)
 
 ## Links
 
