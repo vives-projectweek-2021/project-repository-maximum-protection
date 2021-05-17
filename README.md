@@ -16,7 +16,7 @@ The original theme of the game is a knight. The background of the game starts as
 
 ![Background](./ScreenshotsForReadMe/BackgroundScreenshot.png)
 
-### The characters we used
+### The characters used
 
 - [Dragon](https://opengameart.org/content/red-dragon)
 - [Knight sprite art](https://www.gameart2d.com/the-knight-free-sprites.html)
