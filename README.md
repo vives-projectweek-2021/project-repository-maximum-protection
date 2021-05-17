@@ -52,6 +52,8 @@ The original theme of the game is a knight. The background of the game starts as
 ### Character Development
 
 ![Character development](./ScreenshotsForReadMe/characterdev.png)
+![Character development](./src/assets/santa/Idle (1).png)
+
 
 ## Progress
 
