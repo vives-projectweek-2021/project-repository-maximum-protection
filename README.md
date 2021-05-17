@@ -90,7 +90,6 @@ Phaser framework working.
 4. Continued working on the different characters and backgrounds
 5. Fixed several bugs
 
-![Character development](./ScreenshotsForReadMe/pietscrn.PNG)
 ![Shop example](./ScreenshotsForReadMe/frankyscrn.PNG)
 
 ### 07/05/2021
